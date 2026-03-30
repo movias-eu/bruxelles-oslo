@@ -1,0 +1,357 @@
+{
+  "fields": [
+    {
+      "name": "urbis_id",
+      "type": "integer",
+      "title": "",
+      "description": "ID van het object van de Urbis databank.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "ID de l'objet dans la base de données Urbis.",
+        "nl": "ID van het object van de Urbis databank."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "version_id",
+      "type": "integer",
+      "title": "",
+      "description": "ID van de versie van het object in de Urbis databank.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "ID de la version de l'objet dans la base de donnée Urbis.",
+        "nl": "ID van de versie van het object in de Urbis databank."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "from_node",
+      "type": "integer",
+      "title": "",
+      "description": "ID van de beginknoop van het segment.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "ID du noeud de départ du segment.",
+        "nl": "ID van de beginknoop van het segment."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "to_node",
+      "type": "integer",
+      "title": "",
+      "description": "ID van de eindknoop van het segment.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "ID du noeud de départ du segment.",
+        "nl": "ID van de eindknoop van het segment."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "pn_id_l",
+      "type": "integer",
+      "title": "",
+      "description": "ID die linkt met de straatkant en de straatnaam (linkerkant).",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "ID qui donne le lien vers la côté de la rue et le nom de la rue (côté gauche).",
+        "nl": "ID die linkt met de straatkant en de straatnaam (linkerkant)."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "pn_id_r",
+      "type": "integer",
+      "title": "",
+      "description": "ID die linkt met de straatkant en de straatnaam (rechterkant).",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "ID qui donne le lien vers la côté de la rue et le nom de la rue (côté droite).",
+        "nl": "ID die linkt met de straatkant en de straatnaam (rechterkant)."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "nat_road_id",
+      "type": "string",
+      "title": "",
+      "description": "De nationale wegnamen, gescheiden door een ;",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "Les nom des routes nationales, séparé par un ;",
+        "nl": "De nationale wegnamen, gescheiden door een ;"
+      },
+      "x-example": ""
+    },
+    {
+      "name": "lvl",
+      "type": "string",
+      "title": "",
+      "description": "Het niveau van het segment (-1, 0, 1).",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "Le niveau du segment (-1, 0, 1).",
+        "nl": "Het niveau van het segment (-1, 0, 1)."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "morphologie",
+      "type": "integer",
+      "title": "",
+      "description": "De morfologische wegklasses worden conform het Wegenregister van Vlaanderen toegepast. hierbij worden klasses gebruikt conform de bepalingen in GDF4 (NBN en ISO 14825). De gedetailleerde beschrijving van de categorieën zijn te vinden in het document ‘GDF-conforme opnameregels wegenregister (v 1.2.1)’.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "Les classes morphologiques des routes sont appliquées conformément au Registre routier de Flandre. Les classes sont utilisées conformément aux dispositions du GDF4 (NBN et ISO 14825). La description détaillée des catégories se trouve dans le document 'GDF-conforme opnameregels wegenregister (v 1.2.1)'.",
+        "nl": "De morfologische wegklasses worden conform het Wegenregister van Vlaanderen toegepast. hierbij worden klasses gebruikt conform de bepalingen in GDF4 (NBN en ISO 14825). De gedetailleerde beschrijving van de categorieën zijn te vinden in het document ‘GDF-conforme opnameregels wegenregister (v 1.2.1)’."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "admin",
+      "type": "string",
+      "title": "",
+      "description": "De organisatie die verantwoordelijk is voor het fysieke onderhoud en beheer van de weg op het terrein.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "L'organisme responsable de l'entretien physique et de la gestion de la route sur site.",
+        "nl": "De organisatie die verantwoordelijk is voor het fysieke onderhoud en beheer van de weg op het terrein."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "typology",
+      "type": "integer",
+      "title": "",
+      "description": "Typologie van de weg.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "Typologie de la voirie.",
+        "nl": "Typologie van de weg."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "title": "",
+      "description": "De status van het wegsegment.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "Le statut du segment de rue.",
+        "nl": "De status van het wegsegment."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "average_witdh",
+      "type": "number",
+      "title": "",
+      "description": "Gemiddelde breedte van het wegsegment.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "Largeur moyenne de la voirie.",
+        "nl": "Gemiddelde breedte van het wegsegment."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "min_width",
+      "type": "number",
+      "title": "",
+      "description": "Minimale breedte van het wegsegment.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "Largeur minimal de la voirie.",
+        "nl": "Minimale breedte van het wegsegment."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "length",
+      "type": "number",
+      "title": "",
+      "description": "Lengte van het segment.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "Longeur du segment.",
+        "nl": "Lengte van het segment."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "bm_lanes",
+      "type": "string",
+      "title": "",
+      "description": "Het aantal rijbanen volgens de richting van het segment gescheiden door een '+'-teken met het aantal rijbanen in de tegengestelde richting. Indien er een rijbaan in eigen bedding is wordt deze tussen haakjes geplaatst.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "Le nombre de voies selon le sens du segment séparé par un signe '+' avec le nombre de voies en sens inverse. S'il y a une voie en site propre, ces voies sont mises entre parenthèses.",
+        "nl": "Het aantal rijbanen volgens de richting van het segment gescheiden door een '+'-teken met het aantal rijbanen in de tegengestelde richting. Indien er een rijbaan in eigen bedding is wordt deze tussen haakjes geplaatst."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "one_way",
+      "type": "integer",
+      "title": "",
+      "description": "Atribuut die de rijrichting van het segment weergeeft.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "Attribut représentant la direction du segment.",
+        "nl": "Atribuut die de rijrichting van het segment weergeeft."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "speed",
+      "type": "integer",
+      "title": "",
+      "description": "Maximale snelheid op het segment.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "Vitesse maximum sur le segment.",
+        "nl": "Maximale snelheid op het segment."
+      },
+      "x-example": ""
+    },
+    {
+      "name": "speed",
+      "type": "integer",
+      "title": "",
+      "description": "Maximale snelheid op het segment.",
+      "x-i18n-title": {
+        "fr": "",
+        "nl": ""
+      },
+      "x-i18n-description": {
+        "fr": "Vitesse maximum sur le segment.",
+        "nl": "Maximale snelheid op het segment."
+      },
+      "x-example": ""
+    }
+  ],
+  "foreignKeys": [
+    {
+      "fields": "pn_id_l",
+      "reference": {
+        "resource": "https://data.mobility.brussels//data/attributevalues/?tid=urbis_pn",
+        "fields": ""
+      }
+    },
+    {
+      "fields": "pn_id_r",
+      "reference": {
+        "resource": "https://data.mobility.brussels//data/attributevalues/?tid=urbis_pn",
+        "fields": ""
+      }
+    },
+    {
+      "fields": "morphologie",
+      "reference": {
+        "resource": "https://data.mobility.brussels//data/attributevalues/?tid=code_sa_morphology",
+        "fields": ""
+      }
+    },
+    {
+      "fields": "admin",
+      "reference": {
+        "resource": "https://data.mobility.brussels//data/attributevalues/?tid=network_admin",
+        "fields": ""
+      }
+    },
+    {
+      "fields": "typology",
+      "reference": {
+        "resource": "https://data.mobility.brussels//data/attributevalues/?tid=code_sa_typology",
+        "fields": ""
+      }
+    },
+    {
+      "fields": "status",
+      "reference": {
+        "resource": "https://data.mobility.brussels//data/attributevalues/?tid=network_status",
+        "fields": ""
+      }
+    },
+    {
+      "fields": "one_way",
+      "reference": {
+        "resource": "https://data.mobility.brussels//data/attributevalues/?tid=code_sa_direction",
+        "fields": ""
+      }
+    },
+    {
+      "fields": "speed",
+      "reference": {
+        "resource": "https://data.mobility.brussels//data/attributevalues/?tid=netw_zone",
+        "fields": ""
+      }
+    },
+    {
+      "fields": "speed",
+      "reference": {
+        "resource": "https://data.mobility.brussels//data/attributevalues/?tid=netw_zone",
+        "fields": ""
+      }
+    }
+  ],
+  "missingValues": [
+    ""
+  ]
+}
