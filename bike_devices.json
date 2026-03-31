@@ -1,0 +1,1733 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.393893,
+                    50.82448
+                ]
+            },
+            "properties": {
+                "name": "CEK049",
+                "laneSchema": "88f8d1cb-6353-478c-b9bc-4f94acc5af24.png",
+                "basicZoneSchema": "f49c9ea4-2d97-4de8-9954-17d9d2a96795.png",
+                "detailedZoneSchema": "0cc3c9dc-437f-4634-9e02-7fe302775ae7.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Boulevard Général Jacques (VUB) - 1050 Ixelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Boulevard Général Jacques (VUB) - 1050 Ixelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Generaal Jacqueslaan (VUB) - 1050 Elsene"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Boulevard Général Jacques (VUB) - 1050 Ixelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Boulevard Général Jacques (VUB) - 1050 Ixelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Generaal Jacqueslaan (VUB) - 1050 Elsene"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "147fb09f-e7b3-4bf7-90f8-e486685b90ed.png"
+                    },
+                    {
+                        "name": "Zone2",
+                        "picture": "4f64b2b3-3719-4838-8541-979e70a64b27.png"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the West"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Ouest"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Westen"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the East"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Est"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Oosten"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.378814,
+                    50.84337
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "name": "CB1143",
+                "laneSchema": "6219453d-0939-42e1-a89a-d9dbca049241.png",
+                "basicZoneSchema": "83646c6f-a2f4-4c76-b2ce-7cc4f7fbc92e.png",
+                "detailedZoneSchema": "7cf1c823-366e-4217-892f-7e63dacdf227.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Rue de la Loi 145 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Rue de la Loi 145 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Wetstraat 145 - 1000 Brussel"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Rue de la Loi 145 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Rue de la Loi 145 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Wetstraat 145 - 1000 Brussel"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "8d3dad6e-7079-4b98-b4fa-724e55348f2f.png"
+                    },
+                    {
+                        "name": "Zone2"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "old path To the East"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Ancienne route Vers l'Est"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Oud fietstpad Naar het Oosten"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track1.2",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "old path To the West"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Ancienne route Vers l'Ouest"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Oud fietstpad Naar het Westen"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the East"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Est"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Oosten"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.2",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the West"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Ouest"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Westen"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track3.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the East"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Est"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Oosten"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track3.2",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the West"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Ouest"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Westen"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.34001,
+                    50.84048
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "name": "CB2105",
+                "laneSchema": "2a8aa9ff-bf28-45ba-993f-b56655057837.png",
+                "basicZoneSchema": "b5de25d3-ac18-4d92-bfcf-2c39535aaf02.png",
+                "detailedZoneSchema": "3c13b20c-909f-45bc-b159-1257b8f8f6e6.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Boulevard Poincaré 75 - 1070 Anderlecht"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Boulevard Poincaré 75 - 1070 Anderlecht"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Poincarélaan 75 - 1070 Anderlecht"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Boulevard Poincaré 75 - 1070 Anderlecht"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Boulevard Poincaré 75 - 1070 Anderlecht"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Poincarélaan 75 - 1070 Anderlecht"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "b58c98f8-9d29-4b06-89fd-32eff6324e52.png"
+                    },
+                    {
+                        "name": "Zone2",
+                        "picture": "4626c552-d386-4e75-8aca-8705b8e659c0.png"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the North"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Nord"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Noorden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the South"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Sud"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Zuiden"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.373961,
+                    50.88185
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "name": "CB02411",
+                "laneSchema": "d048e4a0-ab43-4b42-af71-90492a9003b4.png",
+                "basicZoneSchema": "454e3cbe-d844-4c2c-b0dd-510f7483d47d.png",
+                "detailedZoneSchema": "609a141d-0717-4a39-8a18-6aa2f4f0d41b.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Chaussée de Vilvorde - 1020 Bruxelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Chaussée de Vilvorde - 1020 Bruxelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Vilvoordsesteenweg - 1020 Brussel"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Chaussée de Vilvorde - 1020 Bruxelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Chaussée de Vilvorde - 1020 Bruxelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Vilvoordsesteenweg - 1020 Brussel"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "aa4aea5f-7f45-46c1-a4d8-3c7583cd7182.jpg"
+                    },
+                    {
+                        "name": "Zone2",
+                        "picture": "64af8dee-2353-4147-b315-367ebd79a2c8.jpg"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the North"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Nord"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Noorden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the South"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Sud"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Zuiden"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.400259,
+                    50.8392
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "name": "CEK18",
+                "laneSchema": "2b5bdc3c-dc0c-4177-9a0b-870092700400.png",
+                "basicZoneSchema": "60e49315-2f19-4205-a85f-b0eaddc6ee3e.png",
+                "detailedZoneSchema": "fdf1b3d8-1de2-44df-b6e1-0a3fa02160fc.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Avenue de Tervueren 28 - 1040 Etterbeek"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue de Tervueren 28 - 1040 Etterbeek"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Tervurenlaan 28 - 1040 Etterbeek"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Avenue de Tervueren 28 - 1040 Etterbeek"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue de Tervueren 28 - 1040 Etterbeek"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Tervurenlaan 28 - 1040 Etterbeek"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "5327032b-d3a1-4a9f-9029-3e40a789d27c.png"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the West"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Ouest"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Westen"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track1.2",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the East"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Est"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Oosten"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.34124,
+                    50.85363
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "name": "CJM90",
+                "laneSchema": "8c884c9c-16ca-4e68-b132-6e24c188919a.png",
+                "basicZoneSchema": "1ff53f6e-e17b-4173-8c99-43e040f1fdc2.png",
+                "detailedZoneSchema": "625643f3-5414-4889-ac46-7ddb3f1dc1b4.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Quai des Charbonnages 8 - 1080 Molenbeek-Saint-Jean"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Quai des Charbonnages 8 - 1080 Molenbeek-Saint-Jean"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Koolmijnenkaai 8 - 1080 Sint-Jans-Molenbeek"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Quai des Charbonnages 8 - 1080 Molenbeek-Saint-Jean"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Quai des Charbonnages 8 - 1080 Molenbeek-Saint-Jean"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Koolmijnenkaai 8 - 1080 Sint-Jans-Molenbeek"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "b0f210c6-ad1c-4f87-8703-a73b84d6bb00.png"
+                    },
+                    {
+                        "name": "Zone2",
+                        "picture": "c93c89a6-f579-4687-b7de-92940be6b0b0.png"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the South"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Sud"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Zuiden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the North"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Nord"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Noorden"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.430121,
+                    50.82029
+                ]
+            },
+            "properties": {
+                "name": "COM205",
+                "laneSchema": "9e247756-9a71-428e-b012-cf6d5e29d16e.png",
+                "basicZoneSchema": "098c7522-eed2-4f91-bbc3-998b2962938a.png",
+                "detailedZoneSchema": "3ae3e9e7-231b-4a1f-9c0a-badf3b026c3c.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Boulevard du Souverain 213 - 1160 Auderghem"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Boulevard du Souverain 213 - 1160 Auderghem"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Vorstlaan 213 - 1160 Oudergem"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Boulevard du Souverain 213 - 1160 Auderghem"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Boulevard du Souverain 213 - 1160 Auderghem"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Vorstlaan 213 - 1160 Oudergem"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "b5315ecf-cf48-4cf9-8cee-50b7a9a5eaee.jpg"
+                    },
+                    {
+                        "name": "Zone2",
+                        "picture": "3eabfe78-7620-47d8-b117-8f22b92adac5.jpg"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "Track1.1"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Track1.1"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Track1.1"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "Track2.1"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Track2.1"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Track2.1"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.378738,
+                    50.84357
+                ]
+            },
+            "properties": {
+                "name": "CB1142",
+                "laneSchema": "1575865b-d1a2-44a4-8368-a761ababe645.png",
+                "basicZoneSchema": "970ce501-f26f-4d25-8e45-5354e83d48c5.png",
+                "detailedZoneSchema": "2c7377b4-2950-4e8f-83ed-09318e26cdd7.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Rue de la Loi 130 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Rue de la Loi 130 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Wetstraat 130 - 1000 Brussel"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Wetstraat 130 - 1000 Brussel"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Les nombres sont comptés sur la piste cyclable de la Rue de la Loi en direction du centre. Les mouvements des cyclistes dans les deux sens sont comptés ensemble. Les nombres sont chaque fois remis à zéro au début de l’heure, de la journée et de l’année."
+                    },
+                    {
+                        "language": "nl",
+                        "value": "De aantallen zijn gemeten op het fietspad van de Wetstraat richting centrum. Fietsbewegingen in beide richtingen zijn samengeteld. De aantallen worden telkens gereset aan het begin van een uur, een dag en een jaar."
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "bab13180-fa9e-4798-84ad-4ef56e1771e2.png"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the West"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'ouest"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Westen"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track1.2",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the East"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Est"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Oosten"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.43483,
+                    50.837998
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "name": "CLW239",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Boulevard de la Woluwe 34 - 1200 Woluwe-Saint-Lambert"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Boulevard de la Woluwe 34 - 1200 Woluwe-Saint-Lambert"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Woluwelaan 34 - 1200 Sint-Lambrechts-Woluwe"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Boulevard de la Woluwe 34 - 1200 Woluwe-Saint-Lambert"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Boulevard de la Woluwe 34 - 1200 Woluwe-Saint-Lambert"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Woluwelaan 34 - 1200 Sint-Lambrechts-Woluwe"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1"
+                    },
+                    {
+                        "name": "Zone2"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "Southwards"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le sud"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het zuiden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "Northwards"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le nord"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het noorden"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.379254,
+                    50.812408
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "name": "CB1599",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Avenue Franklin Rooseveltlaan 48 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue Franklin Rooseveltlaan 48 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Franklin Rooseveltlaan 48 - 1000 Brussel"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Avenue Franklin Rooseveltlaan 48 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue Franklin Rooseveltlaan 48 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Franklin Rooseveltlaan 48 - 1000 Brussel"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1"
+                    },
+                    {
+                        "name": "Zone2"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the North"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Nord"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Noorden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the South"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Sud"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Zuiden"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.315714,
+                    50.880297
+                ]
+            },
+            "properties": {
+                "name": "CJE181",
+                "laneSchema": "a2d4d7bb-c949-4a52-8519-00bef7ccd4c6.png",
+                "basicZoneSchema": "93a3db01-1dab-46fb-97d8-e84efef40d1d.png",
+                "detailedZoneSchema": "7a6ecf4b-6a18-4a24-ac80-7054072c88d3.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Avenue de l'Exposition - 1090 Jette"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue de l'Exposition - 1090 Jette"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Tentoonstellingslaan - 1090 Jette"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Avenue de l'Exposition - 1090 Jette"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue de l'Exposition - 1090 Jette"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Tentoonstellingslaan - 1090 Jette"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "97884cc1-495b-46fc-9a07-4e5bb6c4c9e0.png"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the South"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Sud"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Zuiden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track1.2",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the North"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Nord"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Noorden"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.386719,
+                    50.821376
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "name": "CEE016",
+                "laneSchema": "b88fd8d3-3dc9-447f-984f-c367c5dde2db.png",
+                "basicZoneSchema": "e306a288-cb1d-4ab0-9254-569f48827040.png",
+                "detailedZoneSchema": "bcbe0531-e704-4b36-ab4f-4d5b3fa39050.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Avenue Général Jacques 210 - 1050 Ixelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue Général Jacques 210 - 1050 Ixelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Generaal Jacqueslaan 210 - 1050 Elsene"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Avenue Général Jacques 210 - 1050 Ixelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue Général Jacques 210 - 1050 Ixelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Generaal Jacqueslaan 210 - 1050 Elsene"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "bc56846f-cac4-42f4-a4a6-38ca029d4787.png"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the East"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Est"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Oosten"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track1.2",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the West"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Ouest"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Westen"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.3788,
+                    50.81228
+                ]
+            },
+            "properties": {
+                "name": "CB1699",
+                "laneSchema": "1c7fe9e3-164b-417d-af8b-3cc4cf6cf6dd.JPG",
+                "basicZoneSchema": "ecde80b8-558b-4a5d-b5fc-f1045c151ec5.png",
+                "detailedZoneSchema": "e74af911-eb89-48d2-8155-ad04e70d9a81.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Avenue Franklin Roosevelt 19 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue Franklin Roosevelt 19 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Franklin Rooseveltlaan 19 - 1000 Brussel"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Avenue Franklin Roosevelt 19 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue Franklin Roosevelt 19 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Franklin Rooseveltlaan 19 - 1000 Brussel"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone 1",
+                        "picture": "9035bcd8-253a-46f3-9284-8fe6ca760f5c.jpg"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track 1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the South"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Sud"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Zuiden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track 1.2",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the North"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Nord"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Noorden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track 2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the South"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Sud"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Zuiden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track 2.2",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the North"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Nord"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Noorden"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.311589,
+                    50.805366
+                ]
+            },
+            "properties": {
+                "name": "CVT387",
+                "laneSchema": "ddf46b8d-ddf3-4c6e-9541-e5cd6f5d9a41.JPG",
+                "basicZoneSchema": "dd93d7b4-4fa8-40fc-b3b2-e1d9cad12343.png",
+                "detailedZoneSchema": "d493ac83-4194-4fc3-8b91-0463f0703408.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "rue de Hal 164 - 1190 Forest"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "rue de Hal 164 - 1190 Forest"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Hallestraat 164 - 1190 Vorst"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "rue de Hal 164 - 1190 Forest"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "rue de Hal 164 - 1190 Forest"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Hallestraat 164 - 1190 Vorst"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone 1",
+                        "picture": "e9fd4bd2-9103-4d07-bcad-40b3020496fe.JPG"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track 1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the North"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Nord"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Noorden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track 1.2",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the South"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Sud"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Zuiden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track 2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the North"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Nord"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Noorden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track 2.2",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the South"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Sud"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Zuiden"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.393038,
+                    50.838182
+                ]
+            },
+            "properties": {
+                "name": "CEK31",
+                "laneSchema": "56d3d5af-5ef9-4dfe-99da-da3ed9120beb.JPG",
+                "basicZoneSchema": "1821bde5-c76f-47ca-ab41-f33ae8049ed9.png",
+                "detailedZoneSchema": "f939dd00-159d-44df-bed5-29c88e7f44e5.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Avenue des Nerviens 135 - 1040 Etterbeek"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue des Nerviens 135 - 1040 Etterbeek"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Nerviërslaan 135 - 1040 Etterbeek"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Avenue des Nerviens 135 - 1040 Etterbeek"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue des Nerviens 135 - 1040 Etterbeek"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Nerviërslaan 135 - 1040 Etterbeek"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "307dd928-9e37-4e00-9a92-38c81d0471d7.jpg"
+                    },
+                    {
+                        "name": "Zone2",
+                        "picture": "d46d715b-592f-4200-9901-25b093abe25d.jpg"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the West"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Ouest"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Westen"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the East"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Est"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Oosten"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.301992,
+                    50.820621
+                ]
+            },
+            "properties": {
+                "name": "CAT17",
+                "laneSchema": "6b8e7a01-cc38-4d06-9a4d-3d4ece53a578.JPG",
+                "basicZoneSchema": "82c4bc7e-f1d0-43cc-9be5-8678af101c57.png",
+                "detailedZoneSchema": "9be1e6e1-4c00-4730-b747-a6b158b85a5b.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Quai de Veeweyde 11 - 1070 Anderlecht"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Quai de Veeweyde 11 - 1070 Anderlecht"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Veeweidekaai 11 - 1070 Anderlecht"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Quai de Veeweyde 11 - 1070 Anderlecht"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Quai de Veeweyde 11 - 1070 Anderlecht"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Veeweidekaai 11 - 1070 Anderlecht"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "517a19f8-a282-4477-9375-fdbb513d4242.jpg"
+                    },
+                    {
+                        "name": "Zone2",
+                        "picture": "5b8ac796-d12b-48b0-8488-f7bd06847834.jpg"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the South"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Sud"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Zuiden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the North"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Nord"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Noorden"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.402935,
+                    50.866921
+                ]
+            },
+            "properties": {
+                "name": "CEV011",
+                "laneSchema": "8e833f48-e4b2-4407-988c-13dded674594.JPG",
+                "basicZoneSchema": "11fdaea1-99ac-431f-a548-8745f3a9d533.png",
+                "detailedZoneSchema": "4f4d804e-0e60-4e31-968e-2b5b06c70be0.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Avenue Léopold III / Avenue des Loisirs - 1140 Evere"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue Léopold III / Avenue des Loisirs - 1140 Evere"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Leopold III laan thv Vrijetijdslaan - 1140 Evere"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Avenue Léopold III / Avenue des Loisirs - 1140 Evere"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue Léopold III / Avenue des Loisirs - 1140 Evere"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Leopold III laan thv Vrijetijdslaan - 1140 Evere"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "649dcdfd-ba82-4668-a358-2814f8df83c1.jpg"
+                    },
+                    {
+                        "name": "Zone2",
+                        "picture": "c19cea3c-c9ac-4047-b66e-1a6fb8e1c35f.jpg"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the East"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Est"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Oosten"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the West"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Ouest"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Westen"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    50.845341,
+                    4.368583
+                ]
+            },
+            "properties": {
+                "name": "CB1101",
+                "laneSchema": "575ec0a4-a691-43b4-858c-e0a2523d4570.jpg",
+                "basicZoneSchema": "ad02e530-1b77-49e6-9d38-e83fe2a18fb0.png",
+                "detailedZoneSchema": "0fde8e91-901f-4d3b-82ec-655154a1db64.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Avenue des Arts 26 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue des Arts 26 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Kunstlaan 26 - 1000 Brussel"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Avenue des Arts 26 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Avenue des Arts 26 - 1000 Bruxelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Kunstlaan 26 - 1000 Brussel"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "zone1",
+                        "picture": "fa41fd2a-aa89-46e0-8b79-f345b7fb0df9.JPG"
+                    },
+                    {
+                        "name": "zone2",
+                        "picture": "246b9e40-810f-4c08-afd9-93a382dece20.JPG"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the South"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Sud"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Zuiden"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track1.2",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "Track1.2"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Track1.2"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Track1.2"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the North"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers le Nord"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Noorden"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

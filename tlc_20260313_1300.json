@@ -1,0 +1,1517 @@
+{
+    "supplier": "Brussels Mobility",
+    "counts": [
+        {
+            "detector": "ARL_103_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 1,
+            "occupancy": 6.0,
+            "speed": 17.0,
+            "validity": 1
+        },
+        {
+            "detector": "ARL_103_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 2,
+            "occupancy": 9.0,
+            "speed": 15.0,
+            "validity": 1
+        },
+        {
+            "detector": "ARL_103_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 7,
+            "occupancy": 16.0,
+            "speed": 29.0,
+            "validity": 1
+        },
+        {
+            "detector": "ARL_103_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 6,
+            "occupancy": 13.0,
+            "speed": 36.0,
+            "validity": 1
+        },
+        {
+            "detector": "ARL_203_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 14,
+            "occupancy": 29.0,
+            "speed": 123.0,
+            "validity": 1
+        },
+        {
+            "detector": "ARL_203_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 12,
+            "occupancy": 14.0,
+            "speed": 118.0,
+            "validity": 1
+        },
+        {
+            "detector": "ARL_203_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 14,
+            "occupancy": 6.0,
+            "speed": 117.0,
+            "validity": 1
+        },
+        {
+            "detector": "ARL_203_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 16,
+            "occupancy": 11.0,
+            "speed": 109.0,
+            "validity": 1
+        },
+        {
+            "detector": "BAI_TD1_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 19,
+            "occupancy": 33.0,
+            "speed": 41.0,
+            "validity": 1
+        },
+        {
+            "detector": "BAI_TD1_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 15,
+            "occupancy": 27.0,
+            "speed": 36.0,
+            "validity": 1
+        },
+        {
+            "detector": "BAI_TD2_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 14,
+            "occupancy": 38.0,
+            "speed": 23.0,
+            "validity": 1
+        },
+        {
+            "detector": "BAI_TD2_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 16,
+            "occupancy": 48.0,
+            "speed": 17.0,
+            "validity": 1
+        },
+        {
+            "detector": "BEL_TD4_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 17,
+            "occupancy": 30.0,
+            "speed": 48.0,
+            "validity": 1
+        },
+        {
+            "detector": "BEL_TD4_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 7,
+            "occupancy": 11.0,
+            "speed": 53.0,
+            "validity": 1
+        },
+        {
+            "detector": "BEL_TD4_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 22,
+            "occupancy": 32.0,
+            "speed": 51.0,
+            "validity": 1
+        },
+        {
+            "detector": "BEL_TD4_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 9,
+            "occupancy": 13.0,
+            "speed": 58.0,
+            "validity": 1
+        },
+        {
+            "detector": "BEL_TD5_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 15,
+            "occupancy": 21.0,
+            "speed": 47.0,
+            "validity": 1
+        },
+        {
+            "detector": "BEL_TD5_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 23,
+            "occupancy": 30.0,
+            "speed": 45.0,
+            "validity": 1
+        },
+        {
+            "detector": "BEL_TD5_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 8,
+            "occupancy": 9.0,
+            "speed": 61.0,
+            "validity": 1
+        },
+        {
+            "detector": "BEL_TD5_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 20,
+            "occupancy": 20.0,
+            "speed": 58.0,
+            "validity": 1
+        },
+        {
+            "detector": "BET_TD2_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 10,
+            "occupancy": 15.0,
+            "speed": 44.0,
+            "validity": 1
+        },
+        {
+            "detector": "BET_TD2_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 8,
+            "occupancy": 12.0,
+            "speed": 40.0,
+            "validity": 1
+        },
+        {
+            "detector": "BET_TD2_6",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 0.0,
+            "validity": 1
+        },
+        {
+            "detector": "BET_TD2_6",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 0.0,
+            "validity": 1
+        },
+        {
+            "detector": "BET_TD3_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 11,
+            "occupancy": 16.0,
+            "speed": 46.0,
+            "validity": 1
+        },
+        {
+            "detector": "BET_TD3_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 5,
+            "occupancy": 7.0,
+            "speed": 48.0,
+            "validity": 1
+        },
+        {
+            "detector": "BET_TD3_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 3,
+            "occupancy": 2.0,
+            "speed": 63.0,
+            "validity": 1
+        },
+        {
+            "detector": "BET_TD3_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 2,
+            "occupancy": 2.0,
+            "speed": 52.0,
+            "validity": 1
+        },
+        {
+            "detector": "BE_TD1_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 7,
+            "occupancy": 14.0,
+            "speed": 61.0,
+            "validity": 1
+        },
+        {
+            "detector": "BE_TD1_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 19,
+            "occupancy": 26.0,
+            "speed": 61.0,
+            "validity": 1
+        },
+        {
+            "detector": "BE_TD1_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 9,
+            "occupancy": 14.0,
+            "speed": 55.0,
+            "validity": 1
+        },
+        {
+            "detector": "BE_TD1_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 20,
+            "occupancy": 28.0,
+            "speed": 51.0,
+            "validity": 1
+        },
+        {
+            "detector": "BE_TD1_3",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 14,
+            "occupancy": 17.0,
+            "speed": 60.0,
+            "validity": 1
+        },
+        {
+            "detector": "BE_TD1_3",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 19,
+            "occupancy": 26.0,
+            "speed": 63.0,
+            "validity": 1
+        },
+        {
+            "detector": "BOI_203_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 13,
+            "occupancy": 18.0,
+            "speed": 54.0,
+            "validity": 1
+        },
+        {
+            "detector": "BOI_203_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 7,
+            "occupancy": 10.0,
+            "speed": 73.0,
+            "validity": 1
+        },
+        {
+            "detector": "BOI_203_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 9,
+            "occupancy": 15.0,
+            "speed": 53.0,
+            "validity": 1
+        },
+        {
+            "detector": "BOI_203_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 4,
+            "occupancy": 6.0,
+            "speed": 63.0,
+            "validity": 1
+        },
+        {
+            "detector": "BOT_TD2_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 48.0,
+            "validity": 0
+        },
+        {
+            "detector": "BOT_TD2_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 54.0,
+            "validity": 0
+        },
+        {
+            "detector": "BOT_TD2_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 52.0,
+            "validity": 0
+        },
+        {
+            "detector": "BOT_TD2_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 56.0,
+            "validity": 0
+        },
+        {
+            "detector": "CIN_TD1_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 12,
+            "occupancy": 17.0,
+            "speed": 52.0,
+            "validity": 1
+        },
+        {
+            "detector": "CIN_TD1_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 11,
+            "occupancy": 17.0,
+            "speed": 51.0,
+            "validity": 1
+        },
+        {
+            "detector": "CIN_TD1_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 5,
+            "occupancy": 7.0,
+            "speed": 50.0,
+            "validity": 1
+        },
+        {
+            "detector": "CIN_TD1_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 5,
+            "occupancy": 6.0,
+            "speed": 56.0,
+            "validity": 1
+        },
+        {
+            "detector": "CIN_TD2_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 4,
+            "occupancy": 5.0,
+            "speed": 53.0,
+            "validity": 1
+        },
+        {
+            "detector": "CIN_TD2_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 9,
+            "occupancy": 11.0,
+            "speed": 50.0,
+            "validity": 1
+        },
+        {
+            "detector": "CIN_TD2_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 2,
+            "occupancy": 1.0,
+            "speed": 73.0,
+            "validity": 1
+        },
+        {
+            "detector": "CIN_TD2_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 3,
+            "occupancy": 1.0,
+            "speed": 75.0,
+            "validity": 1
+        },
+        {
+            "detector": "DEL_103_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 13,
+            "occupancy": 23.0,
+            "speed": 36.0,
+            "validity": 1
+        },
+        {
+            "detector": "DEL_103_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 6,
+            "occupancy": 10.0,
+            "speed": 37.0,
+            "validity": 1
+        },
+        {
+            "detector": "DEL_103_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 2,
+            "occupancy": 3.0,
+            "speed": 27.0,
+            "validity": 1
+        },
+        {
+            "detector": "DEL_103_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 22.0,
+            "validity": 0
+        },
+        {
+            "detector": "DEL_103_6",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 0.0,
+            "validity": 1
+        },
+        {
+            "detector": "DEL_103_6",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 0.0,
+            "validity": 1
+        },
+        {
+            "detector": "GH_103_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 8,
+            "occupancy": 13.0,
+            "speed": 54.0,
+            "validity": 1
+        },
+        {
+            "detector": "GH_103_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 7,
+            "occupancy": 11.0,
+            "speed": 64.0,
+            "validity": 1
+        },
+        {
+            "detector": "GH_103_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 13,
+            "occupancy": 21.0,
+            "speed": 58.0,
+            "validity": 1
+        },
+        {
+            "detector": "GH_103_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 12,
+            "occupancy": 23.0,
+            "speed": 49.0,
+            "validity": 1
+        },
+        {
+            "detector": "GH_103_3",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 6,
+            "occupancy": 10.0,
+            "speed": 0.0,
+            "validity": 0
+        },
+        {
+            "detector": "GH_103_3",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 4,
+            "occupancy": 7.0,
+            "speed": 49.0,
+            "validity": 1
+        },
+        {
+            "detector": "GH_203_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 17,
+            "occupancy": 22.0,
+            "speed": 59.0,
+            "validity": 1
+        },
+        {
+            "detector": "GH_203_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 5,
+            "occupancy": 8.0,
+            "speed": 66.0,
+            "validity": 1
+        },
+        {
+            "detector": "GH_203_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 17,
+            "occupancy": 22.0,
+            "speed": 65.0,
+            "validity": 1
+        },
+        {
+            "detector": "GH_203_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 6,
+            "occupancy": 8.0,
+            "speed": 64.0,
+            "validity": 1
+        },
+        {
+            "detector": "GH_203_3",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 7,
+            "occupancy": 11.0,
+            "speed": 70.0,
+            "validity": 1
+        },
+        {
+            "detector": "GH_203_3",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 2,
+            "occupancy": 1.0,
+            "speed": 78.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOI_103_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 8,
+            "occupancy": 10.0,
+            "speed": 48.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOI_103_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 12,
+            "occupancy": 15.0,
+            "speed": 50.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOI_103_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 9,
+            "occupancy": 7.0,
+            "speed": 63.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOI_103_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 5,
+            "occupancy": 9.0,
+            "speed": 54.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOI_109_6",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 0.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOI_109_6",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 0.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOU_110_6",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 13,
+            "occupancy": 18.0,
+            "speed": 44.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOU_110_6",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 15,
+            "occupancy": 25.0,
+            "speed": 36.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOU_TD1_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 17,
+            "occupancy": 27.0,
+            "speed": 50.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOU_TD1_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 29,
+            "occupancy": 43.0,
+            "speed": 47.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOU_TD1_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 13,
+            "occupancy": 17.0,
+            "speed": 57.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOU_TD1_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 18,
+            "occupancy": 23.0,
+            "speed": 60.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOU_TD2_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 12,
+            "occupancy": 20.0,
+            "speed": 58.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOU_TD2_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 14,
+            "occupancy": 21.0,
+            "speed": 57.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOU_TD2_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 14,
+            "occupancy": 19.0,
+            "speed": 59.0,
+            "validity": 1
+        },
+        {
+            "detector": "LOU_TD2_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 8,
+            "occupancy": 9.0,
+            "speed": 69.0,
+            "validity": 1
+        },
+        {
+            "detector": "MAD_103_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 7,
+            "occupancy": 24.0,
+            "speed": 16.0,
+            "validity": 1
+        },
+        {
+            "detector": "MAD_103_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 11,
+            "occupancy": 31.0,
+            "speed": 18.0,
+            "validity": 1
+        },
+        {
+            "detector": "MAD_103_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 12.0,
+            "validity": 0
+        },
+        {
+            "detector": "MAD_103_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 13.0,
+            "validity": 0
+        },
+        {
+            "detector": "MAD_203_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 23,
+            "occupancy": 36.0,
+            "speed": 48.0,
+            "validity": 1
+        },
+        {
+            "detector": "MAD_203_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 26,
+            "occupancy": 47.0,
+            "speed": 39.0,
+            "validity": 1
+        },
+        {
+            "detector": "MAD_203_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 12,
+            "occupancy": 21.0,
+            "speed": 36.0,
+            "validity": 1
+        },
+        {
+            "detector": "MAD_203_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 8,
+            "occupancy": 16.0,
+            "speed": 37.0,
+            "validity": 1
+        },
+        {
+            "detector": "MON_TD1_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 18,
+            "occupancy": 26.0,
+            "speed": 49.0,
+            "validity": 1
+        },
+        {
+            "detector": "MON_TD1_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 12,
+            "occupancy": 15.0,
+            "speed": 52.0,
+            "validity": 1
+        },
+        {
+            "detector": "MON_TD1_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 5,
+            "occupancy": 7.0,
+            "speed": 65.0,
+            "validity": 1
+        },
+        {
+            "detector": "MON_TD1_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 5,
+            "occupancy": 4.0,
+            "speed": 79.0,
+            "validity": 1
+        },
+        {
+            "detector": "MON_TD2_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 10,
+            "occupancy": 15.0,
+            "speed": 51.0,
+            "validity": 1
+        },
+        {
+            "detector": "MON_TD2_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 17,
+            "occupancy": 26.0,
+            "speed": 46.0,
+            "validity": 1
+        },
+        {
+            "detector": "MON_TD2_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 2,
+            "occupancy": 3.0,
+            "speed": 52.0,
+            "validity": 1
+        },
+        {
+            "detector": "MON_TD2_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 9,
+            "occupancy": 13.0,
+            "speed": 48.0,
+            "validity": 1
+        },
+        {
+            "detector": "PNA_103_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 20,
+            "occupancy": 35.0,
+            "speed": 68.0,
+            "validity": 1
+        },
+        {
+            "detector": "PNA_103_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 23,
+            "occupancy": 42.0,
+            "speed": 63.0,
+            "validity": 1
+        },
+        {
+            "detector": "PNA_103_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 12,
+            "occupancy": 17.0,
+            "speed": 79.0,
+            "validity": 1
+        },
+        {
+            "detector": "PNA_103_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 23,
+            "occupancy": 33.0,
+            "speed": 74.0,
+            "validity": 1
+        },
+        {
+            "detector": "PNA_203_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 11,
+            "occupancy": 37.0,
+            "speed": 23.0,
+            "validity": 1
+        },
+        {
+            "detector": "PNA_203_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 19,
+            "occupancy": 40.0,
+            "speed": 37.0,
+            "validity": 1
+        },
+        {
+            "detector": "PNA_203_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 18,
+            "occupancy": 31.0,
+            "speed": 46.0,
+            "validity": 1
+        },
+        {
+            "detector": "PNA_203_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 24,
+            "occupancy": 40.0,
+            "speed": 51.0,
+            "validity": 1
+        },
+        {
+            "detector": "RCE_TD1_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 15,
+            "occupancy": 24.0,
+            "speed": 44.0,
+            "validity": 1
+        },
+        {
+            "detector": "RCE_TD1_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 3,
+            "occupancy": 5.0,
+            "speed": 47.0,
+            "validity": 1
+        },
+        {
+            "detector": "RME_TD1_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 9,
+            "occupancy": 11.0,
+            "speed": 43.0,
+            "validity": 1
+        },
+        {
+            "detector": "RME_TD1_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 12,
+            "occupancy": 16.0,
+            "speed": 42.0,
+            "validity": 1
+        },
+        {
+            "detector": "RME_TD2_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 5,
+            "occupancy": 7.0,
+            "speed": 0.0,
+            "validity": 0
+        },
+        {
+            "detector": "RME_TD2_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 24,
+            "occupancy": 34.0,
+            "speed": 0.0,
+            "validity": 0
+        },
+        {
+            "detector": "RMO_TD1_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 15,
+            "occupancy": 10.0,
+            "speed": 62.0,
+            "validity": 1
+        },
+        {
+            "detector": "RMO_TD1_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 16,
+            "occupancy": 14.0,
+            "speed": 57.0,
+            "validity": 1
+        },
+        {
+            "detector": "RMO_TD2_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 7,
+            "occupancy": 11.0,
+            "speed": 0.0,
+            "validity": 0
+        },
+        {
+            "detector": "RMO_TD2_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 14,
+            "occupancy": 20.0,
+            "speed": 0.0,
+            "validity": 0
+        },
+        {
+            "detector": "ROG_TD1_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 14,
+            "occupancy": 21.0,
+            "speed": 42.0,
+            "validity": 1
+        },
+        {
+            "detector": "ROG_TD1_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 14,
+            "occupancy": 23.0,
+            "speed": 46.0,
+            "validity": 1
+        },
+        {
+            "detector": "ROG_TD1_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 14,
+            "occupancy": 20.0,
+            "speed": 44.0,
+            "validity": 1
+        },
+        {
+            "detector": "ROG_TD1_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 13,
+            "occupancy": 20.0,
+            "speed": 50.0,
+            "validity": 1
+        },
+        {
+            "detector": "ROG_TD2_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 11,
+            "occupancy": 5.0,
+            "speed": 60.0,
+            "validity": 1
+        },
+        {
+            "detector": "ROG_TD2_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 11,
+            "occupancy": 12.0,
+            "speed": 56.0,
+            "validity": 1
+        },
+        {
+            "detector": "STE_TD1_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 4,
+            "occupancy": 6.0,
+            "speed": 46.0,
+            "validity": 1
+        },
+        {
+            "detector": "STE_TD1_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 3,
+            "occupancy": 5.0,
+            "speed": 40.0,
+            "validity": 1
+        },
+        {
+            "detector": "STE_TD2_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 13,
+            "occupancy": 14.0,
+            "speed": 0.0,
+            "validity": 0
+        },
+        {
+            "detector": "STE_TD2_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 10,
+            "occupancy": 15.0,
+            "speed": 0.0,
+            "validity": 0
+        },
+        {
+            "detector": "STE_TD2_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 5,
+            "occupancy": 1.0,
+            "speed": 0.0,
+            "validity": 0
+        },
+        {
+            "detector": "STE_TD2_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 2,
+            "occupancy": 3.0,
+            "speed": 0.0,
+            "validity": 0
+        },
+        {
+            "detector": "STE_TD3_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 9,
+            "occupancy": 34.0,
+            "speed": 0.0,
+            "validity": 0
+        },
+        {
+            "detector": "STE_TD3_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 7,
+            "occupancy": 18.0,
+            "speed": 0.0,
+            "validity": 0
+        },
+        {
+            "detector": "TER_TD2_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 11,
+            "occupancy": 14.0,
+            "speed": 55.0,
+            "validity": 1
+        },
+        {
+            "detector": "TER_TD2_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 7,
+            "occupancy": 8.0,
+            "speed": 55.0,
+            "validity": 1
+        },
+        {
+            "detector": "TER_TD2_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 3,
+            "occupancy": 5.0,
+            "speed": 61.0,
+            "validity": 1
+        },
+        {
+            "detector": "TER_TD2_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 2,
+            "occupancy": 0.0,
+            "speed": 84.0,
+            "validity": 1
+        },
+        {
+            "detector": "TRO_203_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 1,
+            "occupancy": 4.0,
+            "speed": 9.0,
+            "validity": 1
+        },
+        {
+            "detector": "TRO_203_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 2,
+            "occupancy": 11.0,
+            "speed": 15.0,
+            "validity": 1
+        },
+        {
+            "detector": "TRO_203_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 2,
+            "occupancy": 3.0,
+            "speed": 10.0,
+            "validity": 1
+        },
+        {
+            "detector": "TRO_203_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 2,
+            "occupancy": 7.0,
+            "speed": 9.0,
+            "validity": 1
+        },
+        {
+            "detector": "TRO_TD1_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 20,
+            "occupancy": 29.0,
+            "speed": 35.0,
+            "validity": 1
+        },
+        {
+            "detector": "TRO_TD1_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 22,
+            "occupancy": 31.0,
+            "speed": 35.0,
+            "validity": 1
+        },
+        {
+            "detector": "TRO_TD1_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 15,
+            "occupancy": 15.0,
+            "speed": 52.0,
+            "validity": 1
+        },
+        {
+            "detector": "TRO_TD1_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 22,
+            "occupancy": 24.0,
+            "speed": 61.0,
+            "validity": 1
+        },
+        {
+            "detector": "TRO_TD2_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 16,
+            "occupancy": 21.0,
+            "speed": 66.0,
+            "validity": 1
+        },
+        {
+            "detector": "TRO_TD2_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 14,
+            "occupancy": 19.0,
+            "speed": 64.0,
+            "validity": 1
+        },
+        {
+            "detector": "TRO_TD2_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 21,
+            "occupancy": 27.0,
+            "speed": 69.0,
+            "validity": 1
+        },
+        {
+            "detector": "TRO_TD2_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 16,
+            "occupancy": 22.0,
+            "speed": 59.0,
+            "validity": 1
+        },
+        {
+            "detector": "VLE_103_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 5,
+            "occupancy": 8.0,
+            "speed": 60.0,
+            "validity": 1
+        },
+        {
+            "detector": "VLE_103_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 17,
+            "occupancy": 29.0,
+            "speed": 54.0,
+            "validity": 1
+        },
+        {
+            "detector": "VLE_203_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 18,
+            "occupancy": 29.0,
+            "speed": 28.0,
+            "validity": 1
+        },
+        {
+            "detector": "VLE_203_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 8,
+            "occupancy": 11.0,
+            "speed": 33.0,
+            "validity": 1
+        },
+        {
+            "detector": "VP_103_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 5,
+            "occupancy": 8.0,
+            "speed": 35.0,
+            "validity": 1
+        },
+        {
+            "detector": "VP_103_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 13,
+            "occupancy": 18.0,
+            "speed": 50.0,
+            "validity": 1
+        },
+        {
+            "detector": "VP_103_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 5,
+            "occupancy": 7.0,
+            "speed": 47.0,
+            "validity": 1
+        },
+        {
+            "detector": "VP_103_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 9,
+            "occupancy": 11.0,
+            "speed": 49.0,
+            "validity": 1
+        },
+        {
+            "detector": "VP_203_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 10,
+            "occupancy": 15.0,
+            "speed": 68.0,
+            "validity": 1
+        },
+        {
+            "detector": "VP_203_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 12,
+            "occupancy": 19.0,
+            "speed": 64.0,
+            "validity": 1
+        },
+        {
+            "detector": "VP_203_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 11,
+            "occupancy": 16.0,
+            "speed": 76.0,
+            "validity": 1
+        },
+        {
+            "detector": "VP_203_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 11,
+            "occupancy": 17.0,
+            "speed": 55.0,
+            "validity": 1
+        },
+        {
+            "detector": "WOL_104_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 9,
+            "occupancy": 24.0,
+            "speed": 53.0,
+            "validity": 1
+        },
+        {
+            "detector": "WOL_104_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 2,
+            "occupancy": 0.0,
+            "speed": 42.0,
+            "validity": 1
+        },
+        {
+            "detector": "WOL_104_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 8,
+            "occupancy": 15.0,
+            "speed": 58.0,
+            "validity": 1
+        },
+        {
+            "detector": "WOL_104_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 1,
+            "occupancy": 1.0,
+            "speed": 66.0,
+            "validity": 1
+        },
+        {
+            "detector": "WOL_204_1",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 4,
+            "occupancy": 5.0,
+            "speed": 43.0,
+            "validity": 1
+        },
+        {
+            "detector": "WOL_204_1",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 2,
+            "occupancy": 2.0,
+            "speed": 28.0,
+            "validity": 1
+        },
+        {
+            "detector": "WOL_204_2",
+            "from_timestamp": "2026-03-13 12:58",
+            "to_timestamp": "2026-03-13 12:59",
+            "volume": 2,
+            "occupancy": 1.0,
+            "speed": 68.0,
+            "validity": 1
+        },
+        {
+            "detector": "WOL_204_2",
+            "from_timestamp": "2026-03-13 12:59",
+            "to_timestamp": "2026-03-13 13:00",
+            "volume": 0,
+            "occupancy": 0.0,
+            "speed": 0.0,
+            "validity": 1
+        }
+    ]
+}
