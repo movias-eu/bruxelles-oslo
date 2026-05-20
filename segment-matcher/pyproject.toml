@@ -1,0 +1,27 @@
+[project]
+name = "segment-matcher"
+version = "0.1.0"
+description = "Human-in-the-loop service for matching measure locations to WFS road segments"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "httpx",
+    "jinja2",
+    "python-multipart",
+    "pyproj",
+    "shapely>=2.0",
+]
+
+[project.optional-dependencies]
+openlr = [
+    "openlr==1.0.1",
+    "openlr-dereferencer==1.2.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Segment Matcher - {{ match.request.name }}</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, sans-serif; background: #f5f5f5; }
+        h1 { padding: 16px; font-size: 1.2em; background: #fff; border-bottom: 1px solid #ddd; }
+        h1 span { color: #666; font-weight: normal; font-size: 0.9em; }
+        h1 a.settings { float: right; font-size: 0.75em; font-weight: normal; color: #1976d2; text-decoration: none; }
+        h1 a.settings:hover { text-decoration: underline; }
+        #map { height: 50vh; width: 100%; }
+        table { width: 100%; border-collapse: collapse; background: #fff; }
+        th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #eee; font-size: 0.9em; }
+        th { background: #f9f9f9; font-weight: 600; }
+        tr:hover { background: #f0f7ff; }
+        .lvl-tunnel { color: #d32f2f; }
+        .lvl-surface { color: #1976d2; }
+        .lvl-overpass { color: #388e3c; }
+        form.select-form { display: inline; }
+        button.select-btn {
+            background: #1976d2; color: #fff; border: none; padding: 4px 12px;
+            border-radius: 3px; cursor: pointer; font-size: 0.85em;
+        }
+        button.select-btn:hover { background: #1565c0; }
+    </style>
+</head>
+<body>
+    <h1>
+        <a class="settings" href="/settings">Settings</a>
+        {{ match.request.name }}
+        <span>
+            ({{ match.request.x }}, {{ match.request.y }})
+            {% if match.request.orientation is not none %}
+                | orientation: {{ match.request.orientation }}&deg;
+            {% endif %}
+            | {{ match.candidates | length }} candidates
+        </span>
+    </h1>
+    <div id="map"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>gid</th>
+                <th>level</th>
+                <th>score</th>
+                <th>distance</th>
+                <th>typology</th>
+                <th>morphology</th>
+                <th>length</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for c in match.candidates %}
+            <tr id="row-{{ c.gid }}">
+                <td>{{ c.gid }}</td>
+                <td class="lvl-{{ lvl_labels.get(c.lvl, 'surface') }}">
+                    {{ lvl_labels.get(c.lvl, c.lvl) }}
+                </td>
+                <td>{{ "%.4f" | format(c.score) }}</td>
+                <td>{{ "%.1f" | format(c.dist) }}m</td>
+                <td>{{ c.typology }}</td>
+                <td>{{ c.morphology }}</td>
+                <td>{{ "%.1f" | format(c.length) }}m</td>
+                <td>
+                    <form class="select-form" method="post" action="/review/select">
+                        <input type="hidden" name="gid" value="{{ c.gid }}">
+                        <button type="submit" class="select-btn">Select</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var point = [{{ match.point_wgs84[1] }}, {{ match.point_wgs84[0] }}];
+        var map = L.map('map').setView(point, 17);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap'
+        }).addTo(map);
+
+        L.marker(point, {title: {{ match.request.name | tojson }}})
+         .addTo(map)
+         .bindPopup('<b>' + {{ match.request.name | tojson }} + '</b>');
+
+        var lvlColors = {'-1': '#d32f2f', '0': '#1976d2', '1': '#388e3c'};
+        var layers = {};
+
+        {% for c in match.candidates %}
+        (function() {
+            var coords = {{ c.geom_wgs84 | tojson }};
+            var latlngs = coords.map(function(ring) {
+                return ring.map(function(c) { return [c[1], c[0]]; });
+            });
+            var color = lvlColors['{{ c.lvl }}'] || '#999';
+            var layer = L.polyline(latlngs, {color: color, weight: 5, opacity: 0.8}).addTo(map);
+            layer.bindPopup(
+                'gid={{ c.gid }}<br>lvl={{ lvl_labels.get(c.lvl, c.lvl) }}<br>' +
+                'score={{ "%.4f" | format(c.score) }}<br>dist={{ "%.1f" | format(c.dist) }}m'
+            );
+            layers['{{ c.gid }}'] = layer;
+
+            var row = document.getElementById('row-{{ c.gid }}');
+            if (row) {
+                row.style.cursor = 'pointer';
+                row.addEventListener('click', function(e) {
+                    if (e.target.tagName === 'BUTTON') return;
+                    map.fitBounds(layer.getBounds().pad(0.3));
+                    layer.openPopup();
+                });
+            }
+        })();
+        {% endfor %}
+    </script>
+</body>
+</html>
