@@ -1,0 +1,18 @@
+[project]
+name = "oslo-mapping"
+version = "0.1.0"
+description = "Materialise OSLO-aligned RDF from Brussels Mobility data using RML (Morph-KGC) mappings"
+requires-python = ">=3.12"
+dependencies = [
+    "morph-kgc",
+]
+
+[project.scripts]
+rml-map = "rml_map:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,0 +1,10 @@
+# Generated RDF output
+*.ttl
+
+# Preprocessing outputs (intermediate measurement lists / prepared data)
+*_measurements.json
+*_prepared.json
+
+# Python
+__pycache__/
+*.pyc

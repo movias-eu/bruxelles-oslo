@@ -13,7 +13,7 @@ Both pieces are needed to publish Brussels Mobility counts as interoperable Link
 
 | Path | What it is |
 |---|---|
-| [`oslo-mapping/`](oslo-mapping/) | Source-to-target codelist mapping documentation. Start with [`traffic_counts_codelist_mapping.md`](oslo-mapping/traffic_counts_codelist_mapping.md). |
+| [`oslo-mapping/`](oslo-mapping/) | RML pipeline (preprocessors + YARRRML mappings) turning the source feeds into OSLO Verkeersmetingen RDF, plus the source-to-target codelist analysis. See its [README](oslo-mapping/README.md). |
 | [`segment-matcher/`](segment-matcher/) | FastAPI service: WFS candidate lookup, OpenLR-based scoring, optional human-in-the-loop review. See its [README](segment-matcher/README.md). |
 | [`data-samples/`](data-samples/) | Excerpts of real Brussels Mobility data used during the analysis (see below). |
 

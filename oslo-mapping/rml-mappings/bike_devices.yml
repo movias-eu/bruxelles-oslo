@@ -1,0 +1,98 @@
+# YARRRML mapping for bike_devices.json -> OSLO Verkeersmetingen RDF.
+#
+# Run (two steps -- the geometry needs a WKT field derived first):
+#   uv run preprocessing/preprocess_bike_devices.py ../data-samples/bike_devices.json -o bike_devices_prepared.json
+#   uv run rml_map.py rml-mappings/bike_devices.yml bike_devices_prepared.json -o bike_devices.ttl
+#
+# Data is fed in-memory (access "{data}"), mimicking an API response. Keep "{data}".
+#
+# VERIFIED in-memory behaviour of morph-kgc 2.10.0 (all checked empirically against
+# this dataset; the design below is dictated by these facts):
+#
+#   * rml:reference must NOT use indexed (coordinates[0]) or filtered/field access
+#     over an array (streetName.value, streetName[*].value) when iterating the
+#     PARENT object: morph builds the projection "$.features[*].(<refs>)", and any
+#     dotted/indexed access into an array makes the underlying jsonpath raise and
+#     the WHOLE feature is dropped (0 rows).
+#
+#   * Referencing a whole array of SCALARS (geometry.coordinates) is fine: morph's
+#     Cartesian flattener emits one row per element, i.e. two locn:coordinate
+#     literals (lon, lat) per point. This is the geometry map below.
+#
+#   * An array of OBJECTS (streetName) can only be read element-wise by ITERATING
+#     it ("$.features[*].properties.streetName[*]"), which exposes clean `value`
+#     and `language` columns. From that iterator the parent feature's
+#     properties.name is NOT reachable, so an RML join back to the device is not
+#     possible in-memory => the trilingual street names are emitted on their own
+#     locn:Address node, IRI-keyed by value+language. (Documented compromise.)
+#
+#   * DYNAMIC LANGUAGE TAG: write it as the RML template `language: "{language}"`
+#     (not YARRRML `$(language)`, which morph emits literally as "@$(language)").
+#
+#   * A single combined "POINT(lon lat)" geo:asWKT would need lon and lat in one
+#     template; in-memory morph cannot index the coordinate pair, so coordinates
+#     are emitted as two plain locn:coordinate literals (no preprocessing).
+#     See the project README "Open questions" for the geometry decision.
+
+prefixes:
+  ex:   http://example.org/brussels/
+  vkm:    https://data.vlaanderen.be/ns/verkeersmetingen#
+  sosa:   http://www.w3.org/ns/sosa/
+  locn:   http://www.w3.org/ns/locn#
+  geo:    http://www.opengis.net/ont/geosparql#
+  iso-sp: http://def.isotc211.org/iso19156/2011/SamplingPoint#
+  sf:     http://www.opengis.net/ont/sf#
+
+mappings:
+  # --- The measurement point / sensor itself --------------------------------
+  device:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$.features[*]"
+    s: ex:device/$(properties.name)
+    po:
+      - [a, vkm:Verkeersmeetpunt~iri]
+      - [a, sosa:Sensor~iri]
+      # Sampling-point shape as a WKT point (blank node).
+      - p: iso-sp:SF_SamplingPoint.shape
+        o: { mapping: shape }
+
+  # --- Geometry: a sf:Point with a WKT literal (blank node) -----------------
+  # The "{data}" source is the OUTPUT of preprocess_bike_devices.py, which adds
+  # geometry.wkt = "POINT(lon lat)" per feature. (Morph-KGC cannot build that
+  # template from indexed coordinates[0]/[1] in-memory, hence the preprocessor.)
+  #
+  # The blank-node label MUST NOT start with "$(": Morph-KGC's YARRRML parser
+  # (yarrrml.py _add_template) misreads a value that begins with a lone "$(...)"
+  # as a bare reference and mangles it, dropping the whole rule. A leading
+  # literal ("shape-") avoids that and the blank node links 1:1. The label also
+  # uses properties.name (URI-safe), NOT geometry.wkt, because Morph-KGC does not
+  # sanitise blank-node labels and a WKT string's spaces/parens are illegal there.
+  shape:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$.features[*]"
+    s: shape-$(properties.name)~blanknode
+    po:
+      - [a, sf:Point~iri]
+      - [geo:asWKT, $(geometry.wkt), geo:wktLiteral]
+
+  # --- Trilingual street names ----------------------------------------------
+  # Iterate the nested streetName array (the only way to read its object fields
+  # in-memory). Each element becomes a locn:Address node carrying a single
+  # language-tagged literal; the @nl/@fr/@en tag is taken dynamically from the
+  # data's `language` field via the RML template reference "{language}".
+  streetname:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$.features[*].properties.streetName[*]"
+    s: ex:streetname/$(value)/$(language)
+    po:
+      - [a, locn:Address~iri]
+      - p: locn:thoroughfare
+        o:
+          value: $(value)
+          language: "{language}"

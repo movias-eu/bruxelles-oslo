@@ -1,0 +1,185 @@
+# YARRRML mapping for tlc_*.json -> OSLO Verkeersmetingen RDF.
+#
+# Pipeline (two steps):
+#   1. Preprocess into a flat per-MEASUREMENT JSON list:
+#        uv run preprocessing/preprocess_tlc.py \
+#          ../data-samples/tlc_20260313_1300.json -o tlc_measurements.json
+#   2. Map the measurement list:
+#        uv run rml_map.py rml-mappings/tlc.yml tlc_measurements.json -o tlc.ttl
+#
+# preprocess_tlc.py keeps volume -> aantal and speed -> tijdsgemiddelde_snelheid,
+# drops occupancy (no OSLO code) and validity==0 rows, and adds startISO/startId
+# plus an ISO window duration (durationISO). Fields per row: detector,
+# featureOfInterest, value, startISO, startId, durationISO.
+#
+# TLC specifics:
+#   * identity = detector (e.g. ARL_103_1, which already encodes traverse+lane)
+#   * sensor type = inductielus (TLC is mostly LOOP; see README open questions --
+#     2 of 46 detectors are XSTREAM/standaard_Camera and need a detector lookup)
+#   * voertuigType = auto (TLC measures vehicles)
+#   * duration is per-row ($(durationISO), typically PT1M)
+#
+# Blank-node sub-resources are linked with NO join condition (same iterator +
+# same subject keys => 1:1 link); see bike_summary.yml for the rationale.
+
+prefixes:
+  ex:        http://example.org/id/measurement/
+  loc:       http://example.org/id/measureLocation/
+  impl:      https://implementatie.data.vlaanderen.be/ns/verkeersmetingen-uitwisseling#
+  verkeer:   https://data.vlaanderen.be/ns/verkeersmetingen#
+  sosa:      http://www.w3.org/ns/sosa/
+  time:      http://www.w3.org/2006/time#
+  prov:      http://www.w3.org/ns/prov#
+  terms:     http://purl.org/dc/terms/
+  schema:    http://schema.org/
+  iso-ob:    http://def.isotc211.org/iso19156/2011/Observation#
+  iso-mp:    http://def.isotc211.org/iso19103/2005/MeasureProfile#
+  cdt:       https://w3id.org/cdt/
+  xsd:       http://www.w3.org/2001/XMLSchema#
+  VkmMeetInstrumentType:   https://data.vlaanderen.be/id/concept/VkmMeetInstrumentType/
+  VkmVerkeersKenmerkType:  https://data.vlaanderen.be/id/concept/VkmVerkeersKenmerkType/
+  cl-vrt:    https://data.vlaanderen.be/id/concept/VkmVoertuigType/
+  LinkDirectionValue:      http://inspire.ec.europa.eu/codelist/LinkDirectionValue/
+
+mappings:
+  # === Count measurement (Verkeerstelling, kenmerk = aantal) ================
+  count:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$[?(@.featureOfInterest==\"aantal\")]"
+    s: ex:$(detector)-aantal-$(startId)
+    po:
+      - [a, impl:Verkeerstelling~iri]
+      - [a, verkeer:Verkeersmeting~iri]
+      - p: iso-ob:OM_Observation.phenomenonTime
+        o: { mapping: countTime }
+      - [terms:isVersionOf, ex:$(detector)-aantal~iri]
+      - [prov:generatedAtTime, $(startISO), xsd:dateTime]
+      - p: sosa:madeBySensor
+        o: { mapping: countSensor }
+      - [verkeer:geobserveerdObject, loc:$(detector)~iri]
+      - p: impl:Verkeerstelling.geobserveerdKenmerk
+        o: { mapping: countKenmerk }
+      - [impl:Verkeerstelling.tellingresultaat, $(value), xsd:integer]
+
+  countTime:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$[?(@.featureOfInterest==\"aantal\")]"
+    s: $(detector)-aantal-$(startId)-time~blanknode
+    po:
+      - [a, time:TemporalEntity~iri]
+      - p: time:hasBeginning
+        o: { mapping: countInstant }
+      - [time:hasXSDDuration, $(durationISO), xsd:duration]
+
+  countInstant:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$[?(@.featureOfInterest==\"aantal\")]"
+    s: $(detector)-aantal-$(startId)-instant~blanknode
+    po:
+      - [a, time:Instant~iri]
+      - [time:inXSDDateTimeStamp, $(startISO), xsd:dateTime]
+
+  countSensor:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$[?(@.featureOfInterest==\"aantal\")]"
+    s: $(detector)-aantal-$(startId)-sensor~blanknode
+    po:
+      - [a, sosa:Sensor~iri]
+      - [terms:type, VkmMeetInstrumentType:inductielus~iri]
+
+  countKenmerk:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$[?(@.featureOfInterest==\"aantal\")]"
+    s: $(detector)-aantal-$(startId)-kenmerk~blanknode
+    po:
+      - [a, impl:Verkeerstellingkenmerk~iri]
+      - [verkeer:voertuigType, cl-vrt:auto~iri]
+      - [impl:Verkeerstellingkenmerk.kenmerktype, VkmVerkeersKenmerkType:aantal~iri]
+      - [impl:Verkeerstellingkenmerk.rijrichting, LinkDirectionValue:bothDirections~iri]
+
+  # === Speed measurement (Verkeerssnelheidsmeting) ==========================
+  speed:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$[?(@.featureOfInterest==\"tijdsgemiddelde_snelheid\")]"
+    s: ex:$(detector)-tijdsgemiddelde_snelheid-$(startId)
+    po:
+      - [a, impl:Verkeerssnelheidsmeting~iri]
+      - [a, verkeer:Verkeersmeting~iri]
+      - p: iso-ob:OM_Observation.phenomenonTime
+        o: { mapping: speedTime }
+      - p: iso-ob:OM_Observation.result
+        o: { mapping: speedResult }
+      - [terms:isVersionOf, ex:$(detector)-tijdsgemiddelde_snelheid~iri]
+      - [prov:generatedAtTime, $(startISO), xsd:dateTime]
+      - p: sosa:madeBySensor
+        o: { mapping: speedSensor }
+      - [verkeer:geobserveerdObject, loc:$(detector)~iri]
+      - p: impl:Verkeerssnelheidsmeting.geobserveerdKenmerk
+        o: { mapping: speedKenmerk }
+
+  speedTime:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$[?(@.featureOfInterest==\"tijdsgemiddelde_snelheid\")]"
+    s: $(detector)-tijdsgemiddelde_snelheid-$(startId)-time~blanknode
+    po:
+      - [a, time:TemporalEntity~iri]
+      - p: time:hasBeginning
+        o: { mapping: speedInstant }
+      - [time:hasXSDDuration, $(durationISO), xsd:duration]
+
+  speedInstant:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$[?(@.featureOfInterest==\"tijdsgemiddelde_snelheid\")]"
+    s: $(detector)-tijdsgemiddelde_snelheid-$(startId)-instant~blanknode
+    po:
+      - [a, time:Instant~iri]
+      - [time:inXSDDateTimeStamp, $(startISO), xsd:dateTime]
+
+  speedSensor:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$[?(@.featureOfInterest==\"tijdsgemiddelde_snelheid\")]"
+    s: $(detector)-tijdsgemiddelde_snelheid-$(startId)-sensor~blanknode
+    po:
+      - [a, sosa:Sensor~iri]
+      - [terms:type, VkmMeetInstrumentType:inductielus~iri]
+
+  speedResult:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$[?(@.featureOfInterest==\"tijdsgemiddelde_snelheid\")]"
+    s: $(detector)-tijdsgemiddelde_snelheid-$(startId)-result~blanknode
+    po:
+      - [a, iso-mp:Speed~iri]
+      - [schema:unitCode, "km/h", cdt:ucumunit]
+      - [schema:value, $(value), xsd:double]
+
+  speedKenmerk:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$[?(@.featureOfInterest==\"tijdsgemiddelde_snelheid\")]"
+    s: $(detector)-tijdsgemiddelde_snelheid-$(startId)-kenmerk~blanknode
+    po:
+      - [a, impl:Verkeerssnelheidsmetingkenmerk~iri]
+      - [verkeer:meetrichting, LinkDirectionValue:bothDirections~iri]
+      - [verkeer:voertuigType, cl-vrt:auto~iri]
+      - [impl:Verkeerssnelheidsmetingkenmerk.kenmerktype, VkmVerkeersKenmerkType:tijdsgemiddelde_snelheid~iri]
