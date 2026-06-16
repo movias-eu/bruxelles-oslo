@@ -1,0 +1,2061 @@
+[
+    {
+        "device": "CEK049",
+        "data": [
+            {
+                "track": "Track1.1",
+                "measureDirection": "inDirection",
+                "detections": [
+                    {
+                        "id": 1,
+                        "start": "14/02/2026 23:00:00",
+                        "end": "14/02/2026 23:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 2,
+                        "start": "14/02/2026 23:15:00",
+                        "end": "14/02/2026 23:30:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 25,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 3,
+                        "start": "14/02/2026 23:30:00",
+                        "end": "14/02/2026 23:45:00",
+                        "count": 2,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 1
+                        },
+                        "averageSpeed": 26,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 4,
+                        "start": "14/02/2026 23:45:00",
+                        "end": "15/02/2026 00:00:00",
+                        "count": 1,
+                        "classesCount": {
+                            "2": 1
+                        },
+                        "averageSpeed": 18,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 5,
+                        "start": "15/02/2026 00:00:00",
+                        "end": "15/02/2026 00:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 6,
+                        "start": "15/02/2026 00:15:00",
+                        "end": "15/02/2026 00:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 7,
+                        "start": "15/02/2026 00:30:00",
+                        "end": "15/02/2026 00:45:00",
+                        "count": 1,
+                        "classesCount": {
+                            "4": 1
+                        },
+                        "averageSpeed": 25,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 8,
+                        "start": "15/02/2026 00:45:00",
+                        "end": "15/02/2026 01:00:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 9,
+                        "start": "15/02/2026 01:00:00",
+                        "end": "15/02/2026 01:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 10,
+                        "start": "15/02/2026 01:15:00",
+                        "end": "15/02/2026 01:30:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 11,
+                        "start": "15/02/2026 01:30:00",
+                        "end": "15/02/2026 01:45:00",
+                        "count": 1,
+                        "classesCount": {
+                            "5": 1
+                        },
+                        "averageSpeed": 31,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 12,
+                        "start": "15/02/2026 01:45:00",
+                        "end": "15/02/2026 02:00:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 13,
+                        "start": "15/02/2026 02:00:00",
+                        "end": "15/02/2026 02:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 14,
+                        "start": "15/02/2026 02:15:00",
+                        "end": "15/02/2026 02:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 15,
+                        "start": "15/02/2026 02:30:00",
+                        "end": "15/02/2026 02:45:00",
+                        "count": 1,
+                        "classesCount": {
+                            "4": 1
+                        },
+                        "averageSpeed": 23,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 16,
+                        "start": "15/02/2026 02:45:00",
+                        "end": "15/02/2026 03:00:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 17,
+                        "start": "15/02/2026 03:00:00",
+                        "end": "15/02/2026 03:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 18,
+                        "start": "15/02/2026 03:15:00",
+                        "end": "15/02/2026 03:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 19,
+                        "start": "15/02/2026 03:30:00",
+                        "end": "15/02/2026 03:45:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 20,
+                        "start": "15/02/2026 03:45:00",
+                        "end": "15/02/2026 04:00:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 21,
+                        "start": "15/02/2026 04:00:00",
+                        "end": "15/02/2026 04:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 22,
+                        "start": "15/02/2026 04:15:00",
+                        "end": "15/02/2026 04:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 23,
+                        "start": "15/02/2026 04:30:00",
+                        "end": "15/02/2026 04:45:00",
+                        "count": 1,
+                        "classesCount": {
+                            "5": 1
+                        },
+                        "averageSpeed": 30,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 24,
+                        "start": "15/02/2026 04:45:00",
+                        "end": "15/02/2026 05:00:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 14,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 25,
+                        "start": "15/02/2026 05:00:00",
+                        "end": "15/02/2026 05:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 26,
+                        "start": "15/02/2026 05:15:00",
+                        "end": "15/02/2026 05:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 27,
+                        "start": "15/02/2026 05:30:00",
+                        "end": "15/02/2026 05:45:00",
+                        "count": 3,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 2
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 28,
+                        "start": "15/02/2026 05:45:00",
+                        "end": "15/02/2026 06:00:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 29,
+                        "start": "15/02/2026 06:00:00",
+                        "end": "15/02/2026 06:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 30,
+                        "start": "15/02/2026 06:15:00",
+                        "end": "15/02/2026 06:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 31,
+                        "start": "15/02/2026 06:30:00",
+                        "end": "15/02/2026 06:45:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 32,
+                        "start": "15/02/2026 06:45:00",
+                        "end": "15/02/2026 07:00:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 33,
+                        "start": "15/02/2026 07:00:00",
+                        "end": "15/02/2026 07:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 34,
+                        "start": "15/02/2026 07:15:00",
+                        "end": "15/02/2026 07:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 35,
+                        "start": "15/02/2026 07:30:00",
+                        "end": "15/02/2026 07:45:00",
+                        "count": 4,
+                        "classesCount": {
+                            "2": 2,
+                            "3": 1,
+                            "4": 1
+                        },
+                        "averageSpeed": 27,
+                        "averageTemperature": -1
+                    },
+                    {
+                        "id": 36,
+                        "start": "15/02/2026 07:45:00",
+                        "end": "15/02/2026 08:00:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 37,
+                        "start": "15/02/2026 08:00:00",
+                        "end": "15/02/2026 08:15:00",
+                        "count": 2,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 1
+                        },
+                        "averageSpeed": 24,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 38,
+                        "start": "15/02/2026 08:15:00",
+                        "end": "15/02/2026 08:30:00",
+                        "count": 3,
+                        "classesCount": {
+                            "4": 3
+                        },
+                        "averageSpeed": 27,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 39,
+                        "start": "15/02/2026 08:30:00",
+                        "end": "15/02/2026 08:45:00",
+                        "count": 4,
+                        "classesCount": {
+                            "3": 4
+                        },
+                        "averageSpeed": 24,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 40,
+                        "start": "15/02/2026 08:45:00",
+                        "end": "15/02/2026 09:00:00",
+                        "count": 2,
+                        "classesCount": {
+                            "3": 2
+                        },
+                        "averageSpeed": 29,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 41,
+                        "start": "15/02/2026 09:00:00",
+                        "end": "15/02/2026 09:15:00",
+                        "count": 5,
+                        "classesCount": {
+                            "3": 4,
+                            "4": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 42,
+                        "start": "15/02/2026 09:15:00",
+                        "end": "15/02/2026 09:30:00",
+                        "count": 4,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 2,
+                            "4": 1
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 43,
+                        "start": "15/02/2026 09:30:00",
+                        "end": "15/02/2026 09:45:00",
+                        "count": 2,
+                        "classesCount": {
+                            "3": 2
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 44,
+                        "start": "15/02/2026 09:45:00",
+                        "end": "15/02/2026 10:00:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 25,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 45,
+                        "start": "15/02/2026 10:00:00",
+                        "end": "15/02/2026 10:15:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 2,
+                            "4": 1
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 46,
+                        "start": "15/02/2026 10:15:00",
+                        "end": "15/02/2026 10:30:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 2,
+                            "4": 1
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 47,
+                        "start": "15/02/2026 10:30:00",
+                        "end": "15/02/2026 10:45:00",
+                        "count": 4,
+                        "classesCount": {
+                            "3": 3,
+                            "4": 1
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 48,
+                        "start": "15/02/2026 10:45:00",
+                        "end": "15/02/2026 11:00:00",
+                        "count": 2,
+                        "classesCount": {
+                            "3": 2
+                        },
+                        "averageSpeed": 26,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 49,
+                        "start": "15/02/2026 11:00:00",
+                        "end": "15/02/2026 11:15:00",
+                        "count": 1,
+                        "classesCount": {
+                            "4": 1
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 50,
+                        "start": "15/02/2026 11:15:00",
+                        "end": "15/02/2026 11:30:00",
+                        "count": 5,
+                        "classesCount": {
+                            "3": 4,
+                            "4": 1
+                        },
+                        "averageSpeed": 23,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 51,
+                        "start": "15/02/2026 11:30:00",
+                        "end": "15/02/2026 11:45:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 52,
+                        "start": "15/02/2026 11:45:00",
+                        "end": "15/02/2026 12:00:00",
+                        "count": 6,
+                        "classesCount": {
+                            "3": 4,
+                            "4": 2
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 53,
+                        "start": "15/02/2026 12:00:00",
+                        "end": "15/02/2026 12:15:00",
+                        "count": 5,
+                        "classesCount": {
+                            "3": 4,
+                            "4": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 54,
+                        "start": "15/02/2026 12:15:00",
+                        "end": "15/02/2026 12:30:00",
+                        "count": 5,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 2,
+                            "5": 2
+                        },
+                        "averageSpeed": 26,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 55,
+                        "start": "15/02/2026 12:30:00",
+                        "end": "15/02/2026 12:45:00",
+                        "count": 4,
+                        "classesCount": {
+                            "3": 3,
+                            "4": 1
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 56,
+                        "start": "15/02/2026 12:45:00",
+                        "end": "15/02/2026 13:00:00",
+                        "count": 2,
+                        "classesCount": {
+                            "4": 2
+                        },
+                        "averageSpeed": 26,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 57,
+                        "start": "15/02/2026 13:00:00",
+                        "end": "15/02/2026 13:15:00",
+                        "count": 2,
+                        "classesCount": {
+                            "3": 2
+                        },
+                        "averageSpeed": 23,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 58,
+                        "start": "15/02/2026 13:15:00",
+                        "end": "15/02/2026 13:30:00",
+                        "count": 2,
+                        "classesCount": {
+                            "3": 2
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 59,
+                        "start": "15/02/2026 13:30:00",
+                        "end": "15/02/2026 13:45:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 3
+                        },
+                        "averageSpeed": 23,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 60,
+                        "start": "15/02/2026 13:45:00",
+                        "end": "15/02/2026 14:00:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 3
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 61,
+                        "start": "15/02/2026 14:00:00",
+                        "end": "15/02/2026 14:15:00",
+                        "count": 1,
+                        "classesCount": {
+                            "5": 1
+                        },
+                        "averageSpeed": 24,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 62,
+                        "start": "15/02/2026 14:15:00",
+                        "end": "15/02/2026 14:30:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 1,
+                            "5": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 63,
+                        "start": "15/02/2026 14:30:00",
+                        "end": "15/02/2026 14:45:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 2,
+                            "5": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 64,
+                        "start": "15/02/2026 14:45:00",
+                        "end": "15/02/2026 15:00:00",
+                        "count": 2,
+                        "classesCount": {
+                            "3": 2
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 65,
+                        "start": "15/02/2026 15:00:00",
+                        "end": "15/02/2026 15:15:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 17,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 66,
+                        "start": "15/02/2026 15:15:00",
+                        "end": "15/02/2026 15:30:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 2
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 67,
+                        "start": "15/02/2026 15:30:00",
+                        "end": "15/02/2026 15:45:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 68,
+                        "start": "15/02/2026 15:45:00",
+                        "end": "15/02/2026 16:00:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 69,
+                        "start": "15/02/2026 16:00:00",
+                        "end": "15/02/2026 16:15:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 70,
+                        "start": "15/02/2026 16:15:00",
+                        "end": "15/02/2026 16:30:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 14,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 71,
+                        "start": "15/02/2026 16:30:00",
+                        "end": "15/02/2026 16:45:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 18,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 72,
+                        "start": "15/02/2026 16:45:00",
+                        "end": "15/02/2026 17:00:00",
+                        "count": 1,
+                        "classesCount": {
+                            "4": 1
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 73,
+                        "start": "15/02/2026 17:00:00",
+                        "end": "15/02/2026 17:15:00",
+                        "count": 4,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 3
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 74,
+                        "start": "15/02/2026 17:15:00",
+                        "end": "15/02/2026 17:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 75,
+                        "start": "15/02/2026 17:30:00",
+                        "end": "15/02/2026 17:45:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 76,
+                        "start": "15/02/2026 17:45:00",
+                        "end": "15/02/2026 18:00:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 17,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 77,
+                        "start": "15/02/2026 18:00:00",
+                        "end": "15/02/2026 18:15:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 16,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 78,
+                        "start": "15/02/2026 18:15:00",
+                        "end": "15/02/2026 18:30:00",
+                        "count": 1,
+                        "classesCount": {
+                            "4": 1
+                        },
+                        "averageSpeed": 23,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 79,
+                        "start": "15/02/2026 18:30:00",
+                        "end": "15/02/2026 18:45:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 80,
+                        "start": "15/02/2026 18:45:00",
+                        "end": "15/02/2026 19:00:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 81,
+                        "start": "15/02/2026 19:00:00",
+                        "end": "15/02/2026 19:15:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 12,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 82,
+                        "start": "15/02/2026 19:15:00",
+                        "end": "15/02/2026 19:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 83,
+                        "start": "15/02/2026 19:30:00",
+                        "end": "15/02/2026 19:45:00",
+                        "count": 2,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 1
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 84,
+                        "start": "15/02/2026 19:45:00",
+                        "end": "15/02/2026 20:00:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 85,
+                        "start": "15/02/2026 20:00:00",
+                        "end": "15/02/2026 20:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 86,
+                        "start": "15/02/2026 20:15:00",
+                        "end": "15/02/2026 20:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 87,
+                        "start": "15/02/2026 20:30:00",
+                        "end": "15/02/2026 20:45:00",
+                        "count": 2,
+                        "classesCount": {
+                            "4": 2
+                        },
+                        "averageSpeed": 25,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 88,
+                        "start": "15/02/2026 20:45:00",
+                        "end": "15/02/2026 21:00:00",
+                        "count": 1,
+                        "classesCount": {
+                            "4": 1
+                        },
+                        "averageSpeed": 18,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 89,
+                        "start": "15/02/2026 21:00:00",
+                        "end": "15/02/2026 21:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 90,
+                        "start": "15/02/2026 21:15:00",
+                        "end": "15/02/2026 21:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 91,
+                        "start": "15/02/2026 21:30:00",
+                        "end": "15/02/2026 21:45:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 92,
+                        "start": "15/02/2026 21:45:00",
+                        "end": "15/02/2026 22:00:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 93,
+                        "start": "15/02/2026 22:00:00",
+                        "end": "15/02/2026 22:15:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 94,
+                        "start": "15/02/2026 22:15:00",
+                        "end": "15/02/2026 22:30:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 1,
+                            "5": 1
+                        },
+                        "averageSpeed": 24,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 95,
+                        "start": "15/02/2026 22:30:00",
+                        "end": "15/02/2026 22:45:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 96,
+                        "start": "15/02/2026 22:45:00",
+                        "end": "15/02/2026 23:00:00",
+                        "count": 0,
+                        "classesCount": {}
+                    }
+                ]
+            },
+            {
+                "track": "Track2.1",
+                "measureDirection": "inOppositeDirection",
+                "detections": [
+                    {
+                        "id": 1,
+                        "start": "14/02/2026 23:00:00",
+                        "end": "14/02/2026 23:15:00",
+                        "count": 8,
+                        "classesCount": {
+                            "3": 4,
+                            "4": 4
+                        },
+                        "averageSpeed": 25,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 2,
+                        "start": "14/02/2026 23:15:00",
+                        "end": "14/02/2026 23:30:00",
+                        "count": 6,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 4,
+                            "4": 1
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 3,
+                        "start": "14/02/2026 23:30:00",
+                        "end": "14/02/2026 23:45:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 2
+                        },
+                        "averageSpeed": 24,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 4,
+                        "start": "14/02/2026 23:45:00",
+                        "end": "15/02/2026 00:00:00",
+                        "count": 6,
+                        "classesCount": {
+                            "2": 2,
+                            "3": 4
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 5,
+                        "start": "15/02/2026 00:00:00",
+                        "end": "15/02/2026 00:15:00",
+                        "count": 5,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 4
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 6,
+                        "start": "15/02/2026 00:15:00",
+                        "end": "15/02/2026 00:30:00",
+                        "count": 7,
+                        "classesCount": {
+                            "2": 2,
+                            "3": 3,
+                            "4": 2
+                        },
+                        "averageSpeed": 23,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 7,
+                        "start": "15/02/2026 00:30:00",
+                        "end": "15/02/2026 00:45:00",
+                        "count": 8,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 4,
+                            "4": 3
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 8,
+                        "start": "15/02/2026 00:45:00",
+                        "end": "15/02/2026 01:00:00",
+                        "count": 5,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 2,
+                            "4": 2
+                        },
+                        "averageSpeed": 25,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 9,
+                        "start": "15/02/2026 01:00:00",
+                        "end": "15/02/2026 01:15:00",
+                        "count": 7,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 4,
+                            "4": 2
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 10,
+                        "start": "15/02/2026 01:15:00",
+                        "end": "15/02/2026 01:30:00",
+                        "count": 2,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 1
+                        },
+                        "averageSpeed": 16,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 11,
+                        "start": "15/02/2026 01:30:00",
+                        "end": "15/02/2026 01:45:00",
+                        "count": 4,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 1,
+                            "4": 1,
+                            "5": 1
+                        },
+                        "averageSpeed": 18,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 12,
+                        "start": "15/02/2026 01:45:00",
+                        "end": "15/02/2026 02:00:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 2,
+                            "4": 1
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 13,
+                        "start": "15/02/2026 02:00:00",
+                        "end": "15/02/2026 02:15:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 2,
+                            "4": 1
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 14,
+                        "start": "15/02/2026 02:15:00",
+                        "end": "15/02/2026 02:30:00",
+                        "count": 2,
+                        "classesCount": {
+                            "2": 1,
+                            "4": 1
+                        },
+                        "averageSpeed": 17,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 15,
+                        "start": "15/02/2026 02:30:00",
+                        "end": "15/02/2026 02:45:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 2
+                        },
+                        "averageSpeed": 23,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 16,
+                        "start": "15/02/2026 02:45:00",
+                        "end": "15/02/2026 03:00:00",
+                        "count": 1,
+                        "classesCount": {
+                            "4": 1
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 17,
+                        "start": "15/02/2026 03:00:00",
+                        "end": "15/02/2026 03:15:00",
+                        "count": 4,
+                        "classesCount": {
+                            "3": 2,
+                            "4": 2
+                        },
+                        "averageSpeed": 24,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 18,
+                        "start": "15/02/2026 03:15:00",
+                        "end": "15/02/2026 03:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 19,
+                        "start": "15/02/2026 03:30:00",
+                        "end": "15/02/2026 03:45:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 16,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 20,
+                        "start": "15/02/2026 03:45:00",
+                        "end": "15/02/2026 04:00:00",
+                        "count": 2,
+                        "classesCount": {
+                            "2": 1,
+                            "4": 1
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 21,
+                        "start": "15/02/2026 04:00:00",
+                        "end": "15/02/2026 04:15:00",
+                        "count": 1,
+                        "classesCount": {
+                            "4": 1
+                        },
+                        "averageSpeed": 15,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 22,
+                        "start": "15/02/2026 04:15:00",
+                        "end": "15/02/2026 04:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 23,
+                        "start": "15/02/2026 04:30:00",
+                        "end": "15/02/2026 04:45:00",
+                        "count": 2,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 1
+                        },
+                        "averageSpeed": 17,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 24,
+                        "start": "15/02/2026 04:45:00",
+                        "end": "15/02/2026 05:00:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 25,
+                        "start": "15/02/2026 05:00:00",
+                        "end": "15/02/2026 05:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 26,
+                        "start": "15/02/2026 05:15:00",
+                        "end": "15/02/2026 05:30:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 27,
+                        "start": "15/02/2026 05:30:00",
+                        "end": "15/02/2026 05:45:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 28,
+                        "start": "15/02/2026 05:45:00",
+                        "end": "15/02/2026 06:00:00",
+                        "count": 3,
+                        "classesCount": {
+                            "2": 2,
+                            "3": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 29,
+                        "start": "15/02/2026 06:00:00",
+                        "end": "15/02/2026 06:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 30,
+                        "start": "15/02/2026 06:15:00",
+                        "end": "15/02/2026 06:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 31,
+                        "start": "15/02/2026 06:30:00",
+                        "end": "15/02/2026 06:45:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 32,
+                        "start": "15/02/2026 06:45:00",
+                        "end": "15/02/2026 07:00:00",
+                        "count": 1,
+                        "classesCount": {
+                            "4": 1
+                        },
+                        "averageSpeed": 31,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 33,
+                        "start": "15/02/2026 07:00:00",
+                        "end": "15/02/2026 07:15:00",
+                        "count": 1,
+                        "classesCount": {
+                            "2": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": -1
+                    },
+                    {
+                        "id": 34,
+                        "start": "15/02/2026 07:15:00",
+                        "end": "15/02/2026 07:30:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 2,
+                            "4": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": -1
+                    },
+                    {
+                        "id": 35,
+                        "start": "15/02/2026 07:30:00",
+                        "end": "15/02/2026 07:45:00",
+                        "count": 5,
+                        "classesCount": {
+                            "3": 4,
+                            "5": 1
+                        },
+                        "averageSpeed": 28,
+                        "averageTemperature": -1
+                    },
+                    {
+                        "id": 36,
+                        "start": "15/02/2026 07:45:00",
+                        "end": "15/02/2026 08:00:00",
+                        "count": 2,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 1
+                        },
+                        "averageSpeed": 25,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 37,
+                        "start": "15/02/2026 08:00:00",
+                        "end": "15/02/2026 08:15:00",
+                        "count": 5,
+                        "classesCount": {
+                            "3": 2,
+                            "4": 3
+                        },
+                        "averageSpeed": 25,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 38,
+                        "start": "15/02/2026 08:15:00",
+                        "end": "15/02/2026 08:30:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 3
+                        },
+                        "averageSpeed": 24,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 39,
+                        "start": "15/02/2026 08:30:00",
+                        "end": "15/02/2026 08:45:00",
+                        "count": 5,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 3,
+                            "4": 1
+                        },
+                        "averageSpeed": 23,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 40,
+                        "start": "15/02/2026 08:45:00",
+                        "end": "15/02/2026 09:00:00",
+                        "count": 6,
+                        "classesCount": {
+                            "3": 6
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 41,
+                        "start": "15/02/2026 09:00:00",
+                        "end": "15/02/2026 09:15:00",
+                        "count": 6,
+                        "classesCount": {
+                            "3": 4,
+                            "4": 1,
+                            "5": 1
+                        },
+                        "averageSpeed": 26,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 42,
+                        "start": "15/02/2026 09:15:00",
+                        "end": "15/02/2026 09:30:00",
+                        "count": 7,
+                        "classesCount": {
+                            "3": 5,
+                            "4": 2
+                        },
+                        "averageSpeed": 23,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 43,
+                        "start": "15/02/2026 09:30:00",
+                        "end": "15/02/2026 09:45:00",
+                        "count": 9,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 4,
+                            "4": 4
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 0
+                    },
+                    {
+                        "id": 44,
+                        "start": "15/02/2026 09:45:00",
+                        "end": "15/02/2026 10:00:00",
+                        "count": 17,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 13,
+                            "4": 3
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 45,
+                        "start": "15/02/2026 10:00:00",
+                        "end": "15/02/2026 10:15:00",
+                        "count": 16,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 13,
+                            "5": 2
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 46,
+                        "start": "15/02/2026 10:15:00",
+                        "end": "15/02/2026 10:30:00",
+                        "count": 9,
+                        "classesCount": {
+                            "3": 8,
+                            "4": 1
+                        },
+                        "averageSpeed": 18,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 47,
+                        "start": "15/02/2026 10:30:00",
+                        "end": "15/02/2026 10:45:00",
+                        "count": 13,
+                        "classesCount": {
+                            "3": 9,
+                            "4": 3,
+                            "5": 1
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 48,
+                        "start": "15/02/2026 10:45:00",
+                        "end": "15/02/2026 11:00:00",
+                        "count": 14,
+                        "classesCount": {
+                            "2": 3,
+                            "3": 10,
+                            "4": 1
+                        },
+                        "averageSpeed": 18,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 49,
+                        "start": "15/02/2026 11:00:00",
+                        "end": "15/02/2026 11:15:00",
+                        "count": 21,
+                        "classesCount": {
+                            "3": 13,
+                            "4": 8
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 50,
+                        "start": "15/02/2026 11:15:00",
+                        "end": "15/02/2026 11:30:00",
+                        "count": 13,
+                        "classesCount": {
+                            "3": 9,
+                            "4": 4
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 51,
+                        "start": "15/02/2026 11:30:00",
+                        "end": "15/02/2026 11:45:00",
+                        "count": 13,
+                        "classesCount": {
+                            "3": 9,
+                            "4": 3,
+                            "5": 1
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 52,
+                        "start": "15/02/2026 11:45:00",
+                        "end": "15/02/2026 12:00:00",
+                        "count": 13,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 9,
+                            "4": 3
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 53,
+                        "start": "15/02/2026 12:00:00",
+                        "end": "15/02/2026 12:15:00",
+                        "count": 19,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 13,
+                            "4": 4,
+                            "5": 1
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 54,
+                        "start": "15/02/2026 12:15:00",
+                        "end": "15/02/2026 12:30:00",
+                        "count": 13,
+                        "classesCount": {
+                            "3": 9,
+                            "4": 4
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 55,
+                        "start": "15/02/2026 12:30:00",
+                        "end": "15/02/2026 12:45:00",
+                        "count": 19,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 12,
+                            "4": 6
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 56,
+                        "start": "15/02/2026 12:45:00",
+                        "end": "15/02/2026 13:00:00",
+                        "count": 17,
+                        "classesCount": {
+                            "3": 10,
+                            "4": 7
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 57,
+                        "start": "15/02/2026 13:00:00",
+                        "end": "15/02/2026 13:15:00",
+                        "count": 17,
+                        "classesCount": {
+                            "2": 2,
+                            "3": 10,
+                            "4": 4,
+                            "5": 1
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 58,
+                        "start": "15/02/2026 13:15:00",
+                        "end": "15/02/2026 13:30:00",
+                        "count": 16,
+                        "classesCount": {
+                            "2": 2,
+                            "3": 9,
+                            "4": 5
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 59,
+                        "start": "15/02/2026 13:30:00",
+                        "end": "15/02/2026 13:45:00",
+                        "count": 10,
+                        "classesCount": {
+                            "3": 8,
+                            "4": 1,
+                            "5": 1
+                        },
+                        "averageSpeed": 16,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 60,
+                        "start": "15/02/2026 13:45:00",
+                        "end": "15/02/2026 14:00:00",
+                        "count": 14,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 8,
+                            "4": 5
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 61,
+                        "start": "15/02/2026 14:00:00",
+                        "end": "15/02/2026 14:15:00",
+                        "count": 11,
+                        "classesCount": {
+                            "3": 7,
+                            "4": 3,
+                            "5": 1
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 3
+                    },
+                    {
+                        "id": 62,
+                        "start": "15/02/2026 14:15:00",
+                        "end": "15/02/2026 14:30:00",
+                        "count": 8,
+                        "classesCount": {
+                            "3": 6,
+                            "4": 1,
+                            "5": 1
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 63,
+                        "start": "15/02/2026 14:30:00",
+                        "end": "15/02/2026 14:45:00",
+                        "count": 12,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 5,
+                            "4": 5,
+                            "5": 1
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 64,
+                        "start": "15/02/2026 14:45:00",
+                        "end": "15/02/2026 15:00:00",
+                        "count": 14,
+                        "classesCount": {
+                            "3": 8,
+                            "4": 4,
+                            "5": 2
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 65,
+                        "start": "15/02/2026 15:00:00",
+                        "end": "15/02/2026 15:15:00",
+                        "count": 11,
+                        "classesCount": {
+                            "2": 2,
+                            "3": 7,
+                            "4": 2
+                        },
+                        "averageSpeed": 15,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 66,
+                        "start": "15/02/2026 15:15:00",
+                        "end": "15/02/2026 15:30:00",
+                        "count": 8,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 2,
+                            "4": 4,
+                            "5": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 67,
+                        "start": "15/02/2026 15:30:00",
+                        "end": "15/02/2026 15:45:00",
+                        "count": 8,
+                        "classesCount": {
+                            "3": 5,
+                            "4": 3
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 68,
+                        "start": "15/02/2026 15:45:00",
+                        "end": "15/02/2026 16:00:00",
+                        "count": 8,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 4,
+                            "4": 3
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 69,
+                        "start": "15/02/2026 16:00:00",
+                        "end": "15/02/2026 16:15:00",
+                        "count": 8,
+                        "classesCount": {
+                            "3": 5,
+                            "4": 2,
+                            "5": 1
+                        },
+                        "averageSpeed": 18,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 70,
+                        "start": "15/02/2026 16:15:00",
+                        "end": "15/02/2026 16:30:00",
+                        "count": 3,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 1,
+                            "4": 1
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 71,
+                        "start": "15/02/2026 16:30:00",
+                        "end": "15/02/2026 16:45:00",
+                        "count": 6,
+                        "classesCount": {
+                            "3": 4,
+                            "4": 2
+                        },
+                        "averageSpeed": 15,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 72,
+                        "start": "15/02/2026 16:45:00",
+                        "end": "15/02/2026 17:00:00",
+                        "count": 10,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 9
+                        },
+                        "averageSpeed": 14,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 73,
+                        "start": "15/02/2026 17:00:00",
+                        "end": "15/02/2026 17:15:00",
+                        "count": 5,
+                        "classesCount": {
+                            "3": 5
+                        },
+                        "averageSpeed": 15,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 74,
+                        "start": "15/02/2026 17:15:00",
+                        "end": "15/02/2026 17:30:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 3
+                        },
+                        "averageSpeed": 18,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 75,
+                        "start": "15/02/2026 17:30:00",
+                        "end": "15/02/2026 17:45:00",
+                        "count": 5,
+                        "classesCount": {
+                            "3": 3,
+                            "4": 2
+                        },
+                        "averageSpeed": 16,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 76,
+                        "start": "15/02/2026 17:45:00",
+                        "end": "15/02/2026 18:00:00",
+                        "count": 2,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 1
+                        },
+                        "averageSpeed": 16,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 77,
+                        "start": "15/02/2026 18:00:00",
+                        "end": "15/02/2026 18:15:00",
+                        "count": 7,
+                        "classesCount": {
+                            "3": 4,
+                            "4": 3
+                        },
+                        "averageSpeed": 17,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 78,
+                        "start": "15/02/2026 18:15:00",
+                        "end": "15/02/2026 18:30:00",
+                        "count": 5,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 4
+                        },
+                        "averageSpeed": 16,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 79,
+                        "start": "15/02/2026 18:30:00",
+                        "end": "15/02/2026 18:45:00",
+                        "count": 4,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 3
+                        },
+                        "averageSpeed": 16,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 80,
+                        "start": "15/02/2026 18:45:00",
+                        "end": "15/02/2026 19:00:00",
+                        "count": 8,
+                        "classesCount": {
+                            "2": 3,
+                            "3": 2,
+                            "4": 3
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 81,
+                        "start": "15/02/2026 19:00:00",
+                        "end": "15/02/2026 19:15:00",
+                        "count": 6,
+                        "classesCount": {
+                            "3": 3,
+                            "4": 2,
+                            "5": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 82,
+                        "start": "15/02/2026 19:15:00",
+                        "end": "15/02/2026 19:30:00",
+                        "count": 3,
+                        "classesCount": {
+                            "4": 2,
+                            "5": 1
+                        },
+                        "averageSpeed": 18,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 83,
+                        "start": "15/02/2026 19:30:00",
+                        "end": "15/02/2026 19:45:00",
+                        "count": 4,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 3
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 84,
+                        "start": "15/02/2026 19:45:00",
+                        "end": "15/02/2026 20:00:00",
+                        "count": 6,
+                        "classesCount": {
+                            "3": 6
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 85,
+                        "start": "15/02/2026 20:00:00",
+                        "end": "15/02/2026 20:15:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 10,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 86,
+                        "start": "15/02/2026 20:15:00",
+                        "end": "15/02/2026 20:30:00",
+                        "count": 6,
+                        "classesCount": {
+                            "2": 1,
+                            "3": 5
+                        },
+                        "averageSpeed": 20,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 87,
+                        "start": "15/02/2026 20:30:00",
+                        "end": "15/02/2026 20:45:00",
+                        "count": 5,
+                        "classesCount": {
+                            "3": 4,
+                            "4": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 88,
+                        "start": "15/02/2026 20:45:00",
+                        "end": "15/02/2026 21:00:00",
+                        "count": 4,
+                        "classesCount": {
+                            "3": 2,
+                            "4": 2
+                        },
+                        "averageSpeed": 21,
+                        "averageTemperature": 1
+                    },
+                    {
+                        "id": 89,
+                        "start": "15/02/2026 21:00:00",
+                        "end": "15/02/2026 21:15:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 90,
+                        "start": "15/02/2026 21:15:00",
+                        "end": "15/02/2026 21:30:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 2
+                        },
+                        "averageSpeed": 23,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 91,
+                        "start": "15/02/2026 21:30:00",
+                        "end": "15/02/2026 21:45:00",
+                        "count": 3,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 2
+                        },
+                        "averageSpeed": 22,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 92,
+                        "start": "15/02/2026 21:45:00",
+                        "end": "15/02/2026 22:00:00",
+                        "count": 1,
+                        "classesCount": {
+                            "3": 1
+                        },
+                        "averageSpeed": 19,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 93,
+                        "start": "15/02/2026 22:00:00",
+                        "end": "15/02/2026 22:15:00",
+                        "count": 2,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 1
+                        },
+                        "averageSpeed": 23,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 94,
+                        "start": "15/02/2026 22:15:00",
+                        "end": "15/02/2026 22:30:00",
+                        "count": 0,
+                        "classesCount": {}
+                    },
+                    {
+                        "id": 95,
+                        "start": "15/02/2026 22:30:00",
+                        "end": "15/02/2026 22:45:00",
+                        "count": 2,
+                        "classesCount": {
+                            "3": 1,
+                            "4": 1
+                        },
+                        "averageSpeed": 28,
+                        "averageTemperature": 2
+                    },
+                    {
+                        "id": 96,
+                        "start": "15/02/2026 22:45:00",
+                        "end": "15/02/2026 23:00:00",
+                        "count": 0,
+                        "classesCount": {}
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -1,74 +1,66 @@
-# YARRRML mapping for bike_devices.json -> OSLO Verkeersmetingen RDF.
+# YARRRML mapping for bike_devices(.v2).json -> OSLO Verkeersmetingen RDF.
 #
-# Run (two steps -- the geometry needs a WKT field derived first):
-#   uv run preprocessing/preprocess_bike_devices.py ../data-samples/bike_devices.json -o bike_devices_prepared.json
+# Run (two steps -- the point geometry needs a WKT field derived first):
+#   uv run preprocessing/preprocess_bike_devices.py ../data-samples/bike_devices.v2.json -o bike_devices_prepared.json
 #   uv run rml_map.py rml-mappings/bike_devices.yml bike_devices_prepared.json -o bike_devices.ttl
 #
-# Data is fed in-memory (access "{data}"), mimicking an API response. Keep "{data}".
+# Works for BOTH the original file and the v2 file. v2 adds two top-level,
+# OPTIONAL fields per feature:
+#   * roadSegment: { line, start, end, offset }  (WKT strings + offset)
+#   * measureDirection: an INSPIRE LinkDirectionValue code (e.g. bothDirections)
+# When these are absent (original file), Morph-KGC silently skips the missing
+# references: the bemonsterdObject / Rijrichting / Wegsegment nodes are still
+# emitted but carry no direction or road geometry (acceptable -- empty shells on
+# the old data; fully populated on v2).
 #
-# VERIFIED in-memory behaviour of morph-kgc 2.10.0 (all checked empirically against
-# this dataset; the design below is dictated by these facts):
+# Data is fed in-memory (access "{data}"), mimicking an API response.
 #
-#   * rml:reference must NOT use indexed (coordinates[0]) or filtered/field access
-#     over an array (streetName.value, streetName[*].value) when iterating the
-#     PARENT object: morph builds the projection "$.features[*].(<refs>)", and any
-#     dotted/indexed access into an array makes the underlying jsonpath raise and
-#     the WHOLE feature is dropped (0 rows).
-#
-#   * Referencing a whole array of SCALARS (geometry.coordinates) is fine: morph's
-#     Cartesian flattener emits one row per element, i.e. two locn:coordinate
-#     literals (lon, lat) per point. This is the geometry map below.
-#
-#   * An array of OBJECTS (streetName) can only be read element-wise by ITERATING
-#     it ("$.features[*].properties.streetName[*]"), which exposes clean `value`
-#     and `language` columns. From that iterator the parent feature's
-#     properties.name is NOT reachable, so an RML join back to the device is not
-#     possible in-memory => the trilingual street names are emitted on their own
-#     locn:Address node, IRI-keyed by value+language. (Documented compromise.)
-#
-#   * DYNAMIC LANGUAGE TAG: write it as the RML template `language: "{language}"`
-#     (not YARRRML `$(language)`, which morph emits literally as "@$(language)").
-#
-#   * A single combined "POINT(lon lat)" geo:asWKT would need lon and lat in one
-#     template; in-memory morph cannot index the coordinate pair, so coordinates
-#     are emitted as two plain locn:coordinate literals (no preprocessing).
-#     See the project README "Open questions" for the geometry decision.
+# Morph-KGC in-memory gotchas honoured below (verified):
+#   * The point geometry WKT is pre-built by the preprocessor (geometry.wkt),
+#     because morph cannot index coordinates[0]/[1] in a template in-memory.
+#   * roadSegment.line/start/end are pre-built WKT strings, referenced directly
+#     as plain dotted scalars (dotted access to a SCALAR works; array access
+#     does not).
+#   * Blank-node subject labels MUST NOT start with "$(" (parser bug) and MUST
+#     NOT contain WKT (spaces/parens are illegal in a bnode label) -- so every
+#     blank-node label is "<prefix>-$(properties.name)".
 
 prefixes:
-  ex:   http://example.org/brussels/
-  vkm:    https://data.vlaanderen.be/ns/verkeersmetingen#
-  sosa:   http://www.w3.org/ns/sosa/
-  locn:   http://www.w3.org/ns/locn#
-  geo:    http://www.opengis.net/ont/geosparql#
-  iso-sp: http://def.isotc211.org/iso19156/2011/SamplingPoint#
-  sf:     http://www.opengis.net/ont/sf#
+  loc:        http://example.org/id/measureLocation/
+  verkeer:    https://data.vlaanderen.be/ns/verkeersmetingen#
+  impl:       https://implementatie.data.vlaanderen.be/ns/verkeersmetingen-uitwisseling#
+  dv-weg:     https://data.vlaanderen.be/ns/weg#
+  dv-netwerk: https://data.vlaanderen.be/ns/netwerk#
+  geo:        http://www.opengis.net/ont/geosparql#
+  sf:         http://www.opengis.net/ont/sf#
+  iso-sp:     http://def.isotc211.org/iso19156/2011/SamplingPoint#
+  iso-mp:     http://def.isotc211.org/iso19103/2005/MeasureProfile#
+  schema:     http://schema.org/
+  cdt:        https://w3id.org/cdt/
+  xsd:        http://www.w3.org/2001/XMLSchema#
+  LinkDirectionValue:    http://inspire.ec.europa.eu/codelist/LinkDirectionValue/
 
 mappings:
-  # --- The measurement point / sensor itself --------------------------------
+  # --- The measure location (Verkeersmeetpunt) ------------------------------
   device:
     sources:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$.features[*]"
-    s: ex:device/$(properties.name)
+    s: loc:$(properties.name)
     po:
-      - [a, vkm:Verkeersmeetpunt~iri]
-      - [a, sosa:Sensor~iri]
-      # Sampling-point shape as a WKT point (blank node).
+      - [a, verkeer:Verkeersmeetpunt~iri]
+      # Point geometry as a sampling-point shape.
       - p: iso-sp:SF_SamplingPoint.shape
         o: { mapping: shape }
+      # The sampled object: the directed road segment (v2 only -- empty on v1).
+      - p: verkeer:bemonsterdObject
+        o: { mapping: rijrichting }
+      # Point reference on the network, at the offset position (v2 only).
+      - p: impl:Verkeersmeetpunt.verkeersmeetpuntnetwerkreferentie
+        o: { mapping: puntreferentie }
 
-  # --- Geometry: a sf:Point with a WKT literal (blank node) -----------------
-  # The "{data}" source is the OUTPUT of preprocess_bike_devices.py, which adds
-  # geometry.wkt = "POINT(lon lat)" per feature. (Morph-KGC cannot build that
-  # template from indexed coordinates[0]/[1] in-memory, hence the preprocessor.)
-  #
-  # The blank-node label MUST NOT start with "$(": Morph-KGC's YARRRML parser
-  # (yarrrml.py _add_template) misreads a value that begins with a lone "$(...)"
-  # as a bare reference and mangles it, dropping the whole rule. A leading
-  # literal ("shape-") avoids that and the blank node links 1:1. The label also
-  # uses properties.name (URI-safe), NOT geometry.wkt, because Morph-KGC does not
-  # sanitise blank-node labels and a WKT string's spaces/parens are illegal there.
+  # --- Point geometry: sf:Point + WKT (preprocessor-derived geometry.wkt) ----
   shape:
     sources:
       - access: "{data}"
@@ -79,20 +71,109 @@ mappings:
       - [a, sf:Point~iri]
       - [geo:asWKT, $(geometry.wkt), geo:wktLiteral]
 
-  # --- Trilingual street names ----------------------------------------------
-  # Iterate the nested streetName array (the only way to read its object fields
-  # in-memory). Each element becomes a locn:Address node carrying a single
-  # language-tagged literal; the @nl/@fr/@en tag is taken dynamically from the
-  # data's `language` field via the RML template reference "{language}".
-  streetname:
+  # --- Sampled object: Rijrichting (direction) -------------------------------
+  # measureDirection (e.g. "bothDirections") -> LinkDirectionValue IRI.
+  # On the original file (no measureDirection / roadSegment) this node is emitted
+  # but empty.
+  rijrichting:
     sources:
       - access: "{data}"
         referenceFormulation: jsonpath
-        iterator: "$.features[*].properties.streetName[*]"
-    s: ex:streetname/$(value)/$(language)
+        iterator: "$.features[*]"
+    s: rijrichting-$(properties.name)~blanknode
     po:
-      - [a, locn:Address~iri]
-      - p: locn:thoroughfare
-        o:
-          value: $(value)
-          language: "{language}"
+      - [a, dv-weg:Rijrichting~iri]
+      - [dv-weg:rijrichting, LinkDirectionValue:$(measureDirection)~iri]
+      - p: impl:Rijrichting.netwerkreferentieelement
+        o: { mapping: wegsegment }
+
+  # --- The road segment (Wegsegment) with its line + begin/end nodes ---------
+  wegsegment:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$.features[*]"
+    s: wegsegment-$(properties.name)~blanknode
+    po:
+      - [a, dv-weg:Wegsegment~iri]
+      - p: dv-netwerk:Link.geometriemiddellijn
+        o: { mapping: segmentLine }
+      - p: dv-netwerk:beginknoop
+        o: { mapping: beginknoop }
+      - p: dv-netwerk:eindknoop
+        o: { mapping: eindknoop }
+
+  segmentLine:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$.features[*]"
+    s: segmentline-$(properties.name)~blanknode
+    po:
+      - [a, sf:LineString~iri]
+      - [geo:asWKT, $(roadSegment.line), geo:wktLiteral]
+
+  beginknoop:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$.features[*]"
+    s: beginknoop-$(properties.name)~blanknode
+    po:
+      - [a, dv-netwerk:Knoop~iri]
+      - p: dv-netwerk:Knoop.geometrie
+        o: { mapping: beginknoopGeom }
+
+  beginknoopGeom:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$.features[*]"
+    s: beginknoopgeom-$(properties.name)~blanknode
+    po:
+      - [a, sf:Point~iri]
+      - [geo:asWKT, $(roadSegment.start), geo:wktLiteral]
+
+  eindknoop:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$.features[*]"
+    s: eindknoop-$(properties.name)~blanknode
+    po:
+      - [a, dv-netwerk:Knoop~iri]
+      - p: dv-netwerk:Knoop.geometrie
+        o: { mapping: eindknoopGeom }
+
+  eindknoopGeom:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$.features[*]"
+    s: eindknoopgeom-$(properties.name)~blanknode
+    po:
+      - [a, sf:Point~iri]
+      - [geo:asWKT, $(roadSegment.end), geo:wktLiteral]
+
+  # --- Point reference on the network, at the offset position ----------------
+  puntreferentie:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$.features[*]"
+    s: puntref-$(properties.name)~blanknode
+    po:
+      - [a, dv-netwerk:Puntreferentie~iri]
+      - p: dv-netwerk:Puntreferentie.opPositie
+        o: { mapping: opPositie }
+
+  opPositie:
+    sources:
+      - access: "{data}"
+        referenceFormulation: jsonpath
+        iterator: "$.features[*]"
+    s: oppositie-$(properties.name)~blanknode
+    po:
+      - [a, iso-mp:Length~iri]
+      - [schema:unitCode, "m", cdt:ucumunit]
+      - [schema:value, $(roadSegment.offset), xsd:double]

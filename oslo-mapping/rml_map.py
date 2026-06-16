@@ -100,13 +100,36 @@ def build_python_source(config: str, input_file: Path) -> dict[str, object]:
     return {key: load_source(input_file)}
 
 
+def bind_mapping_prefixes(graph: "object", mapping_file: Path) -> None:
+    """Bind the YARRRML mapping's declared prefixes onto the output graph.
+
+    Morph-KGC uses a YARRRML ``prefixes:`` block only to expand CURIEs and then
+    discards it, so the prefixes never reach the result graph -- RDFLib then
+    invents ``ns1``/``ns2``/... names on serialisation. We re-read the block with
+    the same YAML loader Morph-KGC uses and bind each prefix, so the output uses
+    the author's names. No-op for non-YARRRML (Turtle) mappings, whose @prefix
+    declarations RDFLib already preserves.
+    """
+    if mapping_file.suffix.lower() not in (".yml", ".yaml", ".yarrrml"):
+        return
+    from ruamel.yaml import YAML
+
+    yaml = YAML(typ="safe", pure=True)
+    with mapping_file.open(encoding="utf-8") as f:
+        doc = yaml.load(f)
+    for prefix, namespace in (doc.get("prefixes") or {}).items():
+        graph.bind(prefix, namespace, replace=True)
+
+
 def materialize(input_file: Path, mapping_file: Path) -> "object":
     """Run Morph-KGC over in-memory data and return the resulting RDFLib graph."""
     config = make_config(mapping_file)
     python_source = build_python_source(config, input_file)
 
     logger.info("Materialising with mapping %s", mapping_file)
-    return morph_kgc.materialize(config, python_source=python_source)
+    graph = morph_kgc.materialize(config, python_source=python_source)
+    bind_mapping_prefixes(graph, mapping_file)
+    return graph
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:

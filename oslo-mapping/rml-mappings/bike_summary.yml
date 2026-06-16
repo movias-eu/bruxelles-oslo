@@ -28,7 +28,6 @@ prefixes:
   verkeer:   https://data.vlaanderen.be/ns/verkeersmetingen#
   sosa:      http://www.w3.org/ns/sosa/
   time:      http://www.w3.org/2006/time#
-  prov:      http://www.w3.org/ns/prov#
   terms:     http://purl.org/dc/terms/
   schema:    http://schema.org/
   iso-ob:    http://def.isotc211.org/iso19156/2011/Observation#
@@ -47,14 +46,12 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"aantal\")]"
-    s: ex:$(device)-$(trackId)-aantal-$(startId)
+    s: ex:$(device)/$(trackId)/aantal/$(id)
     po:
       - [a, impl:Verkeerstelling~iri]
       - [a, verkeer:Verkeersmeting~iri]
       - p: iso-ob:OM_Observation.phenomenonTime
         o: { mapping: countTime }
-      - [terms:isVersionOf, ex:$(device)-$(trackId)-aantal~iri]
-      - [prov:generatedAtTime, $(startISO), xsd:dateTime]
       - p: sosa:madeBySensor
         o: { mapping: countSensor }
       - [verkeer:geobserveerdObject, loc:$(device)~iri]
@@ -67,7 +64,7 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"aantal\")]"
-    s: $(device)-$(trackId)-aantal-$(startId)-time~blanknode
+    s: $(device)-$(trackId)-aantal-$(id)-time~blanknode
     po:
       - [a, time:TemporalEntity~iri]
       - p: time:hasBeginning
@@ -79,7 +76,7 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"aantal\")]"
-    s: $(device)-$(trackId)-aantal-$(startId)-instant~blanknode
+    s: $(device)-$(trackId)-aantal-$(id)-instant~blanknode
     po:
       - [a, time:Instant~iri]
       - [time:inXSDDateTimeStamp, $(startISO), xsd:dateTime]
@@ -89,7 +86,7 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"aantal\")]"
-    s: $(device)-$(trackId)-aantal-$(startId)-sensor~blanknode
+    s: $(device)-$(trackId)-aantal-$(id)-sensor~blanknode
     po:
       - [a, sosa:Sensor~iri]
       - [terms:type, VkmMeetInstrumentType:inductielus~iri]
@@ -99,12 +96,12 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"aantal\")]"
-    s: $(device)-$(trackId)-aantal-$(startId)-kenmerk~blanknode
+    s: $(device)-$(trackId)-aantal-$(id)-kenmerk~blanknode
     po:
       - [a, impl:Verkeerstellingkenmerk~iri]
       - [verkeer:voertuigType, cl-vrt:fiets~iri]
       - [impl:Verkeerstellingkenmerk.kenmerktype, VkmVerkeersKenmerkType:aantal~iri]
-      - [impl:Verkeerstellingkenmerk.rijrichting, LinkDirectionValue:bothDirections~iri]
+      - [impl:Verkeerstellingkenmerk.meetrichting, LinkDirectionValue:$(measureDirection)~iri]
 
   # === Speed measurement (Verkeerssnelheidsmeting) ==========================
   speed:
@@ -112,7 +109,7 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"tijdsgemiddelde_snelheid\")]"
-    s: ex:$(device)-$(trackId)-tijdsgemiddelde_snelheid-$(startId)
+    s: ex:$(device)/$(trackId)/tijdsgemiddelde_snelheid/$(id)
     po:
       - [a, impl:Verkeerssnelheidsmeting~iri]
       - [a, verkeer:Verkeersmeting~iri]
@@ -120,8 +117,6 @@ mappings:
         o: { mapping: speedTime }
       - p: iso-ob:OM_Observation.result
         o: { mapping: speedResult }
-      - [terms:isVersionOf, ex:$(device)-$(trackId)-tijdsgemiddelde_snelheid~iri]
-      - [prov:generatedAtTime, $(startISO), xsd:dateTime]
       - p: sosa:madeBySensor
         o: { mapping: speedSensor }
       - [verkeer:geobserveerdObject, loc:$(device)~iri]
@@ -133,7 +128,7 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"tijdsgemiddelde_snelheid\")]"
-    s: $(device)-$(trackId)-tijdsgemiddelde_snelheid-$(startId)-time~blanknode
+    s: $(device)-$(trackId)-tijdsgemiddelde_snelheid-$(id)-time~blanknode
     po:
       - [a, time:TemporalEntity~iri]
       - p: time:hasBeginning
@@ -145,7 +140,7 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"tijdsgemiddelde_snelheid\")]"
-    s: $(device)-$(trackId)-tijdsgemiddelde_snelheid-$(startId)-instant~blanknode
+    s: $(device)-$(trackId)-tijdsgemiddelde_snelheid-$(id)-instant~blanknode
     po:
       - [a, time:Instant~iri]
       - [time:inXSDDateTimeStamp, $(startISO), xsd:dateTime]
@@ -155,7 +150,7 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"tijdsgemiddelde_snelheid\")]"
-    s: $(device)-$(trackId)-tijdsgemiddelde_snelheid-$(startId)-sensor~blanknode
+    s: $(device)-$(trackId)-tijdsgemiddelde_snelheid-$(id)-sensor~blanknode
     po:
       - [a, sosa:Sensor~iri]
       - [terms:type, VkmMeetInstrumentType:inductielus~iri]
@@ -165,7 +160,7 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"tijdsgemiddelde_snelheid\")]"
-    s: $(device)-$(trackId)-tijdsgemiddelde_snelheid-$(startId)-result~blanknode
+    s: $(device)-$(trackId)-tijdsgemiddelde_snelheid-$(id)-result~blanknode
     po:
       - [a, iso-mp:Speed~iri]
       - [schema:unitCode, "km/h", cdt:ucumunit]
@@ -176,9 +171,9 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"tijdsgemiddelde_snelheid\")]"
-    s: $(device)-$(trackId)-tijdsgemiddelde_snelheid-$(startId)-kenmerk~blanknode
+    s: $(device)-$(trackId)-tijdsgemiddelde_snelheid-$(id)-kenmerk~blanknode
     po:
       - [a, impl:Verkeerssnelheidsmetingkenmerk~iri]
-      - [verkeer:meetrichting, LinkDirectionValue:bothDirections~iri]
+      - [impl:Verkeerssnelheidsmetingkenmerk.meetrichting, LinkDirectionValue:$(measureDirection)~iri]
       - [verkeer:voertuigType, cl-vrt:fiets~iri]
       - [impl:Verkeerssnelheidsmetingkenmerk.kenmerktype, VkmVerkeersKenmerkType:tijdsgemiddelde_snelheid~iri]

@@ -79,7 +79,8 @@ def preprocess(data: list) -> list:
 
     Each detection becomes a count (aantal) row, plus a speed
     (tijdsgemiddelde_snelheid) row when ``averageSpeed`` is present. Every row
-    carries the parent ``device``/``track``, ISO + compact-id forms of the start
+    carries the parent ``device``/``track`` (and the track's ``measureDirection``
+    when present, v2), the detection ``id``, ISO + compact-id forms of the start
     time, the time window ``end``, the expanded ``classes`` list, the
     ``featureOfInterest`` code, and the measured ``value``.
     """
@@ -88,6 +89,9 @@ def preprocess(data: list) -> list:
         device = device_entry.get("device")
         for track_entry in device_entry.get("data", []):
             track = track_entry.get("track")
+            # measureDirection is a track-level field (v2); absent in the
+            # original file. It carries down to each detection of this track.
+            measure_direction = track_entry.get("measureDirection")
             for detection in track_entry.get("detections", []):
                 start_iso = _iso(detection.get("start"))
                 # A compact id form for the subject URI: drop the separators
@@ -108,11 +112,16 @@ def preprocess(data: list) -> list:
                     # are inconsistent in the source ("Track1.1" vs "Track 2.1"),
                     # and a space is illegal in a blank-node label, so strip it.
                     "trackId": track.replace(" ", "") if track else None,
+                    "id": detection.get("id"),
                     "startISO": start_iso,
                     "startId": start_id,
                     "end": detection.get("end"),
                     "classes": classes,
                 }
+                # measureDirection (v2 only); omitted when the track lacks it so
+                # the original file still maps without an empty direction.
+                if measure_direction is not None:
+                    base["measureDirection"] = measure_direction
 
                 # Always emit the count (aantal) measurement.
                 rows.append({**base, "featureOfInterest": FOI_COUNT, "value": detection.get("count")})

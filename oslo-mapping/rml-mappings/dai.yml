@@ -7,14 +7,15 @@
 #   2. Map the measurement list:
 #        uv run rml_map.py rml-mappings/dai.yml dai_measurements.json -o dai.ttl
 #
-# preprocess_dai.py turns each <Measure> into a measurement row, keeping #Cn as
-# count (aantal, with vehicleClassRaw) and Speed as tijdsgemiddelde_snelheid, and
-# dropping Occupancy (no OSLO code). It also adds startISO/startId and an ISO
-# duration (durationISO, from PeriodSec). Fields per row: camera, cameraName,
-# lane, featureOfInterest, vehicleClassRaw, value, startISO, startId, durationISO.
+# preprocess_dai.py turns each lane/time into measurement rows: it SUMS the
+# per-class counts #C1/#C2/#C3 into one total count (aantal) and keeps Speed as
+# tijdsgemiddelde_snelheid. Occupancy is a separate percentage (not a count) and
+# is dropped. It also adds startISO/startId and an ISO duration (durationISO,
+# from PeriodSec). Fields per row: camera, cameraName, lane, featureOfInterest,
+# value, startISO, startId, durationISO.
 #
 # DAI specifics vs bike_summary:
-#   * identity = camera + lane (+ vehicle class for counts) + time
+#   * identity = camera + lane + time
 #   * sensor type = standaard_Camera (DAI = CAMERA, per the codelist)
 #   * voertuigType = auto (DAI measures vehicles, per the codelist)
 #   * duration is per-row ($(durationISO), e.g. PT60S), not a constant
@@ -30,7 +31,6 @@ prefixes:
   verkeer:   https://data.vlaanderen.be/ns/verkeersmetingen#
   sosa:      http://www.w3.org/ns/sosa/
   time:      http://www.w3.org/2006/time#
-  prov:      http://www.w3.org/ns/prov#
   terms:     http://purl.org/dc/terms/
   schema:    http://schema.org/
   iso-ob:    http://def.isotc211.org/iso19156/2011/Observation#
@@ -40,25 +40,22 @@ prefixes:
   VkmMeetInstrumentType:   https://data.vlaanderen.be/id/concept/VkmMeetInstrumentType/
   VkmVerkeersKenmerkType:  https://data.vlaanderen.be/id/concept/VkmVerkeersKenmerkType/
   cl-vrt:    https://data.vlaanderen.be/id/concept/VkmVoertuigType/
-  LinkDirectionValue:      http://inspire.ec.europa.eu/codelist/LinkDirectionValue/
 
 mappings:
   # === Count measurement (Verkeerstelling, kenmerk = aantal) ================
-  # One per (camera, lane, vehicle class, time). The raw class (#C1/#C2/#C3) is
-  # part of the URI so classes at the same lane/time don't collide.
+  # One total count per (camera, lane, time) -- the preprocessor already summed
+  # the #C1/#C2/#C3 class counts into a single value.
   count:
     sources:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"aantal\")]"
-    s: ex:$(camera)-$(lane)-$(vehicleClassRaw)-aantal-$(startId)
+    s: ex:$(camera)-$(lane)-aantal-$(startId)
     po:
       - [a, impl:Verkeerstelling~iri]
       - [a, verkeer:Verkeersmeting~iri]
       - p: iso-ob:OM_Observation.phenomenonTime
         o: { mapping: countTime }
-      - [terms:isVersionOf, ex:$(camera)-$(lane)-$(vehicleClassRaw)-aantal~iri]
-      - [prov:generatedAtTime, $(startISO), xsd:dateTime]
       - p: sosa:madeBySensor
         o: { mapping: countSensor }
       - [verkeer:geobserveerdObject, loc:$(camera)~iri]
@@ -71,7 +68,7 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"aantal\")]"
-    s: $(camera)-$(lane)-$(vehicleClassRaw)-aantal-$(startId)-time~blanknode
+    s: $(camera)-$(lane)-aantal-$(startId)-time~blanknode
     po:
       - [a, time:TemporalEntity~iri]
       - p: time:hasBeginning
@@ -83,7 +80,7 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"aantal\")]"
-    s: $(camera)-$(lane)-$(vehicleClassRaw)-aantal-$(startId)-instant~blanknode
+    s: $(camera)-$(lane)-aantal-$(startId)-instant~blanknode
     po:
       - [a, time:Instant~iri]
       - [time:inXSDDateTimeStamp, $(startISO), xsd:dateTime]
@@ -93,7 +90,7 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"aantal\")]"
-    s: $(camera)-$(lane)-$(vehicleClassRaw)-aantal-$(startId)-sensor~blanknode
+    s: $(camera)-$(lane)-aantal-$(startId)-sensor~blanknode
     po:
       - [a, sosa:Sensor~iri]
       - [terms:type, VkmMeetInstrumentType:standaard_Camera~iri]
@@ -103,12 +100,11 @@ mappings:
       - access: "{data}"
         referenceFormulation: jsonpath
         iterator: "$[?(@.featureOfInterest==\"aantal\")]"
-    s: $(camera)-$(lane)-$(vehicleClassRaw)-aantal-$(startId)-kenmerk~blanknode
+    s: $(camera)-$(lane)-aantal-$(startId)-kenmerk~blanknode
     po:
       - [a, impl:Verkeerstellingkenmerk~iri]
       - [verkeer:voertuigType, cl-vrt:auto~iri]
       - [impl:Verkeerstellingkenmerk.kenmerktype, VkmVerkeersKenmerkType:aantal~iri]
-      - [impl:Verkeerstellingkenmerk.rijrichting, LinkDirectionValue:bothDirections~iri]
 
   # === Speed measurement (Verkeerssnelheidsmeting) ==========================
   # One per (camera, lane, time).
@@ -125,8 +121,6 @@ mappings:
         o: { mapping: speedTime }
       - p: iso-ob:OM_Observation.result
         o: { mapping: speedResult }
-      - [terms:isVersionOf, ex:$(camera)-$(lane)-tijdsgemiddelde_snelheid~iri]
-      - [prov:generatedAtTime, $(startISO), xsd:dateTime]
       - p: sosa:madeBySensor
         o: { mapping: speedSensor }
       - [verkeer:geobserveerdObject, loc:$(camera)~iri]
@@ -184,6 +178,5 @@ mappings:
     s: $(camera)-$(lane)-tijdsgemiddelde_snelheid-$(startId)-kenmerk~blanknode
     po:
       - [a, impl:Verkeerssnelheidsmetingkenmerk~iri]
-      - [verkeer:meetrichting, LinkDirectionValue:bothDirections~iri]
       - [verkeer:voertuigType, cl-vrt:auto~iri]
       - [impl:Verkeerssnelheidsmetingkenmerk.kenmerktype, VkmVerkeersKenmerkType:tijdsgemiddelde_snelheid~iri]
