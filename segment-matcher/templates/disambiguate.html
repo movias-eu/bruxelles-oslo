@@ -16,7 +16,10 @@
         table { width: 100%; border-collapse: collapse; background: #fff; }
         th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #eee; font-size: 0.9em; }
         th { background: #f9f9f9; font-weight: 600; }
-        tr:hover { background: #f0f7ff; }
+        tbody tr { cursor: pointer; }
+        tbody tr:hover { background: #f0f7ff; }
+        tbody tr.selected, tbody tr.selected:hover { background: #d6d6d6; }
+        tbody tr.selected td { font-weight: 600; }
         .lvl-tunnel { color: #d32f2f; }
         .lvl-surface { color: #1976d2; }
         .lvl-overpass { color: #388e3c; }
@@ -91,29 +94,56 @@
          .bindPopup('<b>' + {{ match.request.name | tojson }} + '</b>');
 
         var lvlColors = {'-1': '#d32f2f', '0': '#1976d2', '1': '#388e3c'};
+        var HIGHLIGHT_COLOR = '#f57c00';
         var layers = {};
+        var baseColors = {};
+        var selectedGid = null;
+
+        function selectCandidate(gid) {
+            if (selectedGid === gid) return;
+            // Revert the previously selected row + polyline.
+            if (selectedGid !== null) {
+                var prevRow = document.getElementById('row-' + selectedGid);
+                if (prevRow) prevRow.classList.remove('selected');
+                var prevLayer = layers[selectedGid];
+                if (prevLayer) prevLayer.setStyle({color: baseColors[selectedGid], weight: 5, opacity: 0.8});
+            }
+            // Highlight the newly selected row + polyline.
+            var row = document.getElementById('row-' + gid);
+            if (row) row.classList.add('selected');
+            var layer = layers[gid];
+            if (layer) {
+                layer.setStyle({color: HIGHLIGHT_COLOR, weight: 7, opacity: 1});
+                layer.bringToFront();
+                map.fitBounds(layer.getBounds().pad(0.3));
+                layer.openPopup();
+            }
+            selectedGid = gid;
+        }
 
         {% for c in match.candidates %}
         (function() {
+            var gid = '{{ c.gid }}';
             var coords = {{ c.geom_wgs84 | tojson }};
             var latlngs = coords.map(function(ring) {
                 return ring.map(function(c) { return [c[1], c[0]]; });
             });
             var color = lvlColors['{{ c.lvl }}'] || '#999';
+            baseColors[gid] = color;
             var layer = L.polyline(latlngs, {color: color, weight: 5, opacity: 0.8}).addTo(map);
             layer.bindPopup(
                 'gid={{ c.gid }}<br>lvl={{ lvl_labels.get(c.lvl, c.lvl) }}<br>' +
                 'score={{ "%.4f" | format(c.score) }}<br>dist={{ "%.1f" | format(c.dist) }}m'
             );
-            layers['{{ c.gid }}'] = layer;
+            layers[gid] = layer;
+            // Clicking the polyline selects its row too.
+            layer.on('click', function() { selectCandidate(gid); });
 
-            var row = document.getElementById('row-{{ c.gid }}');
+            var row = document.getElementById('row-' + gid);
             if (row) {
-                row.style.cursor = 'pointer';
                 row.addEventListener('click', function(e) {
                     if (e.target.tagName === 'BUTTON') return;
-                    map.fitBounds(layer.getBounds().pad(0.3));
-                    layer.openPopup();
+                    selectCandidate(gid);
                 });
             }
         })();
