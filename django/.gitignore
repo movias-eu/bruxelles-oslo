@@ -1,0 +1,13 @@
+# Local mimic of the client's Django app — never commit the venv or secrets.
+.venv/
+__pycache__/
+*.pyc
+local_settings.py
+.env
+
+# Vendored RMLMapper jar (176MB binary) — obtain per README ("The RMLMapper jar"), don't commit.
+vendor/*.jar
+
+# Generated OSLO RDF output — not source.
+traverses.ttl
+*.source.json

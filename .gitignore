@@ -1,0 +1,5 @@
+.claude/
+
+# Local environment — contains the PGPASSWORD DB credential. Never commit.
+.envrc
+.direnv/
