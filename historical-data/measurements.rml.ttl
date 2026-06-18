@@ -1,0 +1,190 @@
+# RML mapping: aggregations.* count rows -> OSLO Verkeersmeting RDF.
+#
+# Hand-authored RML/Turtle (RMLMapper consumes it directly). Models the
+# measurement/observation shape (verkeer:Verkeersmeting + impl:Verkeerstelling),
+# one observation per kept characteristic per row:
+#   * volume -> VkmVerkeersKenmerkType:aantal   (a count)
+#   * speed  -> tijdsgemiddelde_snelheid        (a speed measurement)
+# occupancy has no OSLO codelist match and is not mapped.
+#
+# Input: the JSON the historical-data script builds from a counts table -- a
+# flat list under $.measurements[*], each entry already split per characteristic
+# by the preprocessor (foi, value, startISO, startId, durationISO, travId).
+
+@base <http://example.org/rules/> .
+@prefix rr:      <http://www.w3.org/ns/r2rml#> .
+@prefix rml:     <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql:      <http://semweb.mmlab.be/ns/ql#> .
+@prefix ex:      <http://example.org/id/measurement/> .
+@prefix loc:     <http://example.org/id/measureLocation/> .
+@prefix verkeer: <https://data.vlaanderen.be/ns/verkeersmetingen#> .
+@prefix impl:    <https://implementatie.data.vlaanderen.be/ns/verkeersmetingen-uitwisseling#> .
+@prefix iso19156-ob: <http://def.isotc211.org/iso19156/2011/Observation#> .
+@prefix iso19103-mp: <http://def.isotc211.org/iso19103/2005/MeasureProfile#> .
+@prefix sosa:    <http://www.w3.org/ns/sosa/> .
+@prefix terms:   <http://purl.org/dc/terms/> .
+@prefix schema:  <http://schema.org/> .
+@prefix cdt:     <https://w3id.org/cdt/> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix VkmVerkeersKenmerkType: <https://data.vlaanderen.be/id/concept/VkmVerkeersKenmerkType/> .
+@prefix VkmMeetInstrumentType:  <https://data.vlaanderen.be/id/concept/VkmMeetInstrumentType/> .
+@prefix VkmVoertuigType:        <https://data.vlaanderen.be/id/concept/VkmVoertuigType/> .
+@prefix LinkDirectionValue:     <http://inspire.ec.europa.eu/codelist/LinkDirectionValue/> .
+
+# --- Count observation (volume -> aantal): impl:Verkeerstelling ---------------
+<#Verkeerstelling>
+    rml:logicalSource [
+        rml:source "SOURCE.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator "$.counts[*]"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/id/measurement/{measId}" ;
+        rr:class verkeer:Verkeersmeting ;
+        rr:class impl:Verkeerstelling
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate verkeer:geobserveerdObject ;
+        rr:objectMap [ rr:template "http://example.org/id/measureLocation/{travId}" ; rr:termType rr:IRI ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sosa:madeBySensor ;
+        rr:objectMap [ rr:parentTriplesMap <#Sensor> ;
+            rr:joinCondition [ rr:child "rowId" ; rr:parent "rowId" ] ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate iso19156-ob:OM_Observation.phenomenonTime ;
+        rr:objectMap [ rr:parentTriplesMap <#PhenomenonTime> ;
+            rr:joinCondition [ rr:child "rowId" ; rr:parent "rowId" ] ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate impl:Verkeerstelling.geobserveerdKenmerk ;
+        rr:objectMap [ rr:parentTriplesMap <#KenmerkCount> ;
+            rr:joinCondition [ rr:child "rowId" ; rr:parent "rowId" ] ]
+    ] ;
+    # count result: tellingresultaat is the valid count-result predicate.
+    rr:predicateObjectMap [
+        rr:predicate impl:Verkeerstelling.tellingresultaat ;
+        rr:objectMap [ rml:reference "value" ; rr:datatype xsd:double ]
+    ] .
+
+# --- Speed observation (speed -> tijdsgemiddelde_snelheid): Verkeerssnelheidsmeting
+<#Verkeerssnelheidsmeting>
+    rml:logicalSource [
+        rml:source "SOURCE.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator "$.speeds[*]"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/id/measurement/{measId}" ;
+        rr:class verkeer:Verkeersmeting ;
+        rr:class impl:Verkeerssnelheidsmeting
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate verkeer:geobserveerdObject ;
+        rr:objectMap [ rr:template "http://example.org/id/measureLocation/{travId}" ; rr:termType rr:IRI ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate sosa:madeBySensor ;
+        rr:objectMap [ rr:parentTriplesMap <#Sensor> ;
+            rr:joinCondition [ rr:child "rowId" ; rr:parent "rowId" ] ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate iso19156-ob:OM_Observation.phenomenonTime ;
+        rr:objectMap [ rr:parentTriplesMap <#PhenomenonTime> ;
+            rr:joinCondition [ rr:child "rowId" ; rr:parent "rowId" ] ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate impl:Verkeerssnelheidsmeting.geobserveerdKenmerk ;
+        rr:objectMap [ rr:parentTriplesMap <#KenmerkSpeed> ;
+            rr:joinCondition [ rr:child "rowId" ; rr:parent "rowId" ] ]
+    ] ;
+    # speed result: a Speed measure in km/h (OM_Observation.result).
+    rr:predicateObjectMap [
+        rr:predicate iso19156-ob:OM_Observation.result ;
+        rr:objectMap [ rr:parentTriplesMap <#SpeedResult> ;
+            rr:joinCondition [ rr:child "rowId" ; rr:parent "rowId" ] ]
+    ] .
+
+<#SpeedResult>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.speeds[*]" ] ;
+    rr:subjectMap [ rr:template "speedresult/{rowId}" ; rr:termType rr:BlankNode ; rr:class iso19103-mp:Speed ] ;
+    rr:predicateObjectMap [
+        rr:predicate schema:unitCode ;
+        rr:objectMap [ rr:constant "km/h" ; rr:datatype cdt:ucumunit ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate schema:value ;
+        rr:objectMap [ rml:reference "value" ; rr:datatype xsd:double ]
+    ] .
+
+<#PhenomenonTime>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "phentime/{rowId}" ; rr:termType rr:BlankNode ; rr:class time:TemporalEntity ] ;
+    rr:predicateObjectMap [
+        rr:predicate time:hasBeginning ;
+        rr:objectMap [ rr:parentTriplesMap <#Instant> ;
+            rr:joinCondition [ rr:child "rowId" ; rr:parent "rowId" ] ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate time:hasXSDDuration ;
+        rr:objectMap [ rml:reference "durationISO" ; rr:datatype xsd:duration ]
+    ] .
+
+<#Instant>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "instant/{rowId}" ; rr:termType rr:BlankNode ; rr:class time:Instant ] ;
+    rr:predicateObjectMap [
+        rr:predicate time:inXSDDateTimeStamp ;
+        rr:objectMap [ rml:reference "startISO" ; rr:datatype xsd:dateTime ]
+    ] .
+
+# Count kenmerk (volume -> aantal): Verkeerstellingkenmerk, iterates only counts.
+<#KenmerkCount>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.counts[*]" ] ;
+    rr:subjectMap [ rr:template "kenmerk/{rowId}" ; rr:termType rr:BlankNode ; rr:class impl:Verkeerstellingkenmerk ] ;
+    rr:predicateObjectMap [
+        rr:predicate impl:Verkeerstellingkenmerk.kenmerktype ;
+        rr:objectMap [ rr:template "https://data.vlaanderen.be/id/concept/VkmVerkeersKenmerkType/{foi}" ; rr:termType rr:IRI ]
+    ] ;
+    # vehicle type: system -> VkmVoertuigType (DAI/TLC/ISAFE=auto, BIKE=fiets).
+    # HARD-CODED per system -- no per-row vehicle classification exists.
+    rr:predicateObjectMap [
+        rr:predicate verkeer:voertuigType ;
+        rr:objectMap [ rr:template "https://data.vlaanderen.be/id/concept/VkmVoertuigType/{vehicle}" ; rr:termType rr:IRI ]
+    ] ;
+    # measure direction: HARD-CODED to bothDirections (no reliable per-measurement
+    # direction in the counts tables). TODO: derive from the traverse direction.
+    rr:predicateObjectMap [
+        rr:predicate impl:Verkeerstellingkenmerk.meetrichting ;
+        rr:objectMap [ rr:constant LinkDirectionValue:bothDirections ]
+    ] .
+
+# Speed kenmerk (speed -> tijdsgemiddelde_snelheid): Verkeerssnelheidsmetingkenmerk.
+<#KenmerkSpeed>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.speeds[*]" ] ;
+    rr:subjectMap [ rr:template "kenmerk/{rowId}" ; rr:termType rr:BlankNode ; rr:class impl:Verkeerssnelheidsmetingkenmerk ] ;
+    rr:predicateObjectMap [
+        rr:predicate impl:Verkeerssnelheidsmetingkenmerk.kenmerktype ;
+        rr:objectMap [ rr:template "https://data.vlaanderen.be/id/concept/VkmVerkeersKenmerkType/{foi}" ; rr:termType rr:IRI ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate verkeer:voertuigType ;
+        rr:objectMap [ rr:template "https://data.vlaanderen.be/id/concept/VkmVoertuigType/{vehicle}" ; rr:termType rr:IRI ]
+    ] ;
+    # measure direction: HARD-CODED to bothDirections. TODO: derive from traverse.
+    rr:predicateObjectMap [
+        rr:predicate impl:Verkeerssnelheidsmetingkenmerk.meetrichting ;
+        rr:objectMap [ rr:constant LinkDirectionValue:bothDirections ]
+    ] .
+
+# Sensor: system -> VkmMeetInstrumentType (all known systems = inductielus).
+<#Sensor>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "sensor/{rowId}" ; rr:termType rr:BlankNode ; rr:class sosa:Sensor ] ;
+    rr:predicateObjectMap [
+        rr:predicate terms:type ;
+        rr:objectMap [ rr:template "https://data.vlaanderen.be/id/concept/VkmMeetInstrumentType/{sensor}" ; rr:termType rr:IRI ]
+    ] .

@@ -1,0 +1,8 @@
+.claude/
+
+# Local environment — contains the PGPASSWORD DB credential. Never commit.
+.envrc
+.direnv/
+
+# RMLMapper jar (176MB binary) lives at the repo root, shared by all folders.
+rmlmapper.jar
