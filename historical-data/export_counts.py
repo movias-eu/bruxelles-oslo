@@ -22,8 +22,9 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 MAPPING = HERE / "measurements.rml.ttl"
-# Reuse the jar vendored for the Django connector; override with RMLMAPPER_JAR.
-DEFAULT_JAR = HERE.parent / "django" / "vendor" / "rmlmapper.jar"
+# The RMLMapper jar is expected at the repo root (one level up); override with
+# RMLMAPPER_JAR to place it elsewhere.
+DEFAULT_JAR = HERE.parent / "rmlmapper.jar"
 
 # OSLO VkmVerkeersKenmerkType codes (mirrors the tlc mapping).
 FOI_COUNT = "aantal"
