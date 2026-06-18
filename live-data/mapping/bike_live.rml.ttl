@@ -24,6 +24,7 @@
 @prefix VkmVerkeersKenmerkType: <https://data.vlaanderen.be/id/concept/VkmVerkeersKenmerkType/> .
 @prefix VkmMeetInstrumentType:  <https://data.vlaanderen.be/id/concept/VkmMeetInstrumentType/> .
 @prefix VkmVoertuigType:        <https://data.vlaanderen.be/id/concept/VkmVoertuigType/> .
+@prefix LinkDirectionValue:     <http://inspire.ec.europa.eu/codelist/LinkDirectionValue/> .
 
 # --- Count observation (volume -> aantal): impl:Verkeerstelling ---------------
 <#Verkeerstelling>
@@ -104,20 +105,31 @@
     rr:subjectMap [ rr:template "phentime/{measSubject}" ; rr:termType rr:BlankNode ; rr:class time:TemporalEntity ] ;
     rr:predicateObjectMap [
         rr:predicate time:hasBeginning ;
-        rr:objectMap [ rr:parentTriplesMap <#Instant> ;
+        rr:objectMap [ rr:parentTriplesMap <#BeginInstant> ;
             rr:joinCondition [ rr:child "measSubject" ; rr:parent "measSubject" ] ]
     ] ;
+    # bike_live uses an explicit end instant (the device timestamp) instead of a
+    # duration -- the cumulative count's window ends when the file was generated.
     rr:predicateObjectMap [
-        rr:predicate time:hasXSDDuration ;
-        rr:objectMap [ rml:reference "durationISO" ; rr:datatype xsd:duration ]
+        rr:predicate time:hasEnd ;
+        rr:objectMap [ rr:parentTriplesMap <#EndInstant> ;
+            rr:joinCondition [ rr:child "measSubject" ; rr:parent "measSubject" ] ]
     ] .
 
-<#Instant>
+<#BeginInstant>
     rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
-    rr:subjectMap [ rr:template "instant/{measSubject}" ; rr:termType rr:BlankNode ; rr:class time:Instant ] ;
+    rr:subjectMap [ rr:template "instant-begin/{measSubject}" ; rr:termType rr:BlankNode ; rr:class time:Instant ] ;
     rr:predicateObjectMap [
         rr:predicate time:inXSDDateTimeStamp ;
         rr:objectMap [ rml:reference "startISO" ; rr:datatype xsd:dateTime ]
+    ] .
+
+<#EndInstant>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "instant-end/{measSubject}" ; rr:termType rr:BlankNode ; rr:class time:Instant ] ;
+    rr:predicateObjectMap [
+        rr:predicate time:inXSDDateTimeStamp ;
+        rr:objectMap [ rml:reference "endISO" ; rr:datatype xsd:dateTime ]
     ] .
 
 <#SpeedResult>
@@ -142,6 +154,12 @@
     rr:predicateObjectMap [
         rr:predicate verkeer:voertuigType ;
         rr:objectMap [ rr:template "https://data.vlaanderen.be/id/concept/VkmVoertuigType/{vehicle}" ; rr:termType rr:IRI ]
+    ] ;
+    # measure direction: HARD-CODED to bothDirections (the feeds carry no
+    # reliable per-measurement direction).
+    rr:predicateObjectMap [
+        rr:predicate impl:Verkeerstellingkenmerk.meetrichting ;
+        rr:objectMap [ rr:constant LinkDirectionValue:bothDirections ]
     ] .
 
 <#KenmerkSpeed>
@@ -154,4 +172,9 @@
     rr:predicateObjectMap [
         rr:predicate verkeer:voertuigType ;
         rr:objectMap [ rr:template "https://data.vlaanderen.be/id/concept/VkmVoertuigType/{vehicle}" ; rr:termType rr:IRI ]
+    ] ;
+    # measure direction: HARD-CODED to bothDirections.
+    rr:predicateObjectMap [
+        rr:predicate impl:Verkeerssnelheidsmetingkenmerk.meetrichting ;
+        rr:objectMap [ rr:constant LinkDirectionValue:bothDirections ]
     ] .

@@ -1,0 +1,153 @@
+# RML mapping: bike device features -> OSLO Verkeersmeetpunt RDF.
+#
+# bike_devices is the measure-LOCATION registry (not measurements). Each feature
+# becomes a verkeer:Verkeersmeetpunt with a point geometry, and -- when the
+# extended file supplies roadSegmentGeometry + measureDirection -- the directed
+# road segment chain (bemonsterdObject -> Rijrichting -> Wegsegment, line +
+# begin/end nodes) plus the offset Puntreferentie. Mirrors bike_devices.ttl from
+# PR #1 / django/traverses.rml.ttl. WKT is pre-built by preprocess/bike.py.
+
+@base <http://example.org/rules/> .
+@prefix rr:          <http://www.w3.org/ns/r2rml#> .
+@prefix rml:         <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql:          <http://semweb.mmlab.be/ns/ql#> .
+@prefix verkeer:     <https://data.vlaanderen.be/ns/verkeersmetingen#> .
+@prefix impl:        <https://implementatie.data.vlaanderen.be/ns/verkeersmetingen-uitwisseling#> .
+@prefix dv-weg:      <https://data.vlaanderen.be/ns/weg#> .
+@prefix dv-netwerk:  <https://data.vlaanderen.be/ns/netwerk#> .
+@prefix iso-sp:      <http://def.isotc211.org/iso19156/2011/SamplingPoint#> .
+@prefix iso19103-mp: <http://def.isotc211.org/iso19103/2005/MeasureProfile#> .
+@prefix schema:      <http://schema.org/> .
+@prefix cdt:         <https://w3id.org/cdt/> .
+@prefix geo:         <http://www.opengis.net/ont/geosparql#> .
+@prefix sf:          <http://www.opengis.net/ont/sf#> .
+@prefix xsd:         <http://www.w3.org/2001/XMLSchema#> .
+@prefix LinkDirectionValue: <http://inspire.ec.europa.eu/codelist/LinkDirectionValue/> .
+
+<#Verkeersmeetpunt>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [
+        rr:template "http://example.org/id/measureLocation/{name}" ;
+        rr:class verkeer:Verkeersmeetpunt
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate iso-sp:SF_SamplingPoint.shape ;
+        rr:objectMap [ rr:parentTriplesMap <#Shape> ;
+            rr:joinCondition [ rr:child "name" ; rr:parent "name" ] ]
+    ] ;
+    # sampled object: the directed road segment (only when roadSegmentGeometry present)
+    rr:predicateObjectMap [
+        rr:predicate verkeer:bemonsterdObject ;
+        rr:objectMap [ rr:parentTriplesMap <#Rijrichting> ;
+            rr:joinCondition [ rr:child "name" ; rr:parent "name" ] ]
+    ] ;
+    # network reference: the offset position along the segment
+    rr:predicateObjectMap [
+        rr:predicate impl:Verkeersmeetpunt.verkeersmeetpuntnetwerkreferentie ;
+        rr:objectMap [ rr:parentTriplesMap <#Puntreferentie> ;
+            rr:joinCondition [ rr:child "name" ; rr:parent "name" ] ]
+    ] .
+
+<#Shape>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "shape/{name}" ; rr:termType rr:BlankNode ; rr:class sf:Point ] ;
+    rr:predicateObjectMap [
+        rr:predicate geo:asWKT ;
+        rr:objectMap [ rml:reference "pointWkt" ; rr:datatype geo:wktLiteral ]
+    ] .
+
+# Directed road segment: Rijrichting (direction) -> Wegsegment (line geometry).
+<#Rijrichting>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "rijrichting/{name}" ; rr:termType rr:BlankNode ; rr:class dv-weg:Rijrichting ] ;
+    rr:predicateObjectMap [
+        rr:predicate dv-weg:rijrichting ;
+        rr:objectMap [ rr:template "http://inspire.ec.europa.eu/codelist/LinkDirectionValue/{measureDirection}" ; rr:termType rr:IRI ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate impl:Rijrichting.netwerkreferentieelement ;
+        rr:objectMap [ rr:parentTriplesMap <#Wegsegment> ;
+            rr:joinCondition [ rr:child "name" ; rr:parent "name" ] ]
+    ] .
+
+<#Wegsegment>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "wegsegment/{name}" ; rr:termType rr:BlankNode ; rr:class dv-weg:Wegsegment ] ;
+    rr:predicateObjectMap [
+        rr:predicate dv-netwerk:Link.geometriemiddellijn ;
+        rr:objectMap [ rr:parentTriplesMap <#SegmentLine> ;
+            rr:joinCondition [ rr:child "name" ; rr:parent "name" ] ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate dv-netwerk:beginknoop ;
+        rr:objectMap [ rr:parentTriplesMap <#BeginKnoop> ;
+            rr:joinCondition [ rr:child "name" ; rr:parent "name" ] ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate dv-netwerk:eindknoop ;
+        rr:objectMap [ rr:parentTriplesMap <#EindKnoop> ;
+            rr:joinCondition [ rr:child "name" ; rr:parent "name" ] ]
+    ] .
+
+<#SegmentLine>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "segmentline/{name}" ; rr:termType rr:BlankNode ; rr:class sf:LineString ] ;
+    rr:predicateObjectMap [
+        rr:predicate geo:asWKT ;
+        rr:objectMap [ rml:reference "lineWkt" ; rr:datatype geo:wktLiteral ]
+    ] .
+
+<#BeginKnoop>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "beginknoop/{name}" ; rr:termType rr:BlankNode ; rr:class dv-netwerk:Knoop ] ;
+    rr:predicateObjectMap [
+        rr:predicate dv-netwerk:Knoop.geometrie ;
+        rr:objectMap [ rr:parentTriplesMap <#BeginKnoopGeom> ;
+            rr:joinCondition [ rr:child "name" ; rr:parent "name" ] ]
+    ] .
+
+<#BeginKnoopGeom>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "beginknoopgeom/{name}" ; rr:termType rr:BlankNode ; rr:class sf:Point ] ;
+    rr:predicateObjectMap [
+        rr:predicate geo:asWKT ;
+        rr:objectMap [ rml:reference "startWkt" ; rr:datatype geo:wktLiteral ]
+    ] .
+
+<#EindKnoop>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "eindknoop/{name}" ; rr:termType rr:BlankNode ; rr:class dv-netwerk:Knoop ] ;
+    rr:predicateObjectMap [
+        rr:predicate dv-netwerk:Knoop.geometrie ;
+        rr:objectMap [ rr:parentTriplesMap <#EindKnoopGeom> ;
+            rr:joinCondition [ rr:child "name" ; rr:parent "name" ] ]
+    ] .
+
+<#EindKnoopGeom>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "eindknoopgeom/{name}" ; rr:termType rr:BlankNode ; rr:class sf:Point ] ;
+    rr:predicateObjectMap [
+        rr:predicate geo:asWKT ;
+        rr:objectMap [ rml:reference "endWkt" ; rr:datatype geo:wktLiteral ]
+    ] .
+
+<#Puntreferentie>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "puntref/{name}" ; rr:termType rr:BlankNode ; rr:class dv-netwerk:Puntreferentie ] ;
+    rr:predicateObjectMap [
+        rr:predicate dv-netwerk:Puntreferentie.opPositie ;
+        rr:objectMap [ rr:parentTriplesMap <#OpPositie> ;
+            rr:joinCondition [ rr:child "name" ; rr:parent "name" ] ]
+    ] .
+
+<#OpPositie>
+    rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
+    rr:subjectMap [ rr:template "oppositie/{name}" ; rr:termType rr:BlankNode ; rr:class iso19103-mp:Length ] ;
+    rr:predicateObjectMap [
+        rr:predicate schema:unitCode ;
+        rr:objectMap [ rr:constant "m" ; rr:datatype cdt:ucumunit ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate schema:value ;
+        rr:objectMap [ rml:reference "offset" ; rr:datatype xsd:double ]
+    ] .

@@ -19,11 +19,39 @@ import tempfile
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE / "preprocess"))
-from preprocess import preprocess  # noqa: E402  (lives in preprocess/)
-
-MAPPING = HERE / "mapping" / "live.rml.ttl"
+MAPPING_DIR = HERE / "mapping"
 OUTPUT_DIR = HERE / "output"
+sys.path.insert(0, str(HERE / "preprocess"))
+import tlc            # noqa: E402  (one preprocess module per feed, in preprocess/)
+import dai            # noqa: E402
+import bike_live      # noqa: E402
+import bike_devices   # noqa: E402
+
+# Per feed: its preprocess module + the RML mapping it feeds.
+#   tlc / dai / bike_live -> measurement observations (measurements.rml.ttl)
+#   bike_devices          -> measure locations / Verkeersmeetpunt (bike_devices.rml.ttl)
+MEASUREMENT_FEEDS = ("tlc", "dai", "bike_live")
+FEEDS = {
+    "tlc":          {"module": tlc,          "mapping": "tlc.rml.ttl"},
+    "dai":          {"module": dai,          "mapping": "dai.rml.ttl"},
+    "bike_live":    {"module": bike_live,    "mapping": "bike_live.rml.ttl"},
+    "bike_devices": {"module": bike_devices, "mapping": "bike_devices.rml.ttl"},
+}
+
+
+def build_source(feed, text):
+    """Run the feed's preprocessor and assemble the JSON its mapping iterates.
+
+    All rows go under $.measurements. The measurement feeds (tlc/dai) also split
+    by kind into $.counts / $.speeds for the count/speed observation maps; the
+    location feed (bike_devices) only needs $.measurements.
+    """
+    rows = FEEDS[feed]["module"].preprocess(text)
+    src = {"measurements": rows}
+    if feed in MEASUREMENT_FEEDS:
+        src["counts"] = [r for r in rows if r.get("kind") == "count"]
+        src["speeds"] = [r for r in rows if r.get("kind") == "speed"]
+    return src
 # The RMLMapper jar is expected at the repo root (one level up); override with
 # RMLMAPPER_JAR to place it elsewhere.
 DEFAULT_JAR = HERE.parent / "rmlmapper.jar"
@@ -44,17 +72,24 @@ OSLO_PREFIXES = {
     "VkmVerkeersKenmerkType": "https://data.vlaanderen.be/id/concept/VkmVerkeersKenmerkType/",
     "VkmMeetInstrumentType": "https://data.vlaanderen.be/id/concept/VkmMeetInstrumentType/",
     "VkmVoertuigType": "https://data.vlaanderen.be/id/concept/VkmVoertuigType/",
+    # bike_devices (location) shape:
+    "dv-weg": "https://data.vlaanderen.be/ns/weg#",
+    "dv-netwerk": "https://data.vlaanderen.be/ns/netwerk#",
+    "iso-sp": "http://def.isotc211.org/iso19156/2011/SamplingPoint#",
+    "geo": "http://www.opengis.net/ont/geosparql#",
+    "sf": "http://www.opengis.net/ont/sf#",
+    "LinkDirectionValue": "http://inspire.ec.europa.eu/codelist/LinkDirectionValue/",
 }
 
 
-def materialize(data, output, fmt, jar):
+def materialize(data, mapping, output, fmt, jar):
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         data_path = tmp / "data.json"
         data_path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
         mapping_path = tmp / "mapping.ttl"
         mapping_path.write_text(
-            MAPPING.read_text(encoding="utf-8").replace("SOURCE.json", str(data_path)),
+            mapping.read_text(encoding="utf-8").replace("SOURCE.json", str(data_path)),
             encoding="utf-8",
         )
         nt_path = tmp / "out.nt"
@@ -76,7 +111,7 @@ def materialize(data, output, fmt, jar):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--feed", required=True, choices=("tlc", "dai"))
+    p.add_argument("--feed", required=True, choices=tuple(FEEDS))
     p.add_argument("input_file", type=Path, help="path to the feed sample (json/xml)")
     p.add_argument("-o", "--output", type=Path,
                    help="output file. A bare name lands in output/; "
@@ -99,10 +134,15 @@ def main(argv=None):
         sys.exit(f"rmlmapper jar not found: {jar} (set RMLMAPPER_JAR or --jar)")
 
     text = args.input_file.read_text(encoding="utf-8")
-    data = preprocess(args.feed, text)
-    print(f"prepared {len(data['measurements'])} measurements "
-          f"({len(data['counts'])} count, {len(data['speeds'])} speed)", file=sys.stderr)
-    materialize(data, args.output, args.format, jar)
+    data = build_source(args.feed, text)
+    n = len(data["measurements"])
+    if args.feed in MEASUREMENT_FEEDS:
+        print(f"prepared {n} measurements "
+              f"({len(data['counts'])} count, {len(data['speeds'])} speed)", file=sys.stderr)
+    else:
+        print(f"prepared {n} measure locations", file=sys.stderr)
+    mapping = MAPPING_DIR / FEEDS[args.feed]["mapping"]
+    materialize(data, mapping, args.output, args.format, jar)
     print(f"wrote OSLO RDF -> {args.output}", file=sys.stderr)
     return 0
 
