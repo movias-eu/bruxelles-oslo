@@ -6,10 +6,10 @@ A human-in-the-loop service that matches measure locations (traffic counters, bi
 
 1. An external system sends a `POST /match` with a device name, coordinates, and a callback URL.
 2. The service queries a WFS endpoint for road segments within a configurable radius.
-3. Candidates are scored by spatial proximity and bearing match (using OpenLR scoring or a naive fallback).
-4. If there's a clear winner, the result is POSTed to the callback URL immediately.
-5. If multiple vertical levels compete, the request is held for human review at `/review`.
-6. The operator picks a segment on the map. The result is POSTed to the callback URL.
+3. Candidates are scored. The configured scorer (`openlr` by default) is used only when the request provides everything it needs — a real bearing (`orientation`) **and** `road_type`; otherwise the service falls back to the naive distance/bearing scorer for that request (see [Scoring strategies](#scoring-strategies)).
+4. The top candidates are classified: a clear winner resolves automatically; a close call is held for human review (see [Disambiguation](#wfs-lvl--vertical-level)).
+5. If a clear winner exists, the result is POSTed to the callback URL immediately.
+6. Otherwise the request is held for human review at `/review`; the operator picks a segment on the map, and the result is POSTed to the callback URL.
 
 All requests return `202 Accepted` immediately. Only one pending review is allowed at a time — a second `POST /match` returns `409` until the current review is resolved.
 
@@ -53,7 +53,8 @@ All via environment variables. See `.env.example` for defaults.
 | `WFS_LAYER` | `bm_network:brr_segments_direction` | WFS layer name |
 | `MATCH_RADIUS` | `50` | Search radius in meters |
 | `TIE_THRESHOLD` | `0.05` | Score gap below which human review is needed |
-| `SCORER` | `openlr` | Scoring strategy: `openlr` or `naive` |
+| `SCORER` | `openlr` | Scoring strategy: `openlr` or `naive`. With `openlr`, a request missing `orientation` or `road_type` falls back to `naive` automatically |
+| `TIE_MODE` | `always` | When the tie check applies: `always` (top two candidates, any level) or `cross-level` (only a surface vs a non-surface candidate) |
 | `HOST` | `0.0.0.0` | Bind address |
 | `PORT` | `8000` | Bind port |
 
@@ -99,7 +100,7 @@ POSTed to `post_url` after resolution:
 
 ### `GET /review`
 
-Disambiguation UI. Shows the pending match on a Leaflet map with candidate segments color-coded by level. Each candidate has a "Select" button (plain HTML form). If nothing is pending, shows a "No pending reviews" page.
+Disambiguation UI. Shows the pending match on a Leaflet map with candidate segments color-coded by level. Each segment carries a direction marker — a dot at the start and a single arrowhead at the end (`leaflet-polylinedecorator`, loaded from unpkg alongside Leaflet). The marker direction follows the segment's coordinate order (how it was digitized), which is not necessarily the real travel direction — see the note below. Candidates whose best score assumed a reversed bearing are flagged with a ⇄ reverse badge in the table. Each candidate has a "Select" button (plain HTML form). If nothing is pending, shows a "No pending reviews" page.
 
 ### `GET /settings`
 
@@ -153,20 +154,27 @@ When `road_type` is provided in the request, it sets the "wanted" FOW for OpenLR
 | 0 | surface | Ground level |
 | 1 | overpass | Above surface |
 
-This is the field that drives disambiguation. When candidates span multiple levels and scores are close (gap < `TIE_THRESHOLD`), the operator must choose.
+How this field is used depends on `TIE_MODE`:
+
+- **`always`** (default): the top two candidates are compared regardless of level. If their score gap is below `TIE_THRESHOLD`, it's a tie and the operator must choose. This also catches two same-level roads that score almost identically.
+- **`cross-level`**: only a surface (`0`) vs a non-surface (tunnel `-1` / overpass `1`) candidate triggers review, and only when their gap is below `TIE_THRESHOLD`. Same-level near-ties resolve automatically to the higher score.
 
 ## Scoring strategies
 
-### OpenLR (`SCORER=openlr`)
+The scorer is chosen **per request**. `SCORER` sets the preferred strategy, but `openlr` is only used when the request supplies the inputs it depends on:
+
+> **OpenLR needs a real bearing and road class.** When `orientation` *or* `road_type` is missing, OpenLR would fabricate defaults — bearing `0` (due North) and `MULTIPLE_CARRIAGEWAY` — and a wrong default bearing can rank a worse-positioned segment above the correct nearer one. So with `SCORER=openlr`, a request lacking either field **falls back to the naive scorer** for that request (logged at INFO). `SCORER=naive` always uses naive.
+
+### OpenLR (`SCORER=openlr`, both `orientation` and `road_type` present)
 
 Uses `openlr-dereferencer`'s `score_lrp_candidate` function. For each candidate segment, constructs a synthetic Location Reference Point from the request coordinates and scores it against the candidate. The composite score factors in:
 
 - **Geo distance**: exponential decay from distance to the measure point
 - **FRC match**: penalty for Functional Road Class mismatch between wanted (FRC1 default) and actual
-- **FOW match**: penalty for Form of Way mismatch between wanted (from `road_type` or MULTIPLE_CARRIAGEWAY default) and actual
+- **FOW match**: penalty for Form of Way mismatch between wanted (from `road_type`) and actual
 - **Bearing**: angular difference between request `orientation` and segment direction
 
-### Naive (`SCORER=naive`)
+### Naive (`SCORER=naive`, or the OpenLR fallback above)
 
 Distance + bearing scorer with no external dependencies:
 
@@ -174,7 +182,41 @@ Distance + bearing scorer with no external dependencies:
 score = 0.5 * (1 - dist/radius) + 0.5 * (1 - bearing_diff/180)
 ```
 
-If no `orientation` is provided, scores by distance only.
+If no `orientation` is provided, scores by distance only — `score = 1 - dist/radius`.
+
+### Bidirectional bearing scoring
+
+The bearing in the source system may have been entered the wrong way round. So
+whenever an `orientation` **is** provided, every candidate is scored twice — at
+the request bearing **and** at its 180° reverse — and the **better** of the two
+becomes the candidate's score. This rescues the correct segment when the bearing
+was reversed upstream, at the cost of making bearing less discriminating between
+the two directions of a road (those near-ties surface for review under
+`TIE_MODE=always`).
+
+Each candidate then carries:
+
+- `score_forward` / `score_reversed` — the two scores
+- `bearing_reversed` — `true` if the reverse won (the segment's direction opposes
+  the request orientation)
+
+Both scorers (OpenLR and naive) do this. When no `orientation` is provided, there
+is no bearing comparison and these fields are unset.
+
+The disambiguation UI flags reverse-winners with a **⇄ reverse** badge in the
+candidate table (tooltip shows both the as-entered and reversed scores). The
+reverse state is intentionally **not** drawn on the map — colouring it would
+clash with the orange selection highlight — so the table badge is the single
+indicator.
+
+> **Known limitation — direction comes from coordinate order, not the data's
+> direction fields.** Both the bearing comparison (`_segment_bearing_wgs84`,
+> start→end of the line) and the map's start-dot/end-arrow markers use the
+> segment's *digitization* order, which does not necessarily match real travel
+> direction. The WFS layer actually carries explicit direction attributes
+> (`bm_direction`, `one_way`, `auto_direction`, `from_node`/`to_node`) that we do
+> not yet use. A follow-up should orient both the scorer and the markers from
+> those fields (and handle bidirectional segments) instead of coordinate order.
 
 ## Coordinate auto-detection
 

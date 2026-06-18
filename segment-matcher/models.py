@@ -22,6 +22,14 @@ class Candidate(BaseModel):
     geom_wgs84: list[list[list[float]]]
     geom_3812: list[list[list[float]]]
     wkb_hex: str
+    # Bidirectional bearing scoring (set only when an orientation was provided).
+    # The candidate is scored against the request orientation AND its reverse;
+    # `score` holds the better of the two. These expose which one won so the UI
+    # can flag candidates whose best match assumes the bearing was entered
+    # reversed. None when no orientation was provided (no bearing comparison).
+    score_forward: float | None = None
+    score_reversed: float | None = None
+    bearing_reversed: bool = False
 
 
 class MatchResult(BaseModel):

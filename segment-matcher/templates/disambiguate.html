@@ -29,6 +29,11 @@
             border-radius: 3px; cursor: pointer; font-size: 0.85em;
         }
         button.select-btn:hover { background: #1565c0; }
+        .reverse-badge {
+            display: inline-block; margin-left: 6px; padding: 1px 6px;
+            background: #fff3e0; color: #e65100; border: 1px solid #ffb74d;
+            border-radius: 3px; font-size: 0.75em; cursor: help;
+        }
     </style>
 </head>
 <body>
@@ -64,7 +69,13 @@
                 <td class="lvl-{{ lvl_labels.get(c.lvl, 'surface') }}">
                     {{ lvl_labels.get(c.lvl, c.lvl) }}
                 </td>
-                <td>{{ "%.4f" | format(c.score) }}</td>
+                <td>
+                    {{ "%.4f" | format(c.score) }}
+                    {% if c.bearing_reversed %}
+                    <span class="reverse-badge"
+                          title="Best match assumes the bearing is reversed (as-entered {{ '%.4f' | format(c.score_forward) }} / reversed {{ '%.4f' | format(c.score_reversed) }})">⇄ reverse</span>
+                    {% endif %}
+                </td>
                 <td>{{ "%.1f" | format(c.dist) }}m</td>
                 <td>{{ c.typology }}</td>
                 <td>{{ c.morphology }}</td>
@@ -81,6 +92,7 @@
     </table>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-polylinedecorator@1.6.0/dist/leaflet.polylineDecorator.js"></script>
     <script>
         var point = [{{ match.point_wgs84[1] }}, {{ match.point_wgs84[0] }}];
         var map = L.map('map').setView(point, 17);
@@ -131,11 +143,52 @@
             var color = lvlColors['{{ c.lvl }}'] || '#999';
             baseColors[gid] = color;
             var layer = L.polyline(latlngs, {color: color, weight: 5, opacity: 0.8}).addTo(map);
-            layer.bindPopup(
-                'gid={{ c.gid }}<br>lvl={{ lvl_labels.get(c.lvl, c.lvl) }}<br>' +
-                'score={{ "%.4f" | format(c.score) }}<br>dist={{ "%.1f" | format(c.dist) }}m'
-            );
+            var popup = 'gid={{ c.gid }}<br>lvl={{ lvl_labels.get(c.lvl, c.lvl) }}<br>' +
+                'score={{ "%.4f" | format(c.score) }}<br>dist={{ "%.1f" | format(c.dist) }}m';
+            {% if c.bearing_reversed %}
+            popup += '<br><b>⇄ best match assumes reversed bearing</b>' +
+                     '<br>as-entered {{ "%.4f" | format(c.score_forward) }}' +
+                     ' / reversed {{ "%.4f" | format(c.score_reversed) }}';
+            {% endif %}
+            layer.bindPopup(popup);
             layers[gid] = layer;
+
+            // Direction marker: a dot at the start and a single arrowhead at the
+            // end, instead of arrows repeated along the whole line (less clutter).
+            // NOTE: start/end here are the line's COORDINATE ORDER (how it was
+            // digitized), which is not necessarily the real travel direction.
+            // TODO: orient by the WFS direction fields (bm_direction / one_way /
+            // from_node->to_node) instead of coordinate order.
+            // Markers use the level colour; a reversed-bearing win is NOT coloured
+            // here (orange would clash with the selection highlight) -- it is shown
+            // by the table's ⇄ badge instead.
+            var dirColor = color;
+            L.polylineDecorator(layer, {
+                patterns: [
+                    {   // start dot
+                        offset: 0, repeat: 0,
+                        symbol: L.Symbol.marker({
+                            rotate: false,
+                            markerOptions: {
+                                icon: L.divIcon({
+                                    className: '',
+                                    iconSize: [10, 10],
+                                    html: '<div style="width:8px;height:8px;border-radius:50%;'
+                                        + 'background:' + dirColor + ';border:1px solid #fff;"></div>'
+                                })
+                            }
+                        })
+                    },
+                    {   // single arrowhead at the end
+                        offset: '100%', repeat: 0,
+                        symbol: L.Symbol.arrowHead({
+                            pixelSize: 12, polygon: false,
+                            pathOptions: {stroke: true, weight: 2, color: dirColor, opacity: 0.9}
+                        })
+                    }
+                ]
+            }).addTo(map);
+
             // Clicking the polyline selects its row too.
             layer.on('click', function() { selectCandidate(gid); });
 

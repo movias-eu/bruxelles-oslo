@@ -12,13 +12,11 @@ from markupsafe import Markup
 
 from coords import to_epsg3812, to_wgs84
 from models import MatchRequest, MatchResult, PendingMatch
-from scorer import MATCH_RADIUS, LVL_LABELS, classify, score_naive, score_openlr
+from scorer import MATCH_RADIUS, LVL_LABELS, classify, score
 from wfs import DEFAULT_WFS_URL, fetch_candidates
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-SCORER = os.environ.get("SCORER", "openlr")
 
 
 @asynccontextmanager
@@ -48,8 +46,7 @@ async def match(req: MatchRequest):
 
     candidates = await fetch_candidates(client, x_3812, y_3812, MATCH_RADIUS, app.state.wfs_url)
 
-    score_fn = score_openlr if SCORER == "openlr" else score_naive
-    candidates = score_fn(candidates, x_3812, y_3812, req.orientation, req.road_type)
+    candidates = score(candidates, x_3812, y_3812, req.orientation, req.road_type)
 
     status = classify(candidates)
     match_id = str(uuid.uuid4())
