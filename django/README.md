@@ -91,27 +91,29 @@ every traverse (matches empty today, populated automatically once the table fill
 
 `export_oslo` shells out to the **RMLMapper** fat jar (a JVM tool — this is why
 the Python version doesn't matter to the mapping engine). It is a ~176 MB binary
-and is **gitignored** (`vendor/*.jar`), so each checkout must provide it once.
+and is **gitignored**, so each checkout must provide it once. The jar lives at the
+**repo root** and is shared by all folders (`django/`, `historical-data/`,
+`live-data/`).
 
 **Where to get it:** download the `-all` (all-dependencies) jar from the RMLMapper
 releases. Validated with **7.3.3-r374**:
 
 ```bash
-# from the django/ project root
-curl -L -o vendor/rmlmapper.jar \
+# from the repo root
+curl -L -o rmlmapper.jar \
   https://github.com/RMLio/rmlmapper-java/releases/download/v7.3.3/rmlmapper-7.3.3-r374-all.jar
 ```
 
-**Where to put it:** `django/vendor/rmlmapper.jar`. The command resolves the jar
+**Where to put it:** `<repo-root>/rmlmapper.jar`. The command resolves the jar
 in this order:
 
 1. `--jar <path>` argument
 2. `RMLMAPPER_JAR` environment variable
-3. default: `django/vendor/rmlmapper.jar`
+3. default: `<repo-root>/rmlmapper.jar`
 
-So no configuration is needed if the jar sits there with that name. To use a
-different location, set `RMLMAPPER_JAR` (or pass `--jar`); the default path itself
-is defined as `DEFAULT_JAR` near the top of
+So no configuration is needed if the jar sits at the repo root with that name. To
+use a different location, set `RMLMAPPER_JAR` (or pass `--jar`); the default path
+itself is defined as `DEFAULT_JAR` near the top of
 `traffic/management/commands/export_oslo.py` if you want to change it permanently.
 
 A JRE must be on `PATH` (`java -version`); validated with OpenJDK 17.

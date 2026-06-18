@@ -26,8 +26,10 @@ import json
 
 OSLO_DIR = Path(__file__).resolve().parents[2] / "oslo"
 MAPPING = OSLO_DIR / "traverses.rml.ttl"
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_JAR = str(PROJECT_ROOT / "vendor" / "rmlmapper.jar")
+# The RMLMapper jar lives at the repo root (one level above django/), shared by
+# all folders; override with RMLMAPPER_JAR to place it elsewhere.
+REPO_ROOT = Path(__file__).resolve().parents[4]
+DEFAULT_JAR = str(REPO_ROOT / "rmlmapper.jar")
 
 # Bound on the output graph so rdflib uses these names instead of ns1/ns2/...
 # (RMLMapper's prefixes don't survive the N-Triples round-trip). Mirrors the
