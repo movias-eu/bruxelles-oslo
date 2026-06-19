@@ -95,8 +95,15 @@ Submit a measure location for matching.
 POSTed to `post_url` after resolution:
 
 ```json
-{"name": "LEO201", "segment_id": 1252, "wkb": "0105000000..."}
+{"name": "LEO201", "segment_id": 1252, "wkb": "0105000000...", "offset": 99.0}
 ```
+
+- `name`, `segment_id` — the device and the chosen segment
+- `wkb` — the chosen segment's geometry (hex WKB)
+- `offset` — distance in **metres**, along the chosen segment, from its start to
+  the point nearest the input. Computed on the EPSG:3812 (metric) geometry via
+  `project()`. "Start" is the segment's coordinate-order start (same caveat as the
+  direction markers — not necessarily the real travel-direction start).
 
 ### `GET /review`
 

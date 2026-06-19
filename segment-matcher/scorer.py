@@ -43,6 +43,18 @@ def _distance_to_segment(px, py, coords_3812):
     return MultiLineString(coords_3812).distance(Point(px, py))
 
 
+def offset_along_segment(px, py, coords_3812) -> float:
+    """Distance in metres, along the segment, from its start to the point on the
+    segment nearest the input LRP (px, py).
+
+    Uses the EPSG:3812 (metric) geometry, so shapely's project() returns metres
+    directly. "Start" is the segment's COORDINATE-ORDER start (how it was
+    digitized) -- the same caveat as the direction markers: it is not guaranteed
+    to be the real travel-direction start.
+    """
+    return round(MultiLineString(coords_3812).project(Point(px, py)), 1)
+
+
 def _segment_bearing_wgs84(coords_wgs84):
     flat = [c for ring in coords_wgs84 for c in ring]
     if len(flat) < 2:
