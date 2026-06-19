@@ -12,13 +12,11 @@ from markupsafe import Markup
 
 from coords import to_epsg3812, to_wgs84
 from models import MatchRequest, MatchResult, PendingMatch
-from scorer import MATCH_RADIUS, LVL_LABELS, classify, score_naive, score_openlr
+from scorer import MATCH_RADIUS, LVL_LABELS, classify, offset_along_segment, score
 from wfs import DEFAULT_WFS_URL, fetch_candidates
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-SCORER = os.environ.get("SCORER", "openlr")
 
 
 @asynccontextmanager
@@ -48,8 +46,7 @@ async def match(req: MatchRequest):
 
     candidates = await fetch_candidates(client, x_3812, y_3812, MATCH_RADIUS, app.state.wfs_url)
 
-    score_fn = score_openlr if SCORER == "openlr" else score_naive
-    candidates = score_fn(candidates, x_3812, y_3812, req.orientation, req.road_type)
+    candidates = score(candidates, x_3812, y_3812, req.orientation, req.road_type)
 
     status = classify(candidates)
     match_id = str(uuid.uuid4())
@@ -60,7 +57,8 @@ async def match(req: MatchRequest):
 
     if status == "auto":
         best = candidates[0]
-        result = MatchResult(name=req.name, segment_id=best.gid, wkb=best.wkb_hex)
+        offset = offset_along_segment(x_3812, y_3812, best.geom_3812)
+        result = MatchResult(name=req.name, segment_id=best.gid, wkb=best.wkb_hex, offset=offset)
         await _post_result(client, str(req.post_url), result)
         return {"id": match_id, "status": "resolved", "segment_id": best.gid}
 
@@ -70,6 +68,7 @@ async def match(req: MatchRequest):
         request=req,
         candidates=candidates,
         point_wgs84=(lon, lat),
+        point_3812=(x_3812, y_3812),
     )
     logger.info("Pending review for %s: %d candidates", req.name, len(candidates))
     return {"id": match_id, "status": "pending_review", "review_url": "/review"}
@@ -95,7 +94,9 @@ async def select(gid: int = Form()):
     if not chosen:
         raise HTTPException(400, f"Segment {gid} is not a candidate")
 
-    result = MatchResult(name=pm.request.name, segment_id=chosen.gid, wkb=chosen.wkb_hex)
+    px, py = pm.point_3812
+    offset = offset_along_segment(px, py, chosen.geom_3812)
+    result = MatchResult(name=pm.request.name, segment_id=chosen.gid, wkb=chosen.wkb_hex, offset=offset)
     await _post_result(app.state.http_client, str(pm.request.post_url), result)
 
     name, lvl = pm.request.name, LVL_LABELS.get(chosen.lvl, chosen.lvl)
