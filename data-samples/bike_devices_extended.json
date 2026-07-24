@@ -1,0 +1,103 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    4.393893,
+                    50.82448
+                ]
+            },
+            "roadSegmentGeometry": {
+                "line": [
+                    [4.393500, 50.823900],
+                    [4.393893, 50.824480],
+                    [4.394300, 50.825100]
+                ],
+                "offset": 50.78951
+            },
+            "properties": {
+                "name": "CEK049",
+                "measureDirection": "bothDirections",
+                "laneSchema": "88f8d1cb-6353-478c-b9bc-4f94acc5af24.png",
+                "basicZoneSchema": "f49c9ea4-2d97-4de8-9954-17d9d2a96795.png",
+                "detailedZoneSchema": "0cc3c9dc-437f-4634-9e02-7fe302775ae7.png",
+                "streetName": [
+                    {
+                        "language": "en",
+                        "value": "Boulevard Général Jacques (VUB) - 1050 Ixelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Boulevard Général Jacques (VUB) - 1050 Ixelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Generaal Jacqueslaan (VUB) - 1050 Elsene"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "language": "en",
+                        "value": "Boulevard Général Jacques (VUB) - 1050 Ixelles"
+                    },
+                    {
+                        "language": "fr",
+                        "value": "Boulevard Général Jacques (VUB) - 1050 Ixelles"
+                    },
+                    {
+                        "language": "nl",
+                        "value": "Generaal Jacqueslaan (VUB) - 1050 Elsene"
+                    }
+                ],
+                "zones": [
+                    {
+                        "name": "Zone1",
+                        "picture": "147fb09f-e7b3-4bf7-90f8-e486685b90ed.png"
+                    },
+                    {
+                        "name": "Zone2",
+                        "picture": "4f64b2b3-3719-4838-8541-979e70a64b27.png"
+                    }
+                ],
+                "tracks": [
+                    {
+                        "identifier": "Track1.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the West"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Ouest"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Westen"
+                            }
+                        ]
+                    },
+                    {
+                        "identifier": "Track2.1",
+                        "descriptions": [
+                            {
+                                "language": "en",
+                                "value": "To the East"
+                            },
+                            {
+                                "language": "fr",
+                                "value": "Vers l'Est"
+                            },
+                            {
+                                "language": "nl",
+                                "value": "Naar het Oosten"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

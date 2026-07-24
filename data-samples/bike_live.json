@@ -1,0 +1,518 @@
+[
+    {
+        "device": "CEK049",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 17,
+                "dayCount": 182,
+                "yearCount": 61212
+            },
+            {
+                "track": "Track2.1",
+                "hourCount": 100,
+                "dayCount": 963,
+                "yearCount": 322807
+            }
+        ],
+        "hourCount": 117,
+        "dayCount": 1145,
+        "yearCount": 384019
+    },
+    {
+        "device": "CB2105",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 34,
+                "dayCount": 278,
+                "yearCount": 129864
+            },
+            {
+                "track": "Track2.1",
+                "hourCount": 77,
+                "dayCount": 643,
+                "yearCount": 266041
+            }
+        ],
+        "hourCount": 111,
+        "dayCount": 921,
+        "yearCount": 395905
+    },
+    {
+        "device": "CB02411",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 57,
+                "dayCount": 810,
+                "yearCount": 276072
+            },
+            {
+                "track": "Track2.1",
+                "hourCount": 77,
+                "dayCount": 1175,
+                "yearCount": 284356
+            }
+        ],
+        "hourCount": 134,
+        "dayCount": 1985,
+        "yearCount": 560428
+    },
+    {
+        "device": "CEK18",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 103,
+                "dayCount": 1208,
+                "yearCount": 236098
+            },
+            {
+                "track": "Track1.2",
+                "hourCount": 5,
+                "dayCount": 24,
+                "yearCount": 14684
+            }
+        ],
+        "hourCount": 108,
+        "dayCount": 1232,
+        "yearCount": 250782
+    },
+    {
+        "device": "CJM90",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 136,
+                "dayCount": 1205,
+                "yearCount": 450633
+            },
+            {
+                "track": "Track2.1",
+                "hourCount": 160,
+                "dayCount": 1087,
+                "yearCount": 434903
+            }
+        ],
+        "hourCount": 296,
+        "dayCount": 2292,
+        "yearCount": 885536
+    },
+    {
+        "device": "COM205",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 28,
+                "dayCount": 233,
+                "yearCount": 103617
+            },
+            {
+                "track": "Track2.1",
+                "hourCount": 36,
+                "dayCount": 303,
+                "yearCount": 101231
+            }
+        ],
+        "hourCount": 64,
+        "dayCount": 536,
+        "yearCount": 204848
+    },
+    {
+        "device": "CB1142",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 186,
+                "dayCount": 1839,
+                "yearCount": 399262
+            },
+            {
+                "track": "Track1.2",
+                "hourCount": 60,
+                "dayCount": 428,
+                "yearCount": 236401
+            }
+        ],
+        "hourCount": 246,
+        "dayCount": 2267,
+        "yearCount": 635663
+    },
+    {
+        "device": "CSG301",
+        "timestamp": "04/07/2022 08:45:00",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 40,
+                "dayCount": 203,
+                "yearCount": 175565
+            },
+            {
+                "track": "Track1.2",
+                "hourCount": 2,
+                "dayCount": 6,
+                "yearCount": 3108
+            }
+        ],
+        "hourCount": 42,
+        "dayCount": 209,
+        "yearCount": 178673
+    },
+    {
+        "device": "CLW239",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 0,
+                "dayCount": 0,
+                "yearCount": 10179
+            },
+            {
+                "track": "Track2.1",
+                "hourCount": 20,
+                "dayCount": 97,
+                "yearCount": 35331
+            }
+        ],
+        "hourCount": 20,
+        "dayCount": 97,
+        "yearCount": 45510
+    },
+    {
+        "device": "CB1599",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 65,
+                "dayCount": 605,
+                "yearCount": 166635
+            },
+            {
+                "track": "Track2.1",
+                "hourCount": 5,
+                "dayCount": 27,
+                "yearCount": 10589
+            }
+        ],
+        "hourCount": 70,
+        "dayCount": 632,
+        "yearCount": 177224
+    },
+    {
+        "device": "CEE016",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 109,
+                "dayCount": 732,
+                "yearCount": 301372
+            },
+            {
+                "track": "Track1.2",
+                "hourCount": 1,
+                "dayCount": 9,
+                "yearCount": 3587
+            }
+        ],
+        "hourCount": 110,
+        "dayCount": 741,
+        "yearCount": 304959
+    },
+    {
+        "device": "SJE181",
+        "timestamp": "20/10/2020 16:24:00",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 0,
+                "dayCount": 28,
+                "yearCount": 14907
+            },
+            {
+                "track": "Track1.2",
+                "hourCount": 8,
+                "dayCount": 135,
+                "yearCount": 54109
+            }
+        ],
+        "hourCount": 8,
+        "dayCount": 163,
+        "yearCount": 69016
+    },
+    {
+        "device": "CB1143",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 17,
+                "dayCount": 271,
+                "yearCount": 8549
+            },
+            {
+                "track": "Track1.2",
+                "hourCount": 1,
+                "dayCount": 37,
+                "yearCount": 2419
+            },
+            {
+                "track": "Track2.1",
+                "hourCount": 0,
+                "dayCount": 11,
+                "yearCount": 583
+            },
+            {
+                "track": "Track2.2",
+                "hourCount": 73,
+                "dayCount": 473,
+                "yearCount": 34574
+            },
+            {
+                "track": "Track3.2",
+                "hourCount": 0,
+                "dayCount": 0,
+                "yearCount": 1
+            },
+            {
+                "track": "Track3.1",
+                "hourCount": 0,
+                "dayCount": 0,
+                "yearCount": 0
+            }
+        ],
+        "hourCount": 91,
+        "dayCount": 792,
+        "yearCount": 46126
+    },
+    {
+        "device": "CKG017",
+        "timestamp": "06/10/2021 08:06:00",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 0,
+                "dayCount": 8,
+                "yearCount": 31480
+            },
+            {
+                "track": "Track1.2",
+                "hourCount": 0,
+                "dayCount": 1,
+                "yearCount": 1966
+            }
+        ],
+        "hourCount": 0,
+        "dayCount": 9,
+        "yearCount": 33446
+    },
+    {
+        "device": "CVT387",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track 1.1",
+                "hourCount": 2,
+                "dayCount": 59,
+                "yearCount": 25461
+            },
+            {
+                "track": "Track 1.2",
+                "hourCount": 19,
+                "dayCount": 198,
+                "yearCount": 52624
+            },
+            {
+                "track": "Track 2.1",
+                "hourCount": 4,
+                "dayCount": 39,
+                "yearCount": 15371
+            },
+            {
+                "track": "Track 2.2",
+                "hourCount": 2,
+                "dayCount": 13,
+                "yearCount": 5530
+            }
+        ],
+        "hourCount": 27,
+        "dayCount": 309,
+        "yearCount": 98986
+    },
+    {
+        "device": "CB1699",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track 1.1",
+                "hourCount": 1,
+                "dayCount": 6,
+                "yearCount": 2174
+            },
+            {
+                "track": "Track 1.2",
+                "hourCount": 44,
+                "dayCount": 345,
+                "yearCount": 112690
+            },
+            {
+                "track": "Track 2.1",
+                "hourCount": 3,
+                "dayCount": 10,
+                "yearCount": 7554
+            },
+            {
+                "track": "Track 2.2",
+                "hourCount": 24,
+                "dayCount": 150,
+                "yearCount": 46560
+            }
+        ],
+        "hourCount": 72,
+        "dayCount": 511,
+        "yearCount": 168978
+    },
+    {
+        "device": "SEV011",
+        "timestamp": "31/07/2020 09:46:00",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 21,
+                "dayCount": 107,
+                "yearCount": 3481
+            },
+            {
+                "track": "Track2.1",
+                "hourCount": 6,
+                "dayCount": 11,
+                "yearCount": 627
+            }
+        ],
+        "hourCount": 27,
+        "dayCount": 118,
+        "yearCount": 4108
+    },
+    {
+        "device": "CEV011",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 21,
+                "dayCount": 232,
+                "yearCount": 57201
+            },
+            {
+                "track": "Track2.1",
+                "hourCount": 4,
+                "dayCount": 18,
+                "yearCount": 15692
+            }
+        ],
+        "hourCount": 25,
+        "dayCount": 250,
+        "yearCount": 72893
+    },
+    {
+        "device": "CJE181",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 4,
+                "dayCount": 31,
+                "yearCount": 11868
+            },
+            {
+                "track": "Track1.2",
+                "hourCount": 18,
+                "dayCount": 171,
+                "yearCount": 53832
+            }
+        ],
+        "hourCount": 22,
+        "dayCount": 202,
+        "yearCount": 65700
+    },
+    {
+        "device": "CAT17",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 39,
+                "dayCount": 462,
+                "yearCount": 167140
+            },
+            {
+                "track": "Track2.1",
+                "hourCount": 37,
+                "dayCount": 584,
+                "yearCount": 147609
+            }
+        ],
+        "hourCount": 76,
+        "dayCount": 1046,
+        "yearCount": 314749
+    },
+    {
+        "device": "CEK31",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 83,
+                "dayCount": 946,
+                "yearCount": 180206
+            },
+            {
+                "track": "Track2.1",
+                "hourCount": 42,
+                "dayCount": 256,
+                "yearCount": 175184
+            }
+        ],
+        "hourCount": 125,
+        "dayCount": 1202,
+        "yearCount": 355390
+    },
+    {
+        "device": "CB1101",
+        "timestamp": "17/06/2026 10:59:02",
+        "tracks": [
+            {
+                "track": "Track1.1",
+                "hourCount": 213,
+                "dayCount": 1821,
+                "yearCount": 658566
+            },
+            {
+                "track": "Track1.2",
+                "hourCount": 22,
+                "dayCount": 209,
+                "yearCount": 88393
+            },
+            {
+                "track": "Track2.1",
+                "hourCount": 0,
+                "dayCount": 0,
+                "yearCount": 0
+            }
+        ],
+        "hourCount": 235,
+        "dayCount": 2030,
+        "yearCount": 746959
+    }
+]
