@@ -1,0 +1,10 @@
+# Local mimic of the client's Django app — never commit the venv or secrets.
+.venv/
+__pycache__/
+*.pyc
+local_settings.py
+.env
+
+# Generated OSLO RDF output — not source.
+traverses.ttl
+*.source.json
