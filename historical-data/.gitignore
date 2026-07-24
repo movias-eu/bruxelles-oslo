@@ -1,0 +1,8 @@
+# Local virtualenv (Python 3.8) — recreate per README, don't commit.
+.venv/
+__pycache__/
+*.pyc
+
+# Generated OSLO RDF output — not source.
+counts.ttl
+*.source.json
