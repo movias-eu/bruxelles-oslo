@@ -11,7 +11,7 @@ pipeline as `django/` and `historical-data/`.
 |---|---|---|---|---|
 | `tlc` | `tlc_*.json` | measurements | detector | `standaard_Camera` |
 | `dai` | `dai_*.xml` | measurements | CameraName | `standaard_Camera` |
-| `bike_live` | `bike_live.json` | measurements | device | `inductielus` |
+| `bike_live` | `bike_live.json` | measurements | device | `glasvezel` |
 | `bike_devices` | `bike_devices_extended.json` | measure location | name | — |
 
 **Measurement feeds** (tlc / dai / bike_live) emit per-characteristic

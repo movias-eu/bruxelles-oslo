@@ -16,7 +16,7 @@ begin + end instant (no duration -- see mapping/bike_live.rml.ttl):
       dayCount  -> begin 2026-06-17T00:00:00  (midnight)
       yearCount -> begin 2026-01-01T00:00:00  (Jan 1)
 
-The `tracks` property is ignored (out of scope for now). Sensor = inductielus,
+The `tracks` property is ignored (out of scope for now). Sensor = glasvezel,
 vehicle = fiets. Built on the shared row schema (util.row), with durationISO
 replaced by endISO.
 """

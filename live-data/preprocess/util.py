@@ -11,7 +11,7 @@ FOI_COUNT = "aantal"
 FOI_SPEED = "tijdsgemiddelde_snelheid"
 
 # Per-feed OSLO codelist values (from traffic_counts_codelist_mapping.md).
-SENSOR = {"tlc": "standaard_Camera", "dai": "standaard_Camera", "bike_live": "inductielus"}
+SENSOR = {"tlc": "standaard_Camera", "dai": "standaard_Camera", "bike_live": "glasvezel"}
 VEHICLE = {"tlc": "auto", "dai": "auto", "bike_live": "fiets"}
 
 
