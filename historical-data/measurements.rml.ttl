@@ -18,7 +18,7 @@
 @prefix ex:      <http://example.org/id/measurement/> .
 @prefix loc:     <http://example.org/id/measureLocation/> .
 @prefix verkeer: <https://data.vlaanderen.be/ns/verkeersmetingen#> .
-@prefix impl:    <https://implementatie.data.vlaanderen.be/ns/verkeersmetingen-uitwisseling#> .
+@prefix impl:    <https://implementatie.data.vlaanderen.be/ns/vsds-verkeersmetingen#> .
 @prefix iso19156-ob: <http://def.isotc211.org/iso19156/2011/Observation#> .
 @prefix iso19103-mp: <http://def.isotc211.org/iso19103/2005/MeasureProfile#> .
 @prefix sosa:    <http://www.w3.org/ns/sosa/> .
@@ -155,8 +155,12 @@
         rr:predicate verkeer:voertuigType ;
         rr:objectMap [ rr:template "https://data.vlaanderen.be/id/concept/VkmVoertuigType/{vehicle}" ; rr:termType rr:IRI ]
     ] ;
-    # measure direction: HARD-CODED to bothDirections (no reliable per-measurement
-    # direction in the counts tables). TODO: derive from the traverse direction.
+    # measure direction: HARD-CODED to bothDirections. The counts tables carry no
+    # per-measurement direction. NOTE: a traverse can legitimately measure
+    # bothDirections while an individual measurement is inDirection (AB) or
+    # inOppositeDirection (BA), so this must NOT be derived from the traverse.
+    # TO ADJUST: emit a per-row `direction` field in export_counts.py and swap this
+    # rr:constant for an rr:reference "direction".
     rr:predicateObjectMap [
         rr:predicate impl:Verkeerstellingkenmerk.meetrichting ;
         rr:objectMap [ rr:constant LinkDirectionValue:bothDirections ]
@@ -174,13 +178,18 @@
         rr:predicate verkeer:voertuigType ;
         rr:objectMap [ rr:template "https://data.vlaanderen.be/id/concept/VkmVoertuigType/{vehicle}" ; rr:termType rr:IRI ]
     ] ;
-    # measure direction: HARD-CODED to bothDirections. TODO: derive from traverse.
+    # measure direction: HARD-CODED to bothDirections. The counts tables carry no
+    # per-measurement direction. NOTE: a traverse can legitimately measure
+    # bothDirections while an individual measurement is inDirection (AB) or
+    # inOppositeDirection (BA), so this must NOT be derived from the traverse.
+    # TO ADJUST: emit a per-row `direction` field in export_counts.py and swap this
+    # rr:constant for an rr:reference "direction".
     rr:predicateObjectMap [
         rr:predicate impl:Verkeerssnelheidsmetingkenmerk.meetrichting ;
         rr:objectMap [ rr:constant LinkDirectionValue:bothDirections ]
     ] .
 
-# Sensor: system -> VkmMeetInstrumentType (all known systems = inductielus).
+# Sensor: system -> VkmMeetInstrumentType (per-row `sensor`, set by export_counts.py).
 <#Sensor>
     rml:logicalSource [ rml:source "SOURCE.json" ; rml:referenceFormulation ql:JSONPath ; rml:iterator "$.measurements[*]" ] ;
     rr:subjectMap [ rr:template "sensor/{rowId}" ; rr:termType rr:BlankNode ; rr:class sosa:Sensor ] ;

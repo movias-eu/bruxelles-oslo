@@ -40,7 +40,7 @@ OSLO_PREFIXES = {
     "iso-sp": "http://def.isotc211.org/iso19156/2011/SamplingPoint#",
     "geo": "http://www.opengis.net/ont/geosparql#",
     "sf": "http://www.opengis.net/ont/sf#",
-    "impl": "https://implementatie.data.vlaanderen.be/ns/verkeersmetingen-uitwisseling#",
+    "impl": "https://implementatie.data.vlaanderen.be/ns/vsds-verkeersmetingen#",
     "dv-weg": "https://data.vlaanderen.be/ns/weg#",
     "dv-netwerk": "https://data.vlaanderen.be/ns/netwerk#",
     "iso-mp": "http://def.isotc211.org/iso19103/2005/MeasureProfile#",

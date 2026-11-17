@@ -5,14 +5,14 @@
 # now for RMLMapper. count -> impl:Verkeerstelling (tellingresultaat),
 # speed -> impl:Verkeerssnelheidsmeting (OM_Observation.result, Speed km/h).
 # Sub-maps join on measSubject (unique per measurement). sensor/vehicle are
-# per-row (TLC=inductielus/auto, DAI=standaard_Camera/auto).
+# per-row (TLC=standaard_Camera/auto, DAI=standaard_Camera/auto).
 
 @base <http://example.org/rules/> .
 @prefix rr:          <http://www.w3.org/ns/r2rml#> .
 @prefix rml:         <http://semweb.mmlab.be/ns/rml#> .
 @prefix ql:          <http://semweb.mmlab.be/ns/ql#> .
 @prefix verkeer:     <https://data.vlaanderen.be/ns/verkeersmetingen#> .
-@prefix impl:        <https://implementatie.data.vlaanderen.be/ns/verkeersmetingen-uitwisseling#> .
+@prefix impl:        <https://implementatie.data.vlaanderen.be/ns/vsds-verkeersmetingen#> .
 @prefix iso19156-ob: <http://def.isotc211.org/iso19156/2011/Observation#> .
 @prefix iso19103-mp: <http://def.isotc211.org/iso19103/2005/MeasureProfile#> .
 @prefix sosa:        <http://www.w3.org/ns/sosa/> .

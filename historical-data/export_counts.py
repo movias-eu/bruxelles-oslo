@@ -35,19 +35,14 @@ FOI_SPEED = "tijdsgemiddelde_snelheid"
 #   BIKE  -> glasvezel        (SL20007 v0 PUR SENSOR)
 #   DAI   -> standaard_Camera (CAMERA)
 #   ISAFE -> radar            (Icom)
-#   TLC   -> inductielus      (LOOP)
-# NOTE: the mapping is really by *detector type*, not system, and TLC spans two:
-# LOOP -> inductielus and XSTREAM -> standaard_Camera. The counts tables carry
-# only `system` (no detector-type column), so TLC cannot be split here; we map it
-# to inductielus (LOOP, the dominant type -- 44 detectors vs 2 XSTREAM). Revisit
-# if a detector-type column becomes available.
+#   TLC   -> standaard_Camera (CAMERA)
 SENSOR_BY_SYSTEM = {
     "BIKE": "glasvezel",
     "DAI": "standaard_Camera",
     "ISAFE": "radar",
-    "TLC": "inductielus",
+    "TLC": "standaard_Camera",
 }
-DEFAULT_SENSOR = "inductielus"
+DEFAULT_SENSOR = "standaard_Camera"
 
 # system column -> VkmVoertuigType (vehicle type). DAI/TLC/ISAFE count motor
 # vehicles, BIKE counts bicycles. HARD-CODED per system -- the tables carry no
@@ -63,7 +58,7 @@ OSLO_PREFIXES = {
     "ex": "http://example.org/id/measurement/",
     "loc": "http://example.org/id/measureLocation/",
     "verkeer": "https://data.vlaanderen.be/ns/verkeersmetingen#",
-    "impl": "https://implementatie.data.vlaanderen.be/ns/verkeersmetingen-uitwisseling#",
+    "impl": "https://implementatie.data.vlaanderen.be/ns/vsds-verkeersmetingen#",
     "iso19156-ob": "http://def.isotc211.org/iso19156/2011/Observation#",
     "iso19103-mp": "http://def.isotc211.org/iso19103/2005/MeasureProfile#",
     "sosa": "http://www.w3.org/ns/sosa/",
@@ -202,6 +197,13 @@ def preprocess(rows):
                 "durationISO": duration,
                 "sensor": sensor,       # system -> VkmMeetInstrumentType
                 "vehicle": vehicle,     # system -> VkmVoertuigType (hard-coded)
+                # NOTE: measurement direction (meetrichting) is NOT emitted per row.
+                # The RML hard-codes it to bothDirections. A traverse may measure
+                # bothDirections while an individual measurement is inDirection (AB)
+                # or inOppositeDirection (BA) -- so the fix is NOT to read the
+                # traverse direction, but to add a per-row "direction" field here
+                # (from a source column, once available) and reference it from the
+                # KenmerkCount / KenmerkSpeed maps in measurements.rml.ttl.
             })
     # Also expose per-kind arrays so the two kenmerk maps (count vs speed) each
     # iterate ONLY their own rows -- avoids emitting stray kenmerk nodes for the
