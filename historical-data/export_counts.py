@@ -63,7 +63,7 @@ OSLO_PREFIXES = {
     "ex": "http://example.org/id/measurement/",
     "loc": "http://example.org/id/measureLocation/",
     "verkeer": "https://data.vlaanderen.be/ns/verkeersmetingen#",
-    "impl": "https://implementatie.data.vlaanderen.be/ns/verkeersmetingen-uitwisseling#",
+    "impl": "https://implementatie.data.vlaanderen.be/ns/vsds-verkeersmetingen#",
     "iso19156-ob": "http://def.isotc211.org/iso19156/2011/Observation#",
     "iso19103-mp": "http://def.isotc211.org/iso19103/2005/MeasureProfile#",
     "sosa": "http://www.w3.org/ns/sosa/",
