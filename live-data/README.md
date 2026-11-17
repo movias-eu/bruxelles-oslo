@@ -9,7 +9,7 @@ pipeline as `django/` and `historical-data/`.
 
 | `--feed` | Sample file | Maps to | Identity | Sensor |
 |---|---|---|---|---|
-| `tlc` | `tlc_*.json` | measurements | detector | `inductielus` |
+| `tlc` | `tlc_*.json` | measurements | detector | `standaard_Camera` |
 | `dai` | `dai_*.xml` | measurements | CameraName | `standaard_Camera` |
 | `bike_live` | `bike_live.json` | measurements | device | `inductielus` |
 | `bike_devices` | `bike_devices_extended.json` | measure location | name | — |

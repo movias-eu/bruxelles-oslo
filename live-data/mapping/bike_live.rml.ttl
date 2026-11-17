@@ -5,7 +5,7 @@
 # now for RMLMapper. count -> impl:Verkeerstelling (tellingresultaat),
 # speed -> impl:Verkeerssnelheidsmeting (OM_Observation.result, Speed km/h).
 # Sub-maps join on measSubject (unique per measurement). sensor/vehicle are
-# per-row (TLC=inductielus/auto, DAI=standaard_Camera/auto).
+# per-row (TLC=standaard_Camera/auto, DAI=standaard_Camera/auto).
 
 @base <http://example.org/rules/> .
 @prefix rr:          <http://www.w3.org/ns/r2rml#> .

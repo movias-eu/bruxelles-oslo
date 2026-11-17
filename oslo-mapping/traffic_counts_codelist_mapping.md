@@ -313,8 +313,12 @@ Source: https://inspire.ec.europa.eu/codelist/LinkDirectionValue
 | BIKE | SL20007 v0 PUR SENSOR | glasvezel | `https://data.vlaanderen.be/id/concept/VkmMeetInstrumentType/glasvezel` |
 | DAI | CAMERA | standaard_Camera | `https://data.vlaanderen.be/id/concept/VkmMeetInstrumentType/standaard_Camera` |
 | ISAFE | Icom | radar | `https://data.vlaanderen.be/id/concept/VkmMeetInstrumentType/radar` |
-| TLC | LOOP | inductielus | `https://data.vlaanderen.be/id/concept/VkmMeetInstrumentType/inductielus` |
+| TLC | LOOP | standaard_Camera | `https://data.vlaanderen.be/id/concept/VkmMeetInstrumentType/standaard_Camera` |
 | TLC | XSTREAM | standaard_Camera | `https://data.vlaanderen.be/id/concept/VkmMeetInstrumentType/standaard_Camera` |
+
+TLC is mapped to `standaard_Camera` for both detector types: Brussels Mobility
+confirmed (July 2026) that the TLC detectors are cameras, even where the source
+detector type reads `LOOP`.
 
 ### 6.2 Vehicle Type Mapping
 
