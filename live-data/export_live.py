@@ -1,11 +1,15 @@
 """Export a live feed sample to OSLO Verkeersmeting RDF via RMLMapper.
 
-    python export_live.py --feed tlc ../data-samples/tlc_20260313_1300.json -o tlc.ttl
-    python export_live.py --feed dai ../data-samples/dai_202602201350.xml -o dai.ttl
+    python export_live.py --feed tlc --traverse-map traverse_map.csv \
+        ../data-samples/tlc_20260313_1300.json -o tlc.ttl
+    python export_live.py --feed dai --traverse-map traverse_map.csv \
+        ../data-samples/dai_202602201350.xml -o dai.ttl
 
 Reads a feed sample file, preprocesses it into the unified measurement schema,
-then runs RMLMapper (live.rml.ttl) to emit OSLO RDF. Same preprocess -> RML
+then runs the feed's RML mapping to emit OSLO RDF. Same preprocess -> RML
 pipeline as the other folders; ported from PR #1's Morph-KGC/YARRRML mappings.
+TLC and DAI report per detector (lane); they are summed per traverse with the
+detector -> traverse map (`django/manage.py export_live_traverse_map`).
 
 The input bytes come from a file here, mirroring an API response -- swapping the
 file read for requests.get(...).text is the only change for a live endpoint.
@@ -26,6 +30,7 @@ import tlc            # noqa: E402  (one preprocess module per feed, in preproce
 import dai            # noqa: E402
 import bike_live      # noqa: E402
 import bike_devices   # noqa: E402
+from util import TraverseMap   # noqa: E402
 
 # Per feed: its preprocess module + the RML mapping it feeds.
 #   tlc / dai / bike_live -> measurement observations (measurements.rml.ttl)
@@ -39,14 +44,22 @@ FEEDS = {
 }
 
 
-def build_source(feed, text):
+# Feeds whose detectors are summed per traverse; they need --traverse-map.
+TRAVERSE_FEEDS = ("tlc", "dai")
+
+
+def build_source(feed, text, traverse_map=None):
     """Run the feed's preprocessor and assemble the JSON its mapping iterates.
 
     All rows go under $.measurements. The measurement feeds (tlc/dai) also split
     by kind into $.counts / $.speeds for the count/speed observation maps; the
     location feed (bike_devices) only needs $.measurements.
     """
-    rows = FEEDS[feed]["module"].preprocess(text)
+    module = FEEDS[feed]["module"]
+    if feed in TRAVERSE_FEEDS:
+        rows = module.preprocess(text, traverse_map)
+    else:
+        rows = module.preprocess(text)
     src = {"measurements": rows}
     if feed in MEASUREMENT_FEEDS:
         src["counts"] = [r for r in rows if r.get("kind") == "count"]
@@ -118,7 +131,12 @@ def main(argv=None):
                         "an explicit path is used as-is. Default: output/<feed>.ttl")
     p.add_argument("-f", "--format", default="turtle")
     p.add_argument("--jar", default=os.environ.get("RMLMAPPER_JAR", str(DEFAULT_JAR)))
+    p.add_argument("--traverse-map", type=Path,
+                   help="CSV detector_id,traverse_id[,link_direction] (required for "
+                        "tlc/dai). Produced by `django/manage.py export_live_traverse_map`.")
     args = p.parse_args(argv)
+    if args.feed in TRAVERSE_FEEDS and args.traverse_map is None:
+        p.error(f"--traverse-map is required for --feed {args.feed}")
 
     # Resolve output: default output/<feed>.ttl; a bare filename -> output/<name>.
     output = args.output or Path(f"{args.feed}.ttl")
@@ -133,8 +151,14 @@ def main(argv=None):
     if not jar.is_file():
         sys.exit(f"rmlmapper jar not found: {jar} (set RMLMAPPER_JAR or --jar)")
 
+    traverse_map = None
+    if args.feed in TRAVERSE_FEEDS:
+        if not args.traverse_map.is_file():
+            sys.exit(f"traverse map not found: {args.traverse_map}")
+        traverse_map = TraverseMap.from_csv(args.traverse_map)
+
     text = args.input_file.read_text(encoding="utf-8")
-    data = build_source(args.feed, text)
+    data = build_source(args.feed, text, traverse_map)
     n = len(data["measurements"])
     if args.feed in MEASUREMENT_FEEDS:
         print(f"prepared {n} measurements "

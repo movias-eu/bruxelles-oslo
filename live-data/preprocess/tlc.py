@@ -1,6 +1,6 @@
-"""Preprocess TLC live data (tlc_*.json) into measurement rows.
+"""Preprocess TLC live data (tlc_*.json) into per-traverse measurement rows.
 
-TLC is a flat JSON list of per-detector counts::
+TLC is a flat JSON list of per-detector counts, one detector per lane::
 
     { "counts": [ { "detector": "ARL_103_1",
                     "from_timestamp": "2026-03-13 12:58",
@@ -8,46 +8,43 @@ TLC is a flat JSON list of per-detector counts::
                     "volume": 1, "speed": 17.0, "occupancy": 6.0,
                     "validity": 1 }, ... ] }
 
-Each valid count yields a volume (aantal) row and, when present, a speed
-(tijdsgemiddelde_snelheid) row -- only those two are mapped; occupancy has no
-OSLO codelist match and is dropped, and rows with validity == 0 are dropped.
-
-The temporal entity carries explicit begin + end instants (no duration): both
-from_timestamp and to_timestamp are in the data, so the end is taken directly.
-See mapping/tlc.rml.ttl. Identity = detector. Ported from PR #1's preprocess_tlc.py.
+Rows with validity == 0 are dropped; occupancy has no OSLO codelist match and
+is dropped too. The detectors are then summed per traverse (ARL_103_1 +
+ARL_103_2 -> ARL_103) with the detector -> traverse map, see
+util.aggregate_by_traverse. The temporal entity carries explicit begin + end
+instants (from_timestamp / to_timestamp, local Brussels time).
 """
 import json
 
-from util import FOI_COUNT, FOI_SPEED, ids, parse_ts, row
+from util import aggregate_by_traverse, parse_ts
 
 FEED = "tlc"
 _TS = "%Y-%m-%d %H:%M"   # "2026-03-13 12:58"
 
 
-def preprocess(text):
-    """tlc_*.json text -> list of measurement rows."""
+def _number(value):
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def preprocess(text, traverse_map):
+    """tlc_*.json text -> list of per-traverse measurement rows."""
     data = json.loads(text)
-    rows = []
+    readings = []
     for c in data.get("counts", []):
         if c.get("validity") == 0:
             continue  # invalid reading dropped
         start = parse_ts(c.get("from_timestamp"), _TS)
         end = parse_ts(c.get("to_timestamp"), _TS)
-        if start is None or end is None:
+        if start is None or end is None or not c.get("detector"):
             continue
-        start_iso, start_id = ids(start)
-        end_iso, _ = ids(end)
-        det = c.get("detector")
-        for present, foi, kind, value in (
-            (c.get("volume") is not None, FOI_COUNT, "count", c.get("volume")),
-            (c.get("speed") is not None, FOI_SPEED, "speed", c.get("speed")),
-        ):
-            if not present:
-                continue
-            r = row(FEED, det, f"{det}-{foi}-{start_id}", foi, kind, value, start_iso, None)
-            # TLC carries explicit begin + end instants (from/to_timestamp) instead
-            # of a duration.
-            del r["durationISO"]
-            r["endISO"] = end_iso
-            rows.append(r)
-    return rows
+        readings.append({
+            "detector": c["detector"],
+            "start": start,
+            "end": end,
+            "count": _number(c.get("volume")),
+            "speed": _number(c.get("speed")),
+        })
+    return aggregate_by_traverse(FEED, readings, traverse_map)

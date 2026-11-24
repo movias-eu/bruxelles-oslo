@@ -121,7 +121,7 @@
     rr:subjectMap [ rr:template "instant-begin/{measSubject}" ; rr:termType rr:BlankNode ; rr:class time:Instant ] ;
     rr:predicateObjectMap [
         rr:predicate time:inXSDDateTimeStamp ;
-        rr:objectMap [ rml:reference "startISO" ; rr:datatype xsd:dateTime ]
+        rr:objectMap [ rml:reference "startISO" ; rr:datatype xsd:dateTimeStamp ]
     ] .
 
 <#EndInstant>
@@ -129,7 +129,7 @@
     rr:subjectMap [ rr:template "instant-end/{measSubject}" ; rr:termType rr:BlankNode ; rr:class time:Instant ] ;
     rr:predicateObjectMap [
         rr:predicate time:inXSDDateTimeStamp ;
-        rr:objectMap [ rml:reference "endISO" ; rr:datatype xsd:dateTime ]
+        rr:objectMap [ rml:reference "endISO" ; rr:datatype xsd:dateTimeStamp ]
     ] .
 
 <#SpeedResult>

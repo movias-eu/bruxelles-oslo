@@ -50,10 +50,6 @@ def preprocess(text):
             if value is None:
                 continue
             start_iso, start_id = ids(start)
-            r = row(FEED, name, f"{name}-{FOI_COUNT}-{period}-{start_id}",
-                    FOI_COUNT, "count", value, start_iso, None)
-            # bike_live carries an explicit end instant instead of a duration.
-            del r["durationISO"]
-            r["endISO"] = end_iso
-            rows.append(r)
+            rows.append(row(FEED, name, f"{name}-{FOI_COUNT}-{period}-{start_id}",
+                            FOI_COUNT, "count", value, start_iso, end_iso))
     return rows

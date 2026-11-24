@@ -9,8 +9,8 @@ pipeline as `django/` and `historical-data/`.
 
 | `--feed` | Sample file | Maps to | Identity | Sensor |
 |---|---|---|---|---|
-| `tlc` | `tlc_*.json` | measurements | detector | `standaard_Camera` |
-| `dai` | `dai_*.xml` | measurements | CameraName | `standaard_Camera` |
+| `tlc` | `tlc_*.json` | measurements | traverse (detectors summed) | `standaard_Camera` |
+| `dai` | `dai_*.xml` | measurements | traverse (camera lanes summed) | `standaard_Camera` |
 | `bike_live` | `bike_live.json` | measurements | device | `glasvezel` |
 | `bike_devices` | `bike_devices_extended.json` | measure location | name | — |
 
@@ -21,7 +21,10 @@ observations:
   (`OM_Observation.result` → `iso19103-mp:Speed`, km/h)
 
 The temporal entity carries explicit **begin + end instants** (`time:hasBeginning`
-/ `time:hasEnd`, no duration):
+/ `time:hasEnd`, no duration). The feeds give local Brussels time without an
+offset; every instant is published with the offset in effect (`+01:00` /
+`+02:00`, typed `xsd:dateTimeStamp`), and measurement IRIs use the UTC time so
+they stay unique across the October clock change:
 - **tlc** — `from_timestamp` / `to_timestamp` (both in the data).
 - **dai** — `Time` (start; assumed, minute-aligned & matches the filename) and
   `Time + PeriodSec` (end).
@@ -30,9 +33,38 @@ The temporal entity carries explicit **begin + end instants** (`time:hasBeginnin
 
 Per-feed specifics:
 - **tlc** — drops `validity==0` rows and occupancy; only volume + speed mapped.
-- **dai** — sums `#C1/#C2/#C3` into one count, keeps Speed, drops Occupancy.
-  `geobserveerdObject` is built from `CameraName` (spaces → underscores, e.g.
-  "ARL 103" → `loc:ARL_103`), matching the traverse ids — not the numeric CameraId.
+- **dai** — sums `#C1/#C2/#C3` into one count per lane, keeps Speed (a Speed of
+  `-1` means "no valid speed" and is ignored), drops Occupancy. Camera + lane is
+  the detector: "ARL 103" lane 1 → `ARL_103_1`.
+
+### Per traverse (tlc / dai)
+
+OSLO publishes cross-section counts (doorsnedetellingen), so the per-lane
+detectors are summed per **traverse** with the client's
+`UCComptageDetectorTraverse` table. `--traverse-map` takes that table as CSV,
+exported with `django/manage.py export_live_traverse_map`:
+
+```
+detector_id,traverse_id,link_direction
+ARL_103_1,ARL_103,inOppositeDirection
+ARL_103_2,ARL_103,inOppositeDirection
+```
+
+Per traverse and minute:
+- **count** = sum of the detector counts, published only when **every** detector
+  of the traverse delivered a valid count (a partial sum would understate the
+  cross-section);
+- **speed** = vehicle-weighted mean of the detector speeds (the time-mean speed
+  over all vehicles), published only when there were vehicles and every
+  detector that counted vehicles has a valid speed;
+- `geobserveerdObject` is the traverse (`loc:ARL_103`), the same IRI as in the
+  traverse collection; the measurement IRI is
+  `<traverse>-<feed>-<kenmerk>-<UTC start>`;
+- `meetrichting` is the traverse's `link_direction` (omitted while empty, so
+  consumers fall back to the meetpunt's `rijrichting`).
+
+Detectors without a traverse (e.g. DAI lane 100, the camera total) are skipped;
+the run lists them, and the traverses skipped for missing detectors, on stderr.
 - **bike_live** — ignores the `tracks` property; vehicle = `fiets`.
 
 **`bike_devices`** is the measure-LOCATION registry (a `verkeer:Verkeersmeetpunt`
@@ -71,13 +103,14 @@ To add a feed: drop a `preprocess/<feed>.py` exposing `preprocess(text)`, add a
 ```bash
 python3.8 -m venv .venv && .venv/bin/python -m pip install rdflib
 
-.venv/bin/python export_live.py --feed tlc          ../data-samples/tlc_20260313_1300.json
-.venv/bin/python export_live.py --feed dai          ../data-samples/dai_202602201350.xml
+.venv/bin/python export_live.py --feed tlc --traverse-map traverse_map.csv ../data-samples/tlc_20260313_1300.json
+.venv/bin/python export_live.py --feed dai --traverse-map traverse_map.csv ../data-samples/dai_202602201350.xml
 .venv/bin/python export_live.py --feed bike_live    ../data-samples/bike_live.json
 .venv/bin/python export_live.py --feed bike_devices ../data-samples/bike_devices_extended.json
 ```
 
-Output defaults to `output/<feed>.ttl`. Reads sample files only — no DB, no VPN.
+Output defaults to `output/<feed>.ttl`. Reads files only — no DB, no VPN; the
+traverse map comes from the DB via the django command.
 
 ## RMLMapper jar
 
@@ -89,9 +122,8 @@ A JRE must be on `PATH` (validated with OpenJDK 17).
 
 - **Vehicle type** — `auto` (tlc/dai), `fiets` (bike_live). No per-row vehicle
   classification in the samples; inferred per feed.
-- **Measure direction** — measurement feeds hard-code `meetrichting`
-  `bothDirections` (the samples carry no usable direction; DAI has only `LaneId`
-  with no documented lane→direction mapping). `TODO`: derive from data when a
-  source exists.
+- **Measure direction** — tlc/dai take `meetrichting` from the traverse map;
+  `bike_live` still hard-codes `bothDirections` (device totals).
+- **Local time** — TLC and DAI timestamps are assumed to be local Brussels time.
 - **DAI `<Time>`** is assumed to be the interval **start** — verify against the
   DAI spec/provider.
