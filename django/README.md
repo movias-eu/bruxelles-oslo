@@ -6,7 +6,8 @@ the Django ORM — the same way the client's app does. This is a probe for desig
 the OSLO "connector", **not** a copy of the client's full app.
 
 - Runtime: **Python 3.8 + Django 3.2 LTS** (matches the client's server).
-- Models: the traverse subgraph (`UCComptageTraverses` + `UCComptageLink`),
+- Models: the traverse subgraph (`UCComptageTraverses` + `UCComptageLink`) and
+  the detector links (`UCComptageDetector` + `UCComptageDetectorTraverse`),
   all `managed = False` so Django **never** creates/alters/drops tables.
 - **`SegmentMatch` we wrote ourselves.** The original `traffic_models.txt` /
   `traffic_admin.txt` the client provided did **not** include it, because the
@@ -87,6 +88,28 @@ every traverse (matches empty today, populated automatically once the table fill
 .venv/bin/python manage.py check_segmentmatch --limit 5
 ```
 
+### `compute_link_direction` — propose each traverse's direction
+
+Computes the INSPIRE direction of every segment-matched traverse from its
+`orientation` and the matched segment (see
+[Implementation notes](#implementation-notes-for-brussels-mobility)) and writes a
+CSV report: orientation, segment heading, angle, current and proposed value,
+reason. Read-only; `--all` also lists traverses without a match.
+
+```bash
+.venv/bin/python manage.py compute_link_direction -o proposals.csv
+```
+
+### `export_live_traverse_map` — detector → traverse map for the live export
+
+Writes the active `UCComptageDetectorTraverse` links as
+`detector_id,traverse_id,link_direction`, the `--traverse-map` input of
+`live-data/export_live.py` (TLC/DAI are summed per traverse).
+
+```bash
+.venv/bin/python manage.py export_live_traverse_map -o traverse_map.csv
+```
+
 ## The RMLMapper jar
 
 `export_oslo` shells out to the **RMLMapper** fat jar (a JVM tool — this is why
@@ -123,23 +146,11 @@ A JRE must be on `PATH` (`java -version`); validated with OpenJDK 17.
 To produce a complete OSLO record matching `oslo-mapping/bike_devices.ttl`, a few
 things are **scaffolded for now and must be revisited before production**:
 
-- **Segment matches are mocked.** `traffic_segmentmatch` is currently empty, so
-  `export_oslo` injects one fake match into the first feature purely to exercise
-  the segment-match → RDF path end to end. This is fenced with a loud warning and
-  a `TEMPORARY MOCK — REMOVE` comment in `export_oslo.py`. **Delete it the moment
-  real match rows exist**, or it will fabricate a bogus match on top of real data.
-
-- **The `offset` column does not exist yet.** OSLO needs the distance (in metres)
-  of the traverse location from the start of the segment line — the
-  `Puntreferentie → opPositie` shape. The real `traffic_segmentmatch` table has no
-  such column, so:
-  - it is declared on the `SegmentMatch` model but **deferred** in the query
-    (`.defer("offset")`) so Postgres is never asked for it, and
-  - its value currently comes **only from the mock**.
-
-  **This column still needs to be added to the real table.** Once it exists, drop
-  the `.defer("offset")` in `export_oslo.py` and remove the field comment — the
-  value then flows automatically.
+- **New columns are read only when they exist.** `SegmentMatch.offset` and
+  `UCComptageTraverses.link_direction` / `link_direction_manual` are declared on
+  the models ahead of the client's migration. The commands check the table
+  (`traffic.columns.missing_columns`) and `.defer()` whatever is missing, so they
+  work before and after the columns are added; missing values come out empty.
 
 - **Segment geometry is derived from a single WKB.** `traffic_segmentmatch` stores
   the segment geometry as one WKB blob (the `wkb` column). OSLO wants the line
@@ -150,3 +161,102 @@ things are **scaffolded for now and must be revisited before production**:
   explicit columns (e.g. `start_point`, `end_point`) to the table instead of
   deriving them — cheaper at query time, but more columns to maintain and keep
   consistent with the WKB.
+
+## Implementation notes for Brussels Mobility
+
+What to add on the client's side so the export can publish the driving
+direction of each traverse. Values follow INSPIRE `LinkDirectionValue`, the
+codelist OSLO uses for `weg:rijrichting` (on the traverse) and `meetrichting`
+(on each measurement).
+
+### 1. New fields on `UCComptageTraverses`
+
+```python
+LINK_DIRECTION_CHOICES = (
+    ("inDirection", "In digitisation direction of the segment"),
+    ("inOppositeDirection", "Against digitisation direction of the segment"),
+    ("bothDirections", "Both directions"),
+)
+
+class UCComptageTraverses(models.Model):
+    ...
+    link_direction = models.CharField(
+        "Link direction", max_length=20, null=True, blank=True,
+        choices=LINK_DIRECTION_CHOICES,
+    )
+    link_direction_manual = models.BooleanField(
+        "Link direction set manually", default=False,
+    )
+```
+
+Then `makemigrations` + `migrate`. Both fields are additive; existing rows get
+`link_direction = NULL` and `link_direction_manual = False`.
+
+| Value | Meaning |
+|---|---|
+| `inDirection` | The traverse counts traffic driving the way the matched segment is digitised. |
+| `inOppositeDirection` | The traverse counts traffic driving against the digitisation direction. |
+| `bothDirections` | The traverse counts both directions together (e.g. a bike total). |
+| empty | Unknown: the export then publishes no direction for this traverse. |
+
+The value is **relative to the matched segment** (`traffic_segmentmatch`), not a
+compass direction: when a traverse gets another segment, recompute it.
+
+### 2. Automatic computation
+
+`traffic/oslo/direction.py` holds the rule as plain functions (no DB access);
+copy it into the client app. `orientation` is the heading of the measured
+traffic (0 = north, 90 = east). It is compared with the heading of the matched
+segment at the traverse location:
+
+- angle ≤ 60° → `inDirection`
+- angle ≥ 120° → `inOppositeDirection`
+- in between, no orientation, no segment match, or matches that disagree →
+  empty, to be set by hand.
+
+Run it for every traverse that was not set by hand, e.g. after segment matches
+change or nightly:
+
+```python
+from traffic.oslo.direction import combine, compute_link_direction
+
+for t in (UCComptageTraverses.objects.filter(link_direction_manual=False)
+          .prefetch_related("Traverse")):           # reverse accessor of SegmentMatch
+    matches = list(t.Traverse.all())
+    d = combine([compute_link_direction(t.orientation, m.wkb, t.co_x, t.co_y)
+                 for m in matches])
+    if t.link_direction != d.value:
+        t.link_direction = d.value
+        t.save(update_fields=["link_direction"])
+```
+
+`manage.py compute_link_direction` prints the same proposals as CSV without
+writing, to review them first. On the 11 traverses matched today it proposes
+`inOppositeDirection` for ARL_103, DEL_103 and VP_203, `inDirection` for ARL_203
+and VP_103, and leaves GH_104 and the five radars empty (no orientation).
+
+### 3. Manual values
+
+Set `link_direction` in the admin and tick `link_direction_manual`, so the
+computation leaves it alone. Needed for:
+
+- **bike totals** (traverses that sum the tracks of both directions, e.g.
+  `CB1101`, `CB1143`): `bothDirections`;
+- **directional bike traverses** (e.g. `CB1101_inner_ring`) and **radars**
+  (`orientation` is empty for all of them): the direction compared with the
+  matched segment, or fill `orientation` and let the computation do it;
+- traverses the computation leaves empty with "check manually".
+
+### 4. Live data
+
+The live TLC/DAI export sums the detectors per traverse and gives each
+measurement the traverse's direction. It needs the detector → traverse map:
+
+```bash
+python manage.py export_live_traverse_map -o traverse_map.csv
+python live-data/export_live.py --feed tlc --traverse-map traverse_map.csv <tlc file>
+python live-data/export_live.py --feed dai --traverse-map traverse_map.csv <dai file>
+```
+
+Re-export the map whenever detectors, traverse links or directions change.
+

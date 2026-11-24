@@ -5,7 +5,9 @@
 # now for RMLMapper. count -> impl:Verkeerstelling (tellingresultaat),
 # speed -> impl:Verkeerssnelheidsmeting (OM_Observation.result, Speed km/h).
 # Sub-maps join on measSubject (unique per measurement). sensor/vehicle are
-# per-row (TLC=standaard_Camera/auto, DAI=standaard_Camera/auto).
+# per-row (TLC=standaard_Camera/auto, DAI=standaard_Camera/auto). Rows are per
+# traverse (detectors summed in preprocess); locId is the traverse id and the
+# optional `direction` is the traverse's INSPIRE LinkDirectionValue.
 
 @base <http://example.org/rules/> .
 @prefix rr:          <http://www.w3.org/ns/r2rml#> .
@@ -108,8 +110,8 @@
         rr:objectMap [ rr:parentTriplesMap <#BeginInstant> ;
             rr:joinCondition [ rr:child "measSubject" ; rr:parent "measSubject" ] ]
     ] ;
-    # bike_live uses an explicit end instant (the device timestamp) instead of a
-    # duration -- the cumulative count's window ends when the file was generated.
+    # Explicit end instant instead of a duration (to_timestamp for TLC,
+    # Time + PeriodSec for DAI). Both instants carry the Brussels UTC offset.
     rr:predicateObjectMap [
         rr:predicate time:hasEnd ;
         rr:objectMap [ rr:parentTriplesMap <#EndInstant> ;
@@ -121,7 +123,7 @@
     rr:subjectMap [ rr:template "instant-begin/{measSubject}" ; rr:termType rr:BlankNode ; rr:class time:Instant ] ;
     rr:predicateObjectMap [
         rr:predicate time:inXSDDateTimeStamp ;
-        rr:objectMap [ rml:reference "startISO" ; rr:datatype xsd:dateTime ]
+        rr:objectMap [ rml:reference "startISO" ; rr:datatype xsd:dateTimeStamp ]
     ] .
 
 <#EndInstant>
@@ -129,7 +131,7 @@
     rr:subjectMap [ rr:template "instant-end/{measSubject}" ; rr:termType rr:BlankNode ; rr:class time:Instant ] ;
     rr:predicateObjectMap [
         rr:predicate time:inXSDDateTimeStamp ;
-        rr:objectMap [ rml:reference "endISO" ; rr:datatype xsd:dateTime ]
+        rr:objectMap [ rml:reference "endISO" ; rr:datatype xsd:dateTimeStamp ]
     ] .
 
 <#SpeedResult>
@@ -155,11 +157,12 @@
         rr:predicate verkeer:voertuigType ;
         rr:objectMap [ rr:template "https://data.vlaanderen.be/id/concept/VkmVoertuigType/{vehicle}" ; rr:termType rr:IRI ]
     ] ;
-    # measure direction: HARD-CODED to bothDirections (the feeds carry no
-    # reliable per-measurement direction).
+    # measure direction: the traverse's direction (link_direction in the
+    # client's traverse table, carried in the traverse map). Omitted while it is
+    # unknown, so consumers fall back to the meetpunt's rijrichting.
     rr:predicateObjectMap [
         rr:predicate impl:Verkeerstellingkenmerk.meetrichting ;
-        rr:objectMap [ rr:constant LinkDirectionValue:bothDirections ]
+        rr:objectMap [ rr:template "http://inspire.ec.europa.eu/codelist/LinkDirectionValue/{direction}" ; rr:termType rr:IRI ]
     ] .
 
 <#KenmerkSpeed>
@@ -173,8 +176,8 @@
         rr:predicate verkeer:voertuigType ;
         rr:objectMap [ rr:template "https://data.vlaanderen.be/id/concept/VkmVoertuigType/{vehicle}" ; rr:termType rr:IRI ]
     ] ;
-    # measure direction: HARD-CODED to bothDirections.
+    # measure direction: the traverse's direction, see KenmerkCount.
     rr:predicateObjectMap [
         rr:predicate impl:Verkeerssnelheidsmetingkenmerk.meetrichting ;
-        rr:objectMap [ rr:constant LinkDirectionValue:bothDirections ]
+        rr:objectMap [ rr:template "http://inspire.ec.europa.eu/codelist/LinkDirectionValue/{direction}" ; rr:termType rr:IRI ]
     ] .
