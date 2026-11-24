@@ -20,8 +20,12 @@ from django.core.management.base import BaseCommand, CommandError
 
 from django.db.models import Prefetch
 
+from traffic.columns import missing_columns
 from traffic.models import UCComptageTraverses, SegmentMatch
-from traffic.oslo.preprocess import preprocess, flatten_segment_matches
+from traffic.oslo.preprocess import preprocess
+
+# Declared on the traverse mirror ahead of the client's migration.
+NEW_TRAVERSE_FIELDS = ["link_direction", "link_direction_manual"]
 import json
 
 OSLO_DIR = Path(__file__).resolve().parents[2] / "oslo"
@@ -69,49 +73,18 @@ class Command(BaseCommand):
             raise CommandError(f"mapping not found: {MAPPING}")
 
         # 1. ORM -> GeoJSON FeatureCollection (decode + reproject happen here).
-        # Defer `offset`: it is declared on the model but not yet a real DB
-        # column, so it must be excluded from the SELECT or Postgres errors.
-        # Remove the .defer("offset") once the column exists.
-        matches_qs = SegmentMatch.objects.defer("offset")
+        # Fields declared on the mirror but not (yet) real columns are deferred,
+        # otherwise Postgres errors on the SELECT. Nothing is deferred once the
+        # client has added them.
+        matches_qs = SegmentMatch.objects.defer(*missing_columns(SegmentMatch, ["offset"]))
         traverses = (
             UCComptageTraverses.objects
+            .defer(*missing_columns(UCComptageTraverses, NEW_TRAVERSE_FIELDS))
             .prefetch_related(Prefetch("Traverse", queryset=matches_qs))
             .order_by("id")
         )
         fc = preprocess(traverses)
         self.stdout.write(f"prepared {len(fc['features'])} traverse features")
-
-        # -------------------------------------------------------------------
-        # TEMPORARY MOCK -- REMOVE once traffic_segmentmatch is populated.
-        # traffic_segmentmatch is currently empty, so every traverse comes out
-        # with segmentMatches == []. To exercise the segment-match path end to
-        # end (preprocess -> RML -> RDF) we inject ONE fake match into the first
-        # feature. This is purely test scaffolding: it writes nothing to the DB
-        # and must be deleted the moment real match rows exist, otherwise it
-        # will fabricate a bogus match on top of the real data.
-        if fc["features"]:
-            # Fictive hex-WKB LINESTRING near ROG_TD1 (Brussels); decoded to
-            # line/begin/end WKT by preprocess.wkb_to_geometry, same as real data.
-            from traffic.oslo.preprocess import wkb_to_geometry
-            from shapely.geometry import LineString
-            mock_wkb = LineString(
-                [(4.355297, 50.856096), (4.356000, 50.856500), (4.356800, 50.857000)]
-            ).wkb_hex
-            mock_match = {
-                "match_id": "MOCK-0001", "status": "resolved", "segment_id": "SEG_42",
-                "wkb": mock_wkb,
-                "geometry": wkb_to_geometry(mock_wkb),
-                "offset": 42.5,   # metres from segment start (mock; column not in DB yet)
-            }
-            fc["features"][0]["properties"]["segmentMatches"] = [mock_match]
-            # Rebuild the flat top-level array the RML maps iterate, so the mock
-            # is included (preprocess() already flattened the empty originals).
-            fc["segmentMatches"] = flatten_segment_matches(fc["features"])
-            self.stdout.write(self.style.WARNING(
-                "INJECTED mock segment match into "
-                f"{fc['features'][0]['properties']['name']} -- remove before production"
-            ))
-        # -------------------------------------------------------------------
 
         # 2. Write temp JSON + a mapping copy pointing at it.
         with tempfile.TemporaryDirectory() as tmp:

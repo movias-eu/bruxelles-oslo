@@ -11,6 +11,9 @@ and hands rows in), so it is trivially testable and reusable.
 """
 from functools import lru_cache
 
+from traffic.columns import loaded
+from traffic.oslo.direction import LINK_DIRECTIONS
+
 # Traverse coordinates are Belgian Lambert 72; OSLO/GeoSPARQL wants WGS84 lon/lat.
 _LB72 = "EPSG:31370"
 _WGS84 = "EPSG:4326"
@@ -71,6 +74,12 @@ def wkb_to_geometry(hex_wkb):
     }
 
 
+def _link_direction(t):
+    """The traverse's link_direction if set and valid, else None."""
+    value = loaded(t, "link_direction")
+    return value if value in LINK_DIRECTIONS else None
+
+
 def traverse_to_feature(t):
     """One traverse ORM object -> one GeoJSON Feature dict.
 
@@ -85,11 +94,10 @@ def traverse_to_feature(t):
             "segment_id": m.segment_id,
             # WKB (hex text) -> {line, start, end} WKT; None if no/invalid geometry.
             "geometry": wkb_to_geometry(getattr(m, "wkb", None)),
-            # offset (metres from segment start) is NOT yet a real DB column, so
-            # the query defers it -> getattr returns None for real rows. Mock
-            # data supplies it directly. Reads cleanly today, automatically once
-            # the column exists.
-            "offset": getattr(m, "offset", None),
+            # offset (metres from segment start) may not be a real DB column
+            # yet; the query then defers it and loaded() returns None instead
+            # of querying the missing column.
+            "offset": loaded(m, "offset"),
         }
         for m in t.Traverse.all()
     ]
@@ -103,7 +111,10 @@ def traverse_to_feature(t):
             "vehType": t.veh_type_label,            # VEH / BIKE / RADAR
             "zone": t.zone_geographic or None,
             "orientation": t.orientation,           # degrees, North=0
-            "segmentMatches": matches,              # empty now, populated later
+            # INSPIRE LinkDirectionValue relative to the matched segment; None
+            # while unknown or before the client adds the column.
+            "linkDirection": _link_direction(t),
+            "segmentMatches": matches,
         },
     }
     return feature
@@ -120,6 +131,7 @@ def flatten_segment_matches(features):
     out = []
     for feat in features:
         name = feat["properties"]["name"]
+        direction = feat["properties"].get("linkDirection")
         for m in feat["properties"].get("segmentMatches", []):
             geom = m.get("geometry") or {}
             out.append({
@@ -133,6 +145,8 @@ def flatten_segment_matches(features):
                 "startWkt": geom.get("start"),
                 "endWkt": geom.get("end"),
                 "offset": m.get("offset"),          # metres from segment start
+                # The traverse direction is relative to this segment.
+                "linkDirection": direction,
             })
     return out
 

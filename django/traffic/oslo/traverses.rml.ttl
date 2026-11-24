@@ -103,14 +103,14 @@
         rr:termType rr:BlankNode ;
         rr:class dv-weg:Rijrichting
     ] ;
-    # HARD-CODED direction: the traverses table has a `direction` column, but it
-    # is empty/inconsistent (96% null, mixed coding), so we cannot derive a
-    # reliable LinkDirectionValue from it yet. Default to bothDirections.
-    # TODO: replace with the real direction once the source column is cleaned up.
+    # Direction from the traverse's link_direction column (INSPIRE
+    # LinkDirectionValue, relative to this segment). Omitted while it is unknown:
+    # no value is better than a wrong one.
     rr:predicateObjectMap [
         rr:predicate dv-weg:rijrichting ;
         rr:objectMap [
-            rr:constant LinkDirectionValue:bothDirections
+            rr:template "http://inspire.ec.europa.eu/codelist/LinkDirectionValue/{linkDirection}" ;
+            rr:termType rr:IRI
         ]
     ] ;
     rr:predicateObjectMap [

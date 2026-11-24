@@ -21,6 +21,14 @@ VEH_TYPES = {
     3: "RADAR",
 }
 
+# INSPIRE LinkDirectionValue codes, stored as-is so the OSLO mapping can build the
+# codelist IRI http://inspire.ec.europa.eu/codelist/LinkDirectionValue/<code>.
+LINK_DIRECTION_CHOICES = (
+    ("inDirection", "In digitisation direction of the segment"),
+    ("inOppositeDirection", "Against digitisation direction of the segment"),
+    ("bothDirections", "Both directions"),
+)
+
 
 class UCComptageLink(models.Model):
     link_name = models.CharField(max_length=50, unique=True, null=True, blank=True)
@@ -54,6 +62,17 @@ class UCComptageTraverses(models.Model):
     install_date = models.DateField(blank=True, null=True)
     uninstall_date = models.DateField(blank=True, null=True)
     veh_type = models.IntegerField(choices=tuple(sorted(VEH_TYPES.items())), default=1)
+
+    # NEW, to be added to the client's model (see the implementation notes in
+    # django/README.md). Until the columns exist, queries .defer() them
+    # (traffic.columns.missing_columns), so reads work before and after the
+    # migration. link_direction is the INSPIRE LinkDirectionValue relative to the
+    # matched road segment; link_direction_manual = True means it was set by hand
+    # and the automatic computation must leave it alone.
+    link_direction = models.CharField(
+        max_length=20, null=True, blank=True, choices=LINK_DIRECTION_CHOICES
+    )
+    link_direction_manual = models.BooleanField(default=False)
 
     class Meta:
         managed = False
@@ -104,3 +123,54 @@ class SegmentMatch(models.Model):
 
     def __str__(self):
         return f"{self.match_id} ({self.status})"
+
+
+class UCComptageDetector(models.Model):
+    """Read-only mirror of traffic_uccomptagedetector (one detector = one lane).
+
+    Only the fields the live export needs. detector_id is the id the live feeds
+    use: TLC "detector" (ARL_103_1) and DAI CameraName + "_" + LaneId.
+    """
+
+    detector_id = models.CharField(max_length=25, unique=True)
+    veh_type = models.IntegerField(choices=tuple(sorted(VEH_TYPES.items())), default=1)
+
+    class Meta:
+        managed = False
+        db_table = "traffic_uccomptagedetector"
+
+    def __str__(self):
+        return self.detector_id
+
+
+class UCComptageDetectorTraverse(models.Model):
+    """Read-only mirror of traffic_uccomptagedetectortraverse (detector -> traverse).
+
+    lane_N says which lane of the traverse the detector covers; it does not
+    matter for summing a traverse. The related_names differ from the client's
+    model ("Traverse"/"Detector"): "Traverse" is already the reverse accessor of
+    SegmentMatch here, and reverse accessors do not touch the database.
+    """
+
+    active = models.BooleanField(default=True)
+    traverse_id = models.ForeignKey(
+        UCComptageTraverses, related_name="detector_links",
+        on_delete=models.DO_NOTHING, db_column="traverse_id_id",
+    )
+    detector_id = models.ForeignKey(
+        UCComptageDetector, related_name="traverse_links",
+        on_delete=models.DO_NOTHING, db_column="detector_id_id",
+    )
+    lane_1 = models.BooleanField(default=False)
+    lane_2 = models.BooleanField(default=False)
+    lane_3 = models.BooleanField(default=False)
+    lane_4 = models.BooleanField(default=False)
+    lane_5 = models.BooleanField(default=False)
+    lane_6 = models.BooleanField(default=False)
+
+    class Meta:
+        managed = False
+        db_table = "traffic_uccomptagedetectortraverse"
+
+    def __str__(self):
+        return f"{self.traverse_id_id} - {self.detector_id_id}"
