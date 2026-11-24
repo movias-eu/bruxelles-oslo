@@ -16,8 +16,9 @@ FOI_COUNT = "aantal"
 FOI_SPEED = "tijdsgemiddelde_snelheid"
 
 # Per-feed OSLO codelist values (from traffic_counts_codelist_mapping.md).
-SENSOR = {"tlc": "standaard_Camera", "dai": "standaard_Camera", "bike_live": "glasvezel"}
-VEHICLE = {"tlc": "auto", "dai": "auto", "bike_live": "fiets"}
+SENSOR = {"tlc": "standaard_Camera", "dai": "standaard_Camera",
+          "bike_live": "glasvezel", "bike_summary": "glasvezel"}
+VEHICLE = {"tlc": "auto", "dai": "auto", "bike_live": "fiets", "bike_summary": "fiets"}
 
 # INSPIRE LinkDirectionValue local names accepted as a traverse direction.
 LINK_DIRECTIONS = ("inDirection", "inOppositeDirection", "bothDirections")
@@ -47,6 +48,13 @@ def brussels_utc_offset(local_dt):
     start = datetime.combine(_last_sunday(local_dt.year, 3), time(3))
     end = datetime.combine(_last_sunday(local_dt.year, 10), time(3))
     return timedelta(hours=2) if start <= local_dt < end else timedelta(hours=1)
+
+
+def brussels_now():
+    """The current naive Brussels wall-clock time."""
+    utc = datetime.utcnow().replace(microsecond=0)
+    summer = utc + timedelta(hours=2)
+    return summer if brussels_utc_offset(summer) == timedelta(hours=2) else utc + timedelta(hours=1)
 
 
 def ids(dt):
@@ -92,10 +100,11 @@ def warn(msg):
 
 
 # --- Detector -> traverse -----------------------------------------------------
-# The live TLC/DAI feeds report per detector (one lane). OSLO publishes
-# cross-section counts (doorsnedetellingen) per traverse, so each detector is
-# mapped to its traverse with the client's UCComptageDetectorTraverse table,
-# exported to CSV by `django/manage.py export_live_traverse_map`.
+# The live TLC/DAI feeds report per detector (one lane), bike_summary per track
+# of a bike counter. OSLO publishes cross-section counts (doorsnedetellingen)
+# per traverse, so each detector is mapped to its traverse with the client's
+# UCComptageDetectorTraverse table, exported to CSV by
+# `django/manage.py export_live_traverse_map`.
 
 class TraverseMap:
     """Detector <-> traverse links, plus each traverse's direction.
